@@ -4,7 +4,7 @@ import liff from "@line/liff";
 
 const LiffPage = () => {
   const [displayName, setDisplayName] = useState("Loading...");
-  const [profilePicture, setProfilePicture] = useState("");
+  const [profilePicture, setProfilePicture] = useState<string>("");
 
   useEffect(() => {
     const initializeLiff = async () => {
@@ -15,8 +15,8 @@ const LiffPage = () => {
           liff.login();
         } else {
           const profile = await liff.getProfile();
-          setDisplayName(profile.displayName);
-          setProfilePicture(profile.pictureUrl);
+          setDisplayName(profile.displayName || "Unknown User");
+          setProfilePicture(profile.pictureUrl || "");
           console.log("Already logged in.");
         }
       } catch (err) {
