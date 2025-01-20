@@ -1,8 +1,10 @@
-"use client"
-import { useEffect } from "react";
+"use client";
+import { useEffect, useState } from "react";
 import liff from "@line/liff";
 
-const Page = () => {
+const LiffPage = () => {
+  const [displayName, setDisplayName] = useState("Loading...");
+
   useEffect(() => {
     const initializeLiff = async () => {
       try {
@@ -11,17 +13,24 @@ const Page = () => {
         if (!liff.isLoggedIn()) {
           liff.login();
         } else {
+          const profile = await liff.getProfile();
+          setDisplayName(profile.displayName);
           console.log("Already logged in.");
         }
       } catch (err) {
         console.error("LIFF Initialization failed", err);
+        setDisplayName("Error loading profile");
       }
     };
 
     initializeLiff();
   }, []);
 
-  return <div>info</div>;
+  return (
+    <div>
+      <h1>Welcome, {displayName}</h1>
+    </div>
+  );
 };
 
-export default Page;
+export default LiffPage;
