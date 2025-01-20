@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import liff from "@line/liff";
 
 export default function Home() {
   return (
@@ -34,7 +35,7 @@ export default function Home() {
               width={20}
               height={20}
             />
-            Deploy now
+            Deploy now UKID2
           </a>
           <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
