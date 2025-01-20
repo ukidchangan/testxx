@@ -3,6 +3,27 @@ import styles from "./page.module.css";
 import liff from "@line/liff";
 
 export default function Home() {
+
+
+  liff.init(
+    { liffId: "2006795376-Kj0jbvX9" },
+    () => {
+      // LIFF initialized successfully
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      } else {
+        console.log("Already logged in.");
+      }
+    },
+    (err) => {
+      // Error handling
+      console.error("LIFF Initialization failed", err);
+    }
+  );
+
+
+
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
