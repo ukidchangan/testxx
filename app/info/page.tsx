@@ -4,6 +4,7 @@ import liff from "@line/liff";
 
 const LiffPage = () => {
   const [displayName, setDisplayName] = useState("Loading...");
+  const [profilePicture, setProfilePicture] = useState("");
 
   useEffect(() => {
     const initializeLiff = async () => {
@@ -15,6 +16,7 @@ const LiffPage = () => {
         } else {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName);
+          setProfilePicture(profile.pictureUrl);
           console.log("Already logged in.");
         }
       } catch (err) {
@@ -27,7 +29,15 @@ const LiffPage = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center", 
+      height: "100vh", 
+      backgroundColor: "#f0f8ff" 
+    }}>
+      {profilePicture && <img src={profilePicture} alt="Profile" style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} />}
       <h1>Welcome, {displayName}</h1>
     </div>
   );
