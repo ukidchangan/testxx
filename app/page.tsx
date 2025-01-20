@@ -10,8 +10,11 @@ export default function Home() {
     () => {
       // LIFF initialized successfully
       if (!liff.isLoggedIn()) {
+        alert("GO LOGIN");
         liff.login();
+        
       } else {
+        alert("LOGIN aleady");
         console.log("Already logged in.");
       }
     },
@@ -56,7 +59,7 @@ export default function Home() {
               width={20}
               height={20}
             />
-            Deploy now UKID3
+            Deploy now UKID5
           </a>
           <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
