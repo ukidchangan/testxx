@@ -51,6 +51,7 @@ import liff from "@line/liff";
 
 const LiffPage = () => {
   const [displayName, setDisplayName] = useState("Loading...");
+  const [userId, setUserId] = useState("unknow");
   const [profilePicture, setProfilePicture] = useState<string>("");
   const [message, setMessage] = useState("");
 
@@ -65,6 +66,7 @@ const LiffPage = () => {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
+          setUserId(profile.userId || "");
           console.log("Already logged in.");
         }
       } catch (err) {
@@ -106,7 +108,8 @@ const LiffPage = () => {
       backgroundColor: "#f0f8ff" 
     }}>
       {profilePicture && <img src={profilePicture} alt="Profile" style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} />}
-      <h1>##วัดหลวง ผู้ยินดีบริจาค, {displayName}</h1>
+      <h1>##วัดหลวง ผู้ยินดีบริจาค, {displayName} </h1>
+      <h1>userid :: {userId}</h1>
       <div style={{ marginTop: "20px", textAlign: "center" }}>
         <input 
           type="text" 
