@@ -78,7 +78,7 @@ const LiffPage = () => {
           style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} 
         />
       )}
-      <h1>##วัดหลวง ผู้ยินดีบริจาค, {displayName} </h1>
+      <h1>###วัดหลวง ผู้ยินดีบริจาค, {displayName} </h1>
       <p>USER ID: {userId}</p>
 
       {error ? (
