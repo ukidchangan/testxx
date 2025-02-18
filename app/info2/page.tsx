@@ -1,59 +1,13 @@
-// "use client";
-// import { useEffect, useState } from "react";
-// import liff from "@line/liff";
-
-// const LiffPage = () => {
-//   const [displayName, setDisplayName] = useState("Loading...");
-//   const [profilePicture, setProfilePicture] = useState<string>("");
-
-//   useEffect(() => {
-//     const initializeLiff = async () => {
-//       try {
-//         await liff.init({ liffId: "2006795376-Kj0jbvX9" });
-
-//         if (!liff.isLoggedIn()) {
-//           liff.login();
-//         } else {
-//           const profile = await liff.getProfile();
-//           setDisplayName(profile.displayName || "Unknown User");
-//           setProfilePicture(profile.pictureUrl || "");
-//           console.log("Already logged in.");
-//         }
-//       } catch (err) {
-//         console.error("LIFF Initialization failed", err);
-//         setDisplayName("Error loading profile");
-//       }
-//     };
-
-//     initializeLiff();
-//   }, []);
-
-//   return (
-//     <div style={{ 
-//       display: "flex", 
-//       flexDirection: "column", 
-//       alignItems: "center", 
-//       justifyContent: "center", 
-//       height: "100vh", 
-//       backgroundColor: "#f0f8ff" 
-//     }}>
-//       {profilePicture && <img src={profilePicture} alt="Profile" style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} />}
-//       <h1>ผู้บริจาควัดหลวง, {displayName}</h1>
-//     </div>
-//   );
-// };
-
-// export default LiffPage;
-
 "use client";
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
 
 const LiffPage = () => {
   const [displayName, setDisplayName] = useState("Loading...");
-  const [userId, setUserId] = useState("unknow");
+  const [userId, setUserId] = useState("Unknown");
   const [profilePicture, setProfilePicture] = useState<string>("");
-  const [message, setMessage] = useState("");
+  const [donorInfo, setDonorInfo] = useState<any>(null);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const initializeLiff = async () => {
@@ -78,23 +32,33 @@ const LiffPage = () => {
     initializeLiff();
   }, []);
 
-  const sendMessage = async () => {
+  useEffect(() => {
+    if (userId !== "Unknown" && userId !== "") {
+      fetchDonorInfo(userId);
+    }
+  }, [userId]);
+
+  const fetchDonorInfo = async (userId: string) => {
+    const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userId}`;
+    
     try {
-      if (message.trim() === "") {
-        alert("Message cannot be empty");
-        return;
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Authorization": "9613972343509313335bdc6a7fe20772c9bdd4ad",
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      await liff.sendMessages([
-        {
-          type: "text",
-          text: message,
-        },
-      ]);
-      alert("Message sent!");
-      setMessage(""); // Clear input after sending
-    } catch (err) {
-      console.error("Failed to send message", err);
-      alert("Failed to send message");
+
+      const data = await response.json();
+      setDonorInfo(data);
+    } catch (error) {
+      console.error("Error fetching donor info:", error);
+      setError("Failed to fetch donor information.");
     }
   };
 
@@ -107,25 +71,28 @@ const LiffPage = () => {
       height: "100vh", 
       backgroundColor: "#f0f8ff" 
     }}>
-      {profilePicture && <img src={profilePicture} alt="Profile" style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} />}
-      <h1>##วัดหลวง ผู้ยินดีบริจาค, {displayName} </h1>
-      <p>userid :: {userId}</p>
-      <div style={{ marginTop: "20px", textAlign: "center" }}>
-        <input 
-          type="text" 
-          value={message} 
-          onChange={(e) => setMessage(e.target.value)} 
-          placeholder="Type your message here" 
-          style={{ padding: "10px", width: "300px", marginBottom: "10px", border: "1px solid #ccc", borderRadius: "5px" }}
+      {profilePicture && (
+        <img 
+          src={profilePicture} 
+          alt="Profile" 
+          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} 
         />
-        <br />
-        <button 
-          onClick={sendMessage} 
-          style={{ padding: "10px 20px", backgroundColor: "#007BFF", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}
-        >
-          Send Message
-        </button>
-      </div>
+      )}
+      <h1>##วัดหลวง ผู้ยินดีบริจาค, {displayName} </h1>
+      <p>USER ID: {userId}</p>
+
+      {error ? (
+        <p style={{ color: "red" }}>{error}</p>
+      ) : donorInfo ? (
+        <div style={{ marginTop: "20px", textAlign: "center", backgroundColor: "#fff", padding: "15px", borderRadius: "10px", boxShadow: "0px 0px 10px #ddd" }}>
+          <h3>ข้อมูลผู้บริจาค</h3>
+          <p><strong>ชื่อ:</strong> {donorInfo.name}</p>
+          <p><strong>จำนวนเงินที่บริจาค:</strong> {donorInfo.donation_amount} บาท</p>
+          <p><strong>วันที่บริจาค:</strong> {donorInfo.donation_date}</p>
+        </div>
+      ) : (
+        <p>กำลังโหลดข้อมูล...</p>
+      )}
     </div>
   );
 };
