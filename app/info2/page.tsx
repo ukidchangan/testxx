@@ -39,8 +39,8 @@ const LiffPage = () => {
   }, [userId]);
 
   const fetchDonorInfo = async (userId: string) => {
-    const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userId}`;
-    
+    // const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userId}`;
+    const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
     try {
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -85,10 +85,10 @@ const LiffPage = () => {
         <p style={{ color: "red" }}>{error}</p>
       ) : donorInfo ? (
         <div style={{ marginTop: "20px", textAlign: "center", backgroundColor: "#fff", padding: "15px", borderRadius: "10px", boxShadow: "0px 0px 10px #ddd" }}>
-          <h3>ข้อมูลผู้บริจาค</h3>
-          <p><strong>ชื่อ:</strong> {donorInfo.name}</p>
-          <p><strong>จำนวนเงินที่บริจาค:</strong> {donorInfo.donation_amount} บาท</p>
-          <p><strong>วันที่บริจาค:</strong> {donorInfo.donation_date}</p>
+<h3>ข้อมูลผู้บริจาค</h3>
+<p><strong>ชื่อ:</strong> {donorInfo.data?.[0]?.name}</p>
+<p><strong>เบอร์:</strong> {donorInfo.data?.[0]?.mobile}</p>
+<p><strong>อีเมล:</strong> {donorInfo.data?.[0]?.email}</p>
         </div>
       ) : (
         <p>กำลังโหลดข้อมูล...</p>
