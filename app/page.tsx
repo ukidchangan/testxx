@@ -1,120 +1,100 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import { useEffect, useState } from "react";
 import liff from "@line/liff";
 
-export default function Home() {
+const LiffPage = () => {
+  const [displayName, setDisplayName] = useState("Loading...");
+  const [userId, setUserId] = useState("Unknown");
+  const [profilePicture, setProfilePicture] = useState<string>("");
+  const [donorInfo, setDonorInfo] = useState<any>(null);
+  const [error, setError] = useState<string>("");
 
+  useEffect(() => {
+    const initializeLiff = async () => {
+      try {
+        await liff.init({ liffId: "2006795376-Kj0jbvX9" });
 
-  liff.init(
-    { liffId: "2006795376-Kj0jbvX9" },
-    () => {
-      // LIFF initialized successfully
-      if (!liff.isLoggedIn()) {
-        alert("GO LOGIN");
-        liff.login();
-        
-      } else {
-        alert("LOGIN aleady");
-        console.log("Already logged in.");
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        } else {
+          const profile = await liff.getProfile();
+          setDisplayName(profile.displayName || "Unknown User");
+          setProfilePicture(profile.pictureUrl || "");
+          setUserId(profile.userId || "");
+          console.log("Already logged in.");
+        }
+      } catch (err) {
+        console.error("LIFF Initialization failed", err);
+        setDisplayName("Error loading profile");
       }
-    },
-    (err) => {
-      // Error handling
-      console.error("LIFF Initialization failed", err);
+    };
+
+    initializeLiff();
+  }, []);
+
+  useEffect(() => {
+    if (userId !== "Unknown" && userId !== "") {
+      fetchDonorInfo(userId);
     }
-  );
+  }, [userId]);
 
+  const fetchDonorInfo = async (userId: string) => {
+    // const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userId}`;
+    const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
+    try {
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Authorization": "9613972343509313335bdc6a7fe20772c9bdd4ad",
+          "Content-Type": "application/json"
+        }
+      });
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
+      const data = await response.json();
+      setDonorInfo(data);
+    } catch (error) {
+      console.error("Error fetching donor info:", error);
+      setError("Failed to fetch donor information.");
+    }
+  };
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div style={{ 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center", 
+      height: "100vh", 
+      backgroundColor: "#f0f8ff" 
+    }}>
+      {profilePicture && (
+        <img 
+          src={profilePicture} 
+          alt="Profile" 
+          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} 
         />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+      )}
+      <h1>###วัดหลวง ผู้ยินดีบริจาค, {displayName} </h1>
+      <p>USER ID: {userId}</p>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now UKID14
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+      {error ? (
+        <p style={{ color: "red" }}>{error}</p>
+      ) : donorInfo ? (
+        <div style={{ marginTop: "20px", textAlign: "center", backgroundColor: "#fff", padding: "15px", borderRadius: "10px", boxShadow: "0px 0px 10px #ddd" }}>
+<h3>ข้อมูลผู้บริจาค</h3>
+<p><strong>ชื่อ:</strong> {donorInfo.data?.[0]?.name}</p>
+<p><strong>เบอร์:</strong> {donorInfo.data?.[0]?.mobile}</p>
+<p><strong>อีเมล:</strong> {donorInfo.data?.[0]?.email}</p>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      ) : (
+        <p>กำลังโหลดข้อมูล...</p>
+      )}
     </div>
   );
-}
+};
+
+export default LiffPage;
