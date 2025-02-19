@@ -106,15 +106,15 @@ export default function CreatePage() {
         }}
       >
      
-        <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>
+        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>
         {profilePicture && (
         <img 
           src={profilePicture} 
           alt="Profile" 
-          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px", textAlign: 'center' }} 
+          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }} 
         />
       )}</h1>
-         <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>    Create Profile</h1>
+         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>    ลงทะเบียนข้อมูลผู้บริจาค</h1>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
           <div style={{ marginBottom: '15px' }}>
