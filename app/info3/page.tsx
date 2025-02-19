@@ -27,5 +27,5 @@ async function getProfile() {
 export default async function InfoPage() {
   const profile = await getProfile();
 
-  return (profile);
+  // return (profile);
 }
