@@ -56,8 +56,11 @@ export default function CreatePage() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
 
+    e.preventDefault();
+    formData.lineoa_userid=userId;
+    formData.lineoa_profile=profilePicture;
+    formData.lineoa_displayname=displayName;
     try {
       const response = await fetch('/api/create-profile', {
         method: 'POST',
