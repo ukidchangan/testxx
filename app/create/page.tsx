@@ -120,7 +120,7 @@ export default function CreatePage() {
             <input
               type="text"
               name="lineoa_userid"
-              value={formData.lineoa_userid}
+              value={userId}
               onChange={handleChange}
               required
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
@@ -142,7 +142,7 @@ export default function CreatePage() {
             <input
               type="text"
               name="lineoa_displayname"
-              value={formData.lineoa_displayname}
+              value={displayName}
               onChange={handleChange}
               required
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
