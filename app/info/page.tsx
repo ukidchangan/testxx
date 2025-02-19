@@ -64,7 +64,9 @@ const LiffPage = () => {
         alert("redirect")
         redirect("/create"); 
       }
+      try{
       setDonorInfo(data);
+      } catch (error) {}
     } catch (error) {
       console.error("Error fetching donor info:", error);
       setError("Failed to fetch donor information.");
