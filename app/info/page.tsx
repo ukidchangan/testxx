@@ -65,7 +65,7 @@ const LiffPage = () => {
         // alert(displayName);
         // alert(userId);
         // alert(profilePicture);
-        window.location.href = "/create";
+        // window.location.href = "/create";
       }
       try{
       setDonorInfo(data);
