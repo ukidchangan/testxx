@@ -62,6 +62,9 @@ const LiffPage = () => {
       alert(data.message);
       if(data.message!="Successfully"){
         alert("redirectx");
+        alert(displayName);
+        alert(userId);
+        alert(profilePicture);
         window.location.href = "/create";
       }
       try{
