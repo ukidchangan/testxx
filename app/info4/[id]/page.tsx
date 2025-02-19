@@ -1,5 +1,7 @@
 import React from "react";
+import { notFound } from "next/navigation"; // Handles invalid params
 
+// Function to fetch user profile from API
 async function getProfile(id: string) {
   try {
     console.log("Fetching profile for user ID:", id);
@@ -26,9 +28,13 @@ async function getProfile(id: string) {
   }
 }
 
-export default async function InfoPage({ params }: { params: { id: string } }) {
-  const { id } = params;
-  const profile = await getProfile(id);
+// ✅ Corrected function for handling Next.js dynamic route parameters
+export default async function InfoPage({ params }: { params: { id?: string } }) {
+  if (!params.id) {
+    return notFound(); // Handle missing or invalid params
+  }
+
+  const profile = await getProfile(params.id);
 
   return (
     <div className="p-4">
