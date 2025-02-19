@@ -57,7 +57,7 @@ const LiffPage = () => {
       }
 
       const data = await response.json();
-      alert(data)
+      alert(JSON.stringify(data, null, 2));
       setDonorInfo(data);
     } catch (error) {
       console.error("Error fetching donor info:", error);
