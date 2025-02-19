@@ -59,8 +59,9 @@ const LiffPage = () => {
 
       const data = await response.json();
       alert(JSON.stringify(data, null, 2));
-      alert(data.message)
+      alert(data.message);
       if(data.message!="Successfully"){
+        alert("redirect")
         const router = useRouter();
         router.push("/create");
       }
