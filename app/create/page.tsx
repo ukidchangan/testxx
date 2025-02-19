@@ -125,10 +125,10 @@ export default function CreatePage() {
             <input
               type="text"
               name="lineoa_userid"
-              defaultValue="หหหหหหหหหหหห" 
-              value={formData.lineoa_userid}
+              value={userId}
               onChange={handleChange}
               required
+              readOnly
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
@@ -137,9 +137,10 @@ export default function CreatePage() {
             <input
               type="text"
               name="lineoa_profile"
-              value={formData.lineoa_profile}
+              value={profilePicture}
               onChange={handleChange}
               required
+              readOnly
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
@@ -148,9 +149,10 @@ export default function CreatePage() {
             <input
               type="text"
               name="lineoa_displayname"
-              value={formData.lineoa_displayname}
+              value={displayName}
               onChange={handleChange}
               required
+              readOnly
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
