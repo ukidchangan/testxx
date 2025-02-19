@@ -35,9 +35,9 @@ export default function CreatePage() {
 
 
   const [formData, setFormData] = useState({
-    lineoa_userid: userId,
-    lineoa_profile: displayName,
-    lineoa_displayname: profilePicture,
+    lineoa_userid: '',
+    lineoa_profile: '',
+    lineoa_displayname: '',
     email: '',
     mobile: '',
     zip: '',
@@ -109,7 +109,7 @@ export default function CreatePage() {
         <img 
           src={profilePicture} 
           alt="Profile" 
-          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} 
+          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px", textAlign: 'center' }} 
         />
       )}
         <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>Create Profile</h1>
@@ -131,7 +131,7 @@ export default function CreatePage() {
             <input
               type="text"
               name="lineoa_profile"
-              value={formData.lineoa_profile}
+              value={profilePicture}
               onChange={handleChange}
               required
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
