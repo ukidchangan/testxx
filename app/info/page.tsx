@@ -42,7 +42,7 @@ const LiffPage = () => {
   const fetchDonorInfo = async (userId: string) => {
     // const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userId}`;
     // const apiUrl = `https://cors-anywhere.herokuapp.com/https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
-    const apiUrl = `/api/hello?userid=${userId}99`;
+    const apiUrl = `/api/hello?userid=${userId}`;
     try {
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -58,13 +58,13 @@ const LiffPage = () => {
       }
 
       const data = await response.json();
-      alert(JSON.stringify(data, null, 2));
-      alert(data.message);
+      // alert(JSON.stringify(data, null, 2));
+      // alert(data.message);
       if(data.message!="Successfully"){
-        alert("redirectx");
-        alert(displayName);
-        alert(userId);
-        alert(profilePicture);
+        // alert("redirectx");
+        // alert(displayName);
+        // alert(userId);
+        // alert(profilePicture);
         window.location.href = "/create";
       }
       try{

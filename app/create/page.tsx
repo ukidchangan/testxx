@@ -1,9 +1,39 @@
 // app/create/page.tsx
 "use client"; // This is required to use client-side features like useState, useEffect, etc.
 
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+import liff from "@line/liff";
 
 export default function CreatePage() {
+
+    const [displayName, setDisplayName] = useState("Loading...");
+    const [userId, setUserId] = useState("Unknown");
+    const [profilePicture, setProfilePicture] = useState<string>("");
+
+      useEffect(() => {
+        const initializeLiff = async () => {
+          try {
+            await liff.init({ liffId: "2006795376-Kj0jbvX9" });
+    
+            if (!liff.isLoggedIn()) {
+              liff.login();
+            } else {
+              const profile = await liff.getProfile();
+              setDisplayName(profile.displayName || "Unknown User");
+              setProfilePicture(profile.pictureUrl || "");
+              setUserId(profile.userId || "");
+              console.log("Already logged in.");
+            }
+          } catch (err) {
+            console.error("LIFF Initialization failed", err);
+            setDisplayName("Error loading profile");
+          }
+        };
+    
+        initializeLiff();
+      }, []);
+
+
   const [formData, setFormData] = useState({
     lineoa_userid: '',
     lineoa_profile: '',
@@ -75,6 +105,7 @@ export default function CreatePage() {
           boxShadow: '0px 0px 10px #ddd',
         }}
       >
+        <h1>{displayName} </h1>
         <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>Create Profile</h1>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
