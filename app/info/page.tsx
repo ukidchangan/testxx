@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import liff from "@line/liff";
 
 const LiffPage = () => {
@@ -62,8 +62,7 @@ const LiffPage = () => {
       alert(data.message);
       if(data.message!="Successfully"){
         alert("redirect")
-        const router = useRouter();
-        router.push("/create");
+        redirect("/create"); 
       }
       setDonorInfo(data);
     } catch (error) {
