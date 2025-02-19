@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 import liff from "@line/liff";
 
 const LiffPage = () => {
@@ -9,6 +9,8 @@ const LiffPage = () => {
   const [profilePicture, setProfilePicture] = useState<string>("");
   const [donorInfo, setDonorInfo] = useState<any>(null);
   const [error, setError] = useState<string>("");
+
+  const router = useRouter();
 
   useEffect(() => {
     const initializeLiff = async () => {
@@ -61,8 +63,8 @@ const LiffPage = () => {
       alert(JSON.stringify(data, null, 2));
       alert(data.message);
       if(data.message!="Successfully"){
-        alert("redirect")
-        redirect("/create"); 
+        alert("redirectx")
+        router.push("/create"); 
       }
       try{
       setDonorInfo(data);
