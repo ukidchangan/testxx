@@ -35,9 +35,9 @@ export default function CreatePage() {
 
 
   const [formData, setFormData] = useState({
-    lineoa_userid: '',
-    lineoa_profile: '',
-    lineoa_displayname: '',
+    lineoa_userid: userId,
+    lineoa_profile: displayName,
+    lineoa_displayname: profilePicture,
     email: '',
     mobile: '',
     zip: '',
@@ -105,7 +105,13 @@ export default function CreatePage() {
           boxShadow: '0px 0px 10px #ddd',
         }}
       >
-        <h1>{displayName} </h1>
+       {profilePicture && (
+        <img 
+          src={profilePicture} 
+          alt="Profile" 
+          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} 
+        />
+      )}
         <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>Create Profile</h1>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
