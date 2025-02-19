@@ -105,14 +105,16 @@ export default function CreatePage() {
           boxShadow: '0px 0px 10px #ddd',
         }}
       >
-       {profilePicture && (
+     
+        <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>
+        {profilePicture && (
         <img 
           src={profilePicture} 
           alt="Profile" 
           style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px", textAlign: 'center' }} 
         />
       )}
-        <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>Create Profile</h1>
+            Create Profile</h1>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
           <div style={{ marginBottom: '15px' }}>
