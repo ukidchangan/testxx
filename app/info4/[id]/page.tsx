@@ -85,7 +85,5 @@ export default async function GPSFix(props: { params: Params }) {
   const id = params.id;
   console.log(id);
   const profile  = getProfile(id);
-  return (
-      {profile}
-  );
+  return Response.json(profile);
 }
