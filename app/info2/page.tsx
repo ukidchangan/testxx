@@ -40,7 +40,7 @@ const LiffPage = () => {
 
   const fetchDonorInfo = async (userId: string) => {
     // const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userId}`;
-    const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
+    const apiUrl = `https://cors-anywhere.herokuapp.com/https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
     try {
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -78,7 +78,7 @@ const LiffPage = () => {
           style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} 
         />
       )}
-      <h1>##v2##วัดหลวง ผู้ยินดีบริจาค, {displayName} </h1>
+      <h1>##v4##วัดหลวง ผู้ยินดีบริจาค, {displayName} </h1>
       <p>USER ID: {userId}</p>
 
       {error ? (
