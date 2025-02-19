@@ -1,12 +1,11 @@
 import React from "react";
 
-async function getProfile({ params }) {
+async function getProfile(id: string) {
   try {
-    const { id } = await params;
-    console.log("cccccccccccccccccc")
-    console.log(id)
+    console.log("Fetching profile for user ID:", id);
+
     const response = await fetch(
-      "https://testdonate.luangphorsodh.com:443/api/lineoa/profile/list?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701",
+      `https://testdonate.luangphorsodh.com:443/api/lineoa/profile/list?lineoa_userid=${id}`,
       {
         method: "GET",
         headers: {
@@ -27,8 +26,18 @@ async function getProfile({ params }) {
   }
 }
 
-export default async function InfoPage() {
-  const profile = await getProfile();
+export default async function InfoPage({ params }: { params: { id: string } }) {
+  const { id } = params;
+  const profile = await getProfile(id);
 
-  return (profile);
+  return (
+    <div className="p-4">
+      <h1 className="text-xl font-bold">Profile Information</h1>
+      {profile.error ? (
+        <p className="text-red-500">Error: {profile.error}</p>
+      ) : (
+        <pre className="mt-4 p-2 bg-gray-100 rounded">{JSON.stringify(profile, null, 2)}</pre>
+      )}
+    </div>
+  );
 }
