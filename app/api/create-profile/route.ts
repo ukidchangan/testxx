@@ -10,6 +10,7 @@ export async function POST(request: Request) {
       headers: {
         'Authorization': '9613972343509313335bdc6a7fe20772c9bdd4ad',
         'Content-Type': 'application/json',
+        'Cookie': 'session_id=w3VYNXpzk-SQZG663GtNHDCGEvgN36BBOVcLKl7TtZdBUFLs0d4WOyN-9c8vQT7zFcbmy1OWvH4WTHSEmkmI', 
       },
       body: JSON.stringify(formData),
     });
