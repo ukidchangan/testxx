@@ -27,15 +27,14 @@ async function getProfile() {
 export default async function InfoPage() {
   const profile = await getProfile();
 
-  return (profile);
-//   return (
-//     <div className="p-4">
-//       <h1 className="text-xl font-bold">Profile Information</h1>
-//       {profile.error ? (
-//         <p className="text-red-500">Error: {profile.error}</p>
-//       ) : (
-//         <pre className="mt-4 p-2 bg-gray-100 rounded">{JSON.stringify(profile, null, 2)}</pre>
-//       )}
-//     </div>
-//   );
+  return (
+    <div className="p-4">
+      <h1 className="text-xl font-bold">Profile Information</h1>
+      {profile.error ? (
+        <p className="text-red-500">Error: {profile.error}</p>
+      ) : (
+        <pre className="mt-4 p-2 bg-gray-100 rounded">{JSON.stringify(profile, null, 2)}</pre>
+      )}
+    </div>
+  );
 }
