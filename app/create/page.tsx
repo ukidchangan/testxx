@@ -23,7 +23,7 @@ export default function CreatePage() {
               const profile = await liff.getProfile();
               setDisplayName(profile.displayName || "Unknown User");
               setProfilePicture(profile.pictureUrl || "");
-              setUserId(profile.userId+"xsx" || "");
+              setUserId(profile.userId || "");
               console.log("Already logged in.");
             }
           } catch (err) {
