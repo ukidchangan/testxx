@@ -7,9 +7,7 @@ import { useSearchParams } from "next/navigation";
 
 
 export default function CreatePage() {
-    const searchParams = useSearchParams(); // Get search params
-    const pre = searchParams.get("pre"); // Get the "pre" query parameter
-    alert(pre);
+
 
     const [displayName, setDisplayName] = useState("Loading...");
     const [userId, setUserId] = useState("Unknown");
@@ -74,7 +72,9 @@ export default function CreatePage() {
         },
         body: JSON.stringify(formData),
       });
-
+      const searchParams = useSearchParams(); // Get search params
+      const pre = searchParams.get("pre"); // Get the "pre" query parameter
+      alert(pre);
       if (response.ok) {
         const result = await response.json(); // Parse the JSON response
         if (result.success) {
