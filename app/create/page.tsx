@@ -3,7 +3,6 @@
 
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
-import { useSearchParams } from "next/navigation";
 
 
 export default function CreatePage() {
@@ -24,7 +23,7 @@ export default function CreatePage() {
               const profile = await liff.getProfile();
               setDisplayName(profile.displayName || "Unknown User");
               setProfilePicture(profile.pictureUrl || "");
-              setUserId(profile.userId || "");
+              setUserId(profile.userId+"xsx" || "");
               console.log("Already logged in.");
             }
           } catch (err) {
@@ -61,7 +60,7 @@ export default function CreatePage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     e.preventDefault();
-    formData.lineoa_userid=userId+"xx";
+    formData.lineoa_userid=userId;
     formData.lineoa_profile=profilePicture;
     formData.lineoa_displayname=displayName;
     try {
@@ -72,13 +71,12 @@ export default function CreatePage() {
         },
         body: JSON.stringify(formData),
       });
-      const searchParams = useSearchParams(); // Get search params
-      const pre = searchParams.get("pre"); // Get the "pre" query parameter
-      alert(pre);
+
       if (response.ok) {
         const result = await response.json(); // Parse the JSON response
         if (result.success) {
           alert('Profile created successfully!');
+          window.location.href = "/info";
         } else {
           alert(`Failed to create profile: ${result.message}`);
         }
