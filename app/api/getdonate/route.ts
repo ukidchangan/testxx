@@ -10,7 +10,8 @@ export async function GET(req: NextRequest) {
     try {
         // Construct the API URL with the given user ID
         // const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userid}`;
-         const apiUrl = `https://testdonate.luangphorsodh.com/api/donate/list/?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
+        //  const apiUrl = `https://testdonate.luangphorsodh.com/api/donate/list/?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
+         const apiUrl = `https://testdonate.luangphorsodh.com/api/donate/list/?lineoa_userid=${userid}`;
     
         // Fetch data from external API
         const response = await fetch(apiUrl, {
