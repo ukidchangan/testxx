@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import axios from 'axios';
 import FormData from 'form-data';
 import fs from 'fs';
-
+import path from 'path';
 
 export async function POST(request: Request) {
   try {
@@ -11,12 +11,19 @@ export async function POST(request: Request) {
     let data = new FormData();
 
     Object.keys(formDataxx).forEach((key) => {
-        if(key=="attachment"){
-            data.append(key, fs.createReadStream(formDataxx[key]));
-        }else{
-            data.append(key, formDataxx[key]);
-    }
-    });
+        if (key === "attachment") {
+          // For file handling, ensure the file is available on the server
+          const filePath = formDataxx[key]; // assuming formDataxx[key] is the file path
+          const resolvedPath = path.resolve(filePath); // Resolve absolute path on the server
+          if (fs.existsSync(resolvedPath)) {
+            data.append(key, fs.createReadStream(resolvedPath));
+          } else {
+            console.error("File not found at path:", resolvedPath);
+          }
+        } else {
+          data.append(key, formDataxx[key]);
+        }
+      });
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
