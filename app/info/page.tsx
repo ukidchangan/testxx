@@ -42,7 +42,7 @@ const LiffPage = () => {
   const fetchDonorInfo = async (userId: string) => {
     // const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userId}`;
     // const apiUrl = `https://cors-anywhere.herokuapp.com/https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
-    const apiUrl = `/api/hello?userid=${userId}`;
+    const apiUrl = `/api/hello?userid=${userId}xx`;
     try {
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -65,7 +65,7 @@ const LiffPage = () => {
         // alert(displayName);
         // alert(userId);
         // alert(profilePicture);
-        window.location.href = "/create";
+        window.location.href = "/create?pre=info";
       }
       try{
       setDonorInfo(data);
@@ -92,7 +92,7 @@ const LiffPage = () => {
           style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} 
         />
       )}
-      <h1>##v5##วัดหลวง ผู้ยินดีบริจาค, {displayName} </h1>
+      <h1>ยินดีตอนรับ, {displayName} </h1>
       <p>USER ID: {userId}</p>
 
       {error ? (
@@ -100,9 +100,13 @@ const LiffPage = () => {
       ) : donorInfo ? (
         <div style={{ marginTop: "20px", textAlign: "center", backgroundColor: "#fff", padding: "15px", borderRadius: "10px", boxShadow: "0px 0px 10px #ddd" }}>
 <h3>ข้อมูลผู้บริจาค</h3>
-<p><strong>ชื่อ:</strong> {donorInfo.data?.[0]?.name}</p>
-<p><strong>เบอร์:</strong> {donorInfo.data?.[0]?.mobile}</p>
-<p><strong>อีเมล:</strong> {donorInfo.data?.[0]?.email}</p>
+<p><strong>ชื่อ : </strong> {donorInfo.data?.[0]?.name}</p>
+<p><strong>เบอร์ : </strong> {donorInfo.data?.[0]?.mobile}</p>
+<p><strong>อีเมล : </strong> {donorInfo.data?.[0]?.email}</p>
+<p><strong>เมือง : </strong> {donorInfo.data?.[0]?.city}</p>
+<p><strong>ที่อยู่ : </strong> {donorInfo.data?.[0]?.street}</p>
+<p><strong>ที่อยู่เพิ่มเติม : </strong> {donorInfo.data?.[0]?.street2}</p>
+<p><strong>ไปรษณีย์ : </strong> {donorInfo.data?.[0]?.zip}</p>
         </div>
       ) : (
         <p>กำลังโหลดข้อมูล...</p>

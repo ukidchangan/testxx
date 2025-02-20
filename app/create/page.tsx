@@ -3,8 +3,13 @@
 
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
+import { useSearchParams } from "next/navigation";
+
 
 export default function CreatePage() {
+    const searchParams = useSearchParams(); // Get search params
+    const pre = searchParams.get("pre"); // Get the "pre" query parameter
+    alert(pre);
 
     const [displayName, setDisplayName] = useState("Loading...");
     const [userId, setUserId] = useState("Unknown");
