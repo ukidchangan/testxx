@@ -90,7 +90,7 @@ export default function CreatePage() {
         const result = await response.json(); // Parse the JSON response
         if (result.success) {
           alert('Profile donated successfully!');
-          window.location.href = "/paydonate";
+          window.location.href = "/getdonate";
         } else {
           alert(`Failed to create profile: ${result.message}`);
         }
@@ -134,7 +134,8 @@ export default function CreatePage() {
           style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }} 
         />
       )}</h1>
-         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>   ผู้บริจาคgเงินสาธุ</h1>
+         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>   ผู้บริจาคเงินสาธุ</h1>
+         <p>{displayName}</p>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
 
