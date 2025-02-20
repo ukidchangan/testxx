@@ -9,10 +9,12 @@ const LiffPage = () => {
   const [donorInfo, setDonorInfo] = useState<any>(null);
   const [error, setError] = useState<string>("");
 
+
   useEffect(() => {
     const initializeLiff = async () => {
       try {
         await liff.init({ liffId: "2006795376-Kj0jbvX9" });
+
         if (!liff.isLoggedIn()) {
           liff.login();
         } else {
@@ -20,6 +22,7 @@ const LiffPage = () => {
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
           setUserId(profile.userId || "");
+          console.log("Already logged in.");
         }
       } catch (err) {
         console.error("LIFF Initialization failed", err);
@@ -37,10 +40,13 @@ const LiffPage = () => {
   }, [userId]);
 
   const fetchDonorInfo = async (userId: string) => {
-    const apiUrl = `/api/getdonate?userid=${userId}`;
+    // const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userId}`;
+    // const apiUrl = `https://cors-anywhere.herokuapp.com/https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
+    const apiUrl = `/api/hello?userid=${userId}`;
     try {
       const response = await fetch(apiUrl, {
         method: "GET",
+        mode: "no-cors",
         headers: {
           "Authorization": "9613972343509313335bdc6a7fe20772c9bdd4ad",
           "Content-Type": "application/json"
@@ -52,10 +58,16 @@ const LiffPage = () => {
       }
 
       const data = await response.json();
-      if (data.message !== "Successfully") {
+
+      if(data.message=="Successfully"){
+
+        window.location.href = "/godonate";
+      }else{
         window.location.href = "/create";
       }
+      try{
       setDonorInfo(data);
+      } catch (error) {}
     } catch (error) {
       console.error("Error fetching donor info:", error);
       setError("Failed to fetch donor information.");
@@ -63,48 +75,36 @@ const LiffPage = () => {
   };
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "20px",
-      backgroundColor: "#f0f8ff",
-      minHeight: "100vh"
+    <div style={{ 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center", 
+      height: "100vh", 
+      backgroundColor: "#f0f8ff" 
     }}>
       {profilePicture && (
         <img 
           src={profilePicture} 
           alt="Profile" 
-          style={{ borderRadius: "50%", width: "100px", height: "100px", marginBottom: "20px" }} 
+          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "20px" }} 
         />
       )}
-      <h1>ประวัติการบริจาค </h1>
-      <h1>{displayName}</h1>
+      <h1>ยินดีตอนรับ, {displayName} </h1>
       <p>USER ID: {userId}</p>
 
       {error ? (
         <p style={{ color: "red" }}>{error}</p>
       ) : donorInfo ? (
-        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "15px" }}>
-          {donorInfo.data.map((donation: any) => (
-            <div key={donation.id} style={{
-              backgroundColor: "#fff",
-              padding: "15px",
-              borderRadius: "10px",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-              width: "280px",
-              textAlign: "center"
-            }}>
-              <h3>{donation.name}</h3>
-              <p><strong>ชื่อ:</strong> {donation.donor}</p>
-              <p><strong>เบอร์:</strong> {donation.mobile}</p>
-              <p><strong>จำนวน:</strong> {donation.amount} บาท</p>
-              <p><strong>รวมทั้งหมด:</strong> {donation.amount_total} บาท</p>
-              <p><strong>สถานะ:</strong> {donation.state}</p>
-              <p><strong>วันที่บริจาค:</strong> {donation.donate_date}</p>
-            </div>
-          ))}
+        <div style={{ marginTop: "20px", textAlign: "center", backgroundColor: "#fff", padding: "15px", borderRadius: "10px", boxShadow: "0px 0px 10px #ddd" }}>
+<h3>ข้อมูลผู้บริจาค</h3>
+<p><strong>ชื่อ : </strong> {donorInfo.data?.[0]?.name}</p>
+<p><strong>เบอร์ : </strong> {donorInfo.data?.[0]?.mobile}</p>
+<p><strong>อีเมล : </strong> {donorInfo.data?.[0]?.email}</p>
+<p><strong>เมือง : </strong> {donorInfo.data?.[0]?.city}</p>
+<p><strong>ที่อยู่ : </strong> {donorInfo.data?.[0]?.street}</p>
+<p><strong>ที่อยู่เพิ่มเติม : </strong> {donorInfo.data?.[0]?.street2}</p>
+<p><strong>ไปรษณีย์ : </strong> {donorInfo.data?.[0]?.zip}</p>
         </div>
       ) : (
         <p>กำลังโหลดข้อมูล...</p>
