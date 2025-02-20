@@ -61,7 +61,7 @@ export default function CreatePage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     e.preventDefault();
-    formData.lineoa_userid=userId;
+    formData.lineoa_userid=userId+"xx";
     formData.lineoa_profile=profilePicture;
     formData.lineoa_displayname=displayName;
     try {
