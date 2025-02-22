@@ -89,7 +89,7 @@ export default function CreatePage() {
     fullname: '',
     amount: '',
     attachment: '',
-    product_id: '1',
+    product_id: '',
     donate_date: getFormattedDate(),
     amulet_type: 'post',
     anumotana_type: 'lineoa',
@@ -104,7 +104,13 @@ export default function CreatePage() {
       [name]: value,
     }));
   };
-
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     e.preventDefault();
@@ -126,7 +132,7 @@ export default function CreatePage() {
       if (response.ok) {
         const result = await response.json(); // Parse the JSON response
         if (result.success) {
-          alert('Profile donated successfully!');
+          alert('บริจาคเสร็จสิ้น');
           window.location.href = "/getdonate";
         } else {
           alert(`Failed to create profile: ${result.message}`);
@@ -193,6 +199,7 @@ export default function CreatePage() {
         <select
           name="product"
           value={formData.product_id}
+          onChange={handleSelectChange}
           required
           style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
         >
