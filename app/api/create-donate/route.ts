@@ -19,11 +19,10 @@ export async function POST(request: Request) {
       if (key === "attachment" && value instanceof Blob) {
         // Convert Blob to Buffer
         const buffer = Buffer.from(await value.arrayBuffer());
-        const fileExtension = value.type.split("/")[1]; // Get file extension from MIME type
-        tempFilePath = path.join("/tmp", `upload-${Date.now()}.${fileExtension}`); // Save to temp directory
-
-        await writeFile(tempFilePath, buffer); // Write the file
-        data.append(key, fs.createReadStream(tempFilePath)); // Append file stream
+        data.append(key, buffer, {
+          filename: `upload-${Date.now()}.${value.type.split("/")[1]}`, // Generate a filename
+          contentType: value.type // Set the content type
+        });
       } else if (typeof value === "string") {
         data.append(key, value); // Append regular text fields
       }
