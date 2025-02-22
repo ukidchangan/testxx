@@ -1,77 +1,14 @@
-// app/create/page.tsx
 "use client"; // This is required to use client-side features like useState, useEffect, etc.
 
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
 
-
 export default function EditPage() {
+  const [displayName, setDisplayName] = useState("Loading...");
+  const [userId, setUserId] = useState("Unknown");
+  const [profilePicture, setProfilePicture] = useState<string>("");
+  const [donorInfo, setDonorInfo] = useState<any>(null);
 
-
-    const [displayName, setDisplayName] = useState("Loading...");
-    const [userId, setUserId] = useState("Unknown");
-    const [profilePicture, setProfilePicture] = useState<string>("");
-    const [donorInfo, setDonorInfo] = useState<any>(null);
-
-      useEffect(() => {
-        const initializeLiff = async () => {
-          try {
-            await liff.init({ liffId: "2006843844-y5kJv8l5" });
-    
-            if (!liff.isLoggedIn()) {
-              liff.login();
-            } else {
-              const profile = await liff.getProfile();
-              setDisplayName(profile.displayName || "Unknown User");
-              setProfilePicture(profile.pictureUrl || "");
-              setUserId(profile.userId || "");
-              console.log("Already logged in.");
-            }
-          } catch (err) {
-            console.error("LIFF Initialization failed", err);
-            setDisplayName("Error loading profile");
-          }
-        };
-    
-        initializeLiff();
-      }, []);
-
-      useEffect(() => {
-        if (userId !== "Unknown" && userId !== "") {
-          fetchDonorInfo(userId);
-        }
-      }, [userId]);
-    
-      const fetchDonorInfo = async (userId: string) => {
-        // const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userId}`;
-        // const apiUrl = `https://cors-anywhere.herokuapp.com/https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
-        const apiUrl = `/api/hello?userid=${userId}`;
-        try {
-          const response = await fetch(apiUrl, {
-            method: "GET",
-            mode: "no-cors",
-            headers: {
-              "Authorization": "9613972343509313335bdc6a7fe20772c9bdd4ad",
-              "Content-Type": "application/json"
-            }
-          });
-    
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-    
-          const data = await response.json();
-          // alert(JSON.stringify(data, null, 2));
-          // alert(data.message);
-
-          try{
-          setDonorInfo(data);
-          } catch (error) {}
-        } catch (error) {
-          console.error("Error fetching donor info:", error);
-
-        }
-      };
   const [formData, setFormData] = useState({
     lineoa_userid: '',
     lineoa_profile: '',
@@ -85,6 +22,75 @@ export default function EditPage() {
     fullname: '',
   });
 
+  useEffect(() => {
+    const initializeLiff = async () => {
+      try {
+        await liff.init({ liffId: "2006843844-y5kJv8l5" });
+
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        } else {
+          const profile = await liff.getProfile();
+          setDisplayName(profile.displayName || "Unknown User");
+          setProfilePicture(profile.pictureUrl || "");
+          setUserId(profile.userId || "");
+          console.log("Already logged in.");
+        }
+      } catch (err) {
+        console.error("LIFF Initialization failed", err);
+        setDisplayName("Error loading profile");
+      }
+    };
+
+    initializeLiff();
+  }, []);
+
+  useEffect(() => {
+    if (userId !== "Unknown" && userId !== "") {
+      fetchDonorInfo(userId);
+    }
+  }, [userId]);
+
+  const fetchDonorInfo = async (userId: string) => {
+    const apiUrl = `/api/hello?userid=${userId}`;
+    try {
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        mode: "no-cors",
+        headers: {
+          "Authorization": "9613972343509313335bdc6a7fe20772c9bdd4ad",
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setDonorInfo(data);
+
+      // Set default values for formData based on fetched donorInfo
+      if (data.success && data.data.length > 0) {
+        const donor = data.data[0];
+        setFormData({
+          lineoa_userid: userId,
+          lineoa_profile: profilePicture,
+          lineoa_displayname: displayName,
+          email: donor.email,
+          mobile: donor.mobile,
+          zip: donor.zip,
+          city: donor.city,
+          street2: donor.street2,
+          street: donor.street,
+          fullname: donor.name,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching donor info:", error);
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -94,11 +100,10 @@ export default function EditPage() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-
     e.preventDefault();
-    formData.lineoa_userid=userId;
-    formData.lineoa_profile=profilePicture;
-    formData.lineoa_displayname=displayName;
+    formData.lineoa_userid = userId;
+    formData.lineoa_profile = profilePicture;
+    formData.lineoa_displayname = displayName;
     try {
       const response = await fetch('/api/create-profile', {
         method: 'POST',
@@ -147,16 +152,16 @@ export default function EditPage() {
           boxShadow: '0px 0px 10px #ddd',
         }}
       >
-     
         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>
-        {profilePicture && (
-        <img 
-          src={profilePicture} 
-          alt="Profile" 
-          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }} 
-        />
-      )}</h1>
-         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>    ลงทะเบียนข้อมูลผู้บริจาค</h1>
+          {profilePicture && (
+            <img
+              src={profilePicture}
+              alt="Profile"
+              style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }}
+            />
+          )}
+        </h1>
+        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>ลงทะเบียนข้อมูลผู้บริจาค</h1>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
           <div style={{ marginBottom: '15px' }}>
