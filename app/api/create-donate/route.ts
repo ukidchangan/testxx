@@ -17,20 +17,20 @@ export async function POST(request: Request) {
 
       if (key === "attachment" && value instanceof Blob) {
         // Convert Blob to Buffer
-        console.log("key="+key);
-        console.log("attachment 1");
-        // Convert Blob to a Readable stream
-        const buffer = Buffer.from(await value.arrayBuffer());
-        const readableStream = new Readable();
-        readableStream.push(buffer); // Push the buffer into the stream
-        readableStream.push(null); // Signal end of stream
+        // console.log("key="+key);
+        // console.log("attachment 1");
+        // // Convert Blob to a Readable stream
+        // const buffer = Buffer.from(await value.arrayBuffer());
+        // const readableStream = new Readable();
+        // readableStream.push(buffer); // Push the buffer into the stream
+        // readableStream.push(null); // Signal end of stream
 
-        // Append the stream to FormData
-        data.append(key, readableStream, {
-          filename: `upload-${Date.now()}.${value.type.split("/")[1]}`, // Generate a filename
-          contentType: value.type // Set the content type
-        });
-        console.log("attachment 3");
+        // // Append the stream to FormData
+        // data.append(key, readableStream, {
+        //   filename: `upload-${Date.now()}.${value.type.split("/")[1]}`, // Generate a filename
+        //   contentType: value.type // Set the content type
+        // });
+        // console.log("attachment 3");
 
       } else if (typeof value === "string") {
         data.append(key, value); // Append regular text fields
