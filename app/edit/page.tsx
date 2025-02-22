@@ -105,7 +105,7 @@ export default function EditPage() {
     formData.lineoa_profile = profilePicture;
     formData.lineoa_displayname = displayName;
     try {
-      const response = await fetch('/api/create-profile', {
+      const response = await fetch('/api/update-profile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ export default function EditPage() {
       if (response.ok) {
         const result = await response.json(); // Parse the JSON response
         if (result.success) {
-          alert('Profile created successfully!');
+          alert('แก้ไขข้อมูลเสร็จเรียบร้อย');
           window.location.href = "/info";
         } else {
           alert(`Failed to create profile: ${result.message}`);
@@ -161,7 +161,7 @@ export default function EditPage() {
             />
           )}
         </h1>
-        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>ลงทะเบียนข้อมูลผู้บริจาค</h1>
+        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>แก้ไขทะเบียนข้อมูลผู้บริจาค</h1>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
           <div style={{ marginBottom: '15px' }}>
@@ -291,7 +291,7 @@ export default function EditPage() {
                 width: '100%', // Full-width button on mobile
               }}
             >
-              Submit
+              Update
             </button>
           </div>
         </form>
