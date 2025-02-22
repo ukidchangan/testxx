@@ -18,13 +18,18 @@ export async function POST(request: Request) {
 
       if (key === "attachment" && value instanceof Blob) {
         // Convert Blob to Buffer
+        console.log("key="+key);
+        console.log("attachment 1");
         const buffer = Buffer.from(await value.arrayBuffer());
-        data.append(key, buffer, {
-          filename: `upload-${Date.now()}.${value.type.split("/")[1]}`, // Generate a filename
-          contentType: value.type // Set the content type
-        });
+        const fileName = `upload-${Date.now()}.${value.type.split("/")[1]}`; // Generate filename
+        console.log("attachment 2");
+        // Append the file as a buffer
+        data.append(key, buffer, { filename: fileName, contentType: value.type });
+        console.log("attachment 3");
+
       } else if (typeof value === "string") {
         data.append(key, value); // Append regular text fields
+        console.log("key="+key+" value="+value);
       }
     }
 
