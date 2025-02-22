@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     console.log("pop 1");
 
     let data = new FormData();
-    let tempFilePath: string | null = null; // Store temp file path if needed
+
 
     for (const key of formDataxx.keys()) {
       const value = formDataxx.get(key);
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
         console.log("key="+key+" value="+value);
       }
     }
-
+    console.log("pop 2");
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
@@ -43,14 +43,14 @@ export async function POST(request: Request) {
       },
       data: data
     };
+    console.log("pop 3");
 
     const response = await axios.request(config);
+    console.log("pop 4");
     console.log(JSON.stringify(response.data));
-
+    console.log("pop 5");
     // Cleanup temporary file if it exists
-    if (tempFilePath && fs.existsSync(tempFilePath)) {
-      fs.unlinkSync(tempFilePath);
-    }
+
 
     return NextResponse.json(response.data);
   } catch (error) {
