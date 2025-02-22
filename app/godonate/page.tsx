@@ -7,10 +7,23 @@ import liff from "@line/liff";
 
 export default function CreatePage() {
 
-
+  interface Category {
+    id: number;
+    name: string;
+    type: string;
+    favorite: boolean;
+    category: string;
+    bank_account: string;
+    bank: string;
+    list_price: number;
+    url: string;
+  }
+  
+    const [categories, setCategories] = useState<Category[]>([]);
     const [displayName, setDisplayName] = useState("Loading...");
     const [userId, setUserId] = useState("Unknown");
     const [profilePicture, setProfilePicture] = useState<string>("");
+
 
     const getFormattedDate = () => {
         const now = new Date();
@@ -22,7 +35,29 @@ export default function CreatePage() {
       
         return `${year}-${month}-${day} ${hours}:${minutes}`;
       };
-
+      useEffect(() => {
+        fetchCategoryInfo();
+      }, []);
+      const fetchCategoryInfo = async () => {
+        
+        const apiUrl = `/api/getcategory`;
+        try {
+          const response = await fetch(apiUrl, {
+            method: "GET",
+            mode: "no-cors",
+          });
+      
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+      
+          const data = await response.json();
+          setCategories(data);
+        } catch (error) {
+          console.error("Error fetching donor info:", error);
+      
+        }
+      };
       useEffect(() => {
         const initializeLiff = async () => {
           try {
@@ -58,6 +93,8 @@ export default function CreatePage() {
     donate_date: getFormattedDate(),
     amulet_type: 'post',
     anumotana_type: 'lineoa',
+
+    category: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -150,6 +187,24 @@ export default function CreatePage() {
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
+
+      <div style={{ marginBottom: '15px' }}>
+        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลือกหมวดหมู่การบริจาค :</label>
+        <select
+          name="product"
+          value={formData.product_id}
+          required
+          style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+        >
+          <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
           <div style={{ marginBottom: '15px' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
             <input
