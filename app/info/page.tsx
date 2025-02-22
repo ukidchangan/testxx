@@ -9,7 +9,6 @@ const LiffPage = () => {
   const [donorInfo, setDonorInfo] = useState<any>(null);
   const [error, setError] = useState<string>("");
 
-
   useEffect(() => {
     const initializeLiff = async () => {
       try {
@@ -40,8 +39,6 @@ const LiffPage = () => {
   }, [userId]);
 
   const fetchDonorInfo = async (userId: string) => {
-    // const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userId}`;
-    // const apiUrl = `https://cors-anywhere.herokuapp.com/https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
     const apiUrl = `/api/hello?userid=${userId}`;
     try {
       const response = await fetch(apiUrl, {
@@ -58,22 +55,20 @@ const LiffPage = () => {
       }
 
       const data = await response.json();
-      // alert(JSON.stringify(data, null, 2));
-      // alert(data.message);
-      if(data.message!="Successfully"){
-        // alert("redirectx");
-        // alert(displayName);
-        // alert(userId);
-        // alert(profilePicture);
+      if (data.message !== "Successfully") {
         window.location.href = "/create";
       }
-      try{
-      setDonorInfo(data);
+      try {
+        setDonorInfo(data);
       } catch (error) {}
     } catch (error) {
       console.error("Error fetching donor info:", error);
       setError("Failed to fetch donor information.");
     }
+  };
+
+  const handleEditClick = () => {
+    window.location.href = "/edit";
   };
 
   return (
@@ -82,8 +77,9 @@ const LiffPage = () => {
       flexDirection: "column", 
       alignItems: "center", 
       justifyContent: "center", 
-      height: "100vh", 
-      backgroundColor: "#f0f8ff" 
+      minHeight: "100vh", 
+      backgroundColor: "#f0f8ff",
+      paddingBottom: "80px" // Add padding to accommodate the footer
     }}>
       {profilePicture && (
         <img 
@@ -99,18 +95,44 @@ const LiffPage = () => {
         <p style={{ color: "red" }}>{error}</p>
       ) : donorInfo ? (
         <div style={{ marginTop: "20px", textAlign: "center", backgroundColor: "#fff", padding: "15px", borderRadius: "10px", boxShadow: "0px 0px 10px #ddd" }}>
-<h3>ข้อมูลผู้บริจาค</h3>
-<p><strong>ชื่อ : </strong> {donorInfo.data?.[0]?.name}</p>
-<p><strong>เบอร์ : </strong> {donorInfo.data?.[0]?.mobile}</p>
-<p><strong>อีเมล : </strong> {donorInfo.data?.[0]?.email}</p>
-<p><strong>เมือง : </strong> {donorInfo.data?.[0]?.city}</p>
-<p><strong>ที่อยู่ : </strong> {donorInfo.data?.[0]?.street}</p>
-<p><strong>ที่อยู่เพิ่มเติม : </strong> {donorInfo.data?.[0]?.street2}</p>
-<p><strong>ไปรษณีย์ : </strong> {donorInfo.data?.[0]?.zip}</p>
+          <h3>ข้อมูลผู้บริจาค</h3>
+          <p><strong>ชื่อ : </strong> {donorInfo.data?.[0]?.name}</p>
+          <p><strong>เบอร์ : </strong> {donorInfo.data?.[0]?.mobile}</p>
+          <p><strong>อีเมล : </strong> {donorInfo.data?.[0]?.email}</p>
+          <p><strong>เมือง : </strong> {donorInfo.data?.[0]?.city}</p>
+          <p><strong>ที่อยู่ : </strong> {donorInfo.data?.[0]?.street}</p>
+          <p><strong>ที่อยู่เพิ่มเติม : </strong> {donorInfo.data?.[0]?.street2}</p>
+          <p><strong>ไปรษณีย์ : </strong> {donorInfo.data?.[0]?.zip}</p>
         </div>
       ) : (
         <p>กำลังโหลดข้อมูล...</p>
       )}
+
+      {/* Footer with Edit Button */}
+      <footer style={{
+        position: "fixed",
+        bottom: "0",
+        width: "100%",
+        backgroundColor: "#fff",
+        padding: "10px",
+        boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
+        textAlign: "center"
+      }}>
+        <button
+          onClick={handleEditClick}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: "#007bff",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontSize: "16px"
+          }}
+        >
+          แก้ไขข้อมูล
+        </button>
+      </footer>
     </div>
   );
 };
