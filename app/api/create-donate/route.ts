@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import axios from 'axios';
 import FormData from 'form-data';
 import fs from 'fs';
-import { Readable } from 'stream'; // Import Readable stream
+
 
 export async function POST(request: Request) {
   try {
@@ -17,20 +17,14 @@ export async function POST(request: Request) {
 
       if (key === "attachment" && value instanceof Blob) {
         // Convert Blob to Buffer
-        // console.log("key="+key);
-        // console.log("attachment 1");
-        // // Convert Blob to a Readable stream
-        // const buffer = Buffer.from(await value.arrayBuffer());
-        // const readableStream = new Readable();
-        // readableStream.push(buffer); // Push the buffer into the stream
-        // readableStream.push(null); // Signal end of stream
-
-        // // Append the stream to FormData
-        // data.append(key, readableStream, {
-        //   filename: `upload-${Date.now()}.${value.type.split("/")[1]}`, // Generate a filename
-        //   contentType: value.type // Set the content type
-        // });
-        // console.log("attachment 3");
+        console.log("key="+key);
+        console.log("attachment 1");
+        const buffer = Buffer.from(await value.arrayBuffer());
+        const fileName = `upload-${Date.now()}.${value.type.split("/")[1]}`; // Generate filename
+        console.log("attachment 2");
+        // Append the file as a buffer
+        data.append(key, buffer, { filename: fileName, contentType: value.type });
+        console.log("attachment 3");
 
       } else if (typeof value === "string") {
         data.append(key, value); // Append regular text fields
