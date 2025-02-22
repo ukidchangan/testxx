@@ -197,7 +197,7 @@ export default function CreatePage() {
       <div style={{ marginBottom: '15px' }}>
         <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลือกหมวดหมู่การบริจาค :</label>
         <select
-          name="product"
+          name="product_id"
           value={formData.product_id}
           onChange={handleSelectChange}
           required
