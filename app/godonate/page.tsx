@@ -88,7 +88,7 @@ export default function CreatePage() {
     lineoa_displayname: '',
     fullname: '',
     amount: '',
-    attachment: '',
+    attachment: '' as string | File,
     product_id: '',
     donate_date: getFormattedDate(),
     amulet_type: 'post',
@@ -111,26 +111,43 @@ export default function CreatePage() {
       [name]: value,
     }));
   };
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]; // Use optional chaining to avoid errors
+    if (file) {
+      setFormData((prev) => ({
+        ...prev,
+        attachment: file, // Store file object safely
+      }));
+    }
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-
     e.preventDefault();
-    formData.lineoa_userid=userId;
-    formData.lineoa_profile=profilePicture;
-    formData.lineoa_displayname=displayName;
-    formData.donate_date= getFormattedDate();
-    formData.amulet_type='post';
-    formData.anumotana_type= 'lineoa';
+  
+    // Create FormData object to send the file
+    const data = new FormData();
+    data.append("lineoa_userid", userId);
+    data.append("lineoa_profile", profilePicture);
+    data.append("lineoa_displayname", displayName);
+    data.append("fullname", formData.fullname);
+    data.append("amount", formData.amount);
+    data.append("product_id", formData.product_id);
+    data.append("donate_date", getFormattedDate());
+    data.append("amulet_type", "post");
+    data.append("anumotana_type", "lineoa");
+  
+    // Append the file only if it's selected
+    if (formData.attachment) {
+      data.append("attachment", formData.attachment);
+    }
+  
     try {
       const response = await fetch('/api/create-donate', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: data, // Send FormData instead of JSON
       });
-
+  
       if (response.ok) {
-        const result = await response.json(); // Parse the JSON response
+        const result = await response.json();
         if (result.success) {
           alert('บริจาคเสร็จสิ้น');
           window.location.href = "/getdonate";
@@ -145,6 +162,40 @@ export default function CreatePage() {
       alert('An error occurred while submitting the form.');
     }
   };
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
+  //   e.preventDefault();
+  //   formData.lineoa_userid=userId;
+  //   formData.lineoa_profile=profilePicture;
+  //   formData.lineoa_displayname=displayName;
+  //   formData.donate_date= getFormattedDate();
+  //   formData.amulet_type='post';
+  //   formData.anumotana_type= 'lineoa';
+  //   try {
+  //     const response = await fetch('/api/create-donate', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     if (response.ok) {
+  //       const result = await response.json(); // Parse the JSON response
+  //       if (result.success) {
+  //         alert('บริจาคเสร็จสิ้น');
+  //         window.location.href = "/getdonate";
+  //       } else {
+  //         alert(`Failed to create profile: ${result.message}`);
+  //       }
+  //     } else {
+  //       alert('Failed to create profile.');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //     alert('An error occurred while submitting the form.');
+  //   }
+  // };
 
   return (
     <div
@@ -228,8 +279,8 @@ export default function CreatePage() {
             <input
               type="file"
               name="attachment"
-              value={formData.attachment}
-              onChange={handleChange}
+              accept="image/*"
+              onChange={handleFileChange}
               required
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />

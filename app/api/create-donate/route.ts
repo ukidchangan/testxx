@@ -3,46 +3,54 @@ import axios from 'axios';
 import FormData from 'form-data';
 import fs from 'fs';
 import path from 'path';
+import { writeFile } from 'fs/promises';
 
 export async function POST(request: Request) {
   try {
-    const formDataxx = await request.json();
+    const formDataxx = await request.formData(); // Parse formData instead of JSON
     console.log("pop 1");
-    let data = new FormData();
 
-    Object.keys(formDataxx).forEach((key) => {
-        if (key === "attachment") {
-          // For file handling, ensure the file is available on the server
-          const filePath = formDataxx[key]; // assuming formDataxx[key] is the file path
-          const resolvedPath = path.resolve(filePath); // Resolve absolute path on the server
-          if (fs.existsSync(resolvedPath)) {
-            data.append(key, fs.createReadStream(resolvedPath));
-          } else {
-            console.error("File not found at path:", resolvedPath);
-          }
-        } else {
-          data.append(key, formDataxx[key]);
-        }
-      });
+    let data = new FormData();
+    let tempFilePath: string | null = null; // Store temp file path if needed
+
+    for (const key of formDataxx.keys()) {
+      const value = formDataxx.get(key);
+
+      if (key === "attachment" && value instanceof Blob) {
+        // Convert Blob to Buffer
+        const buffer = Buffer.from(await value.arrayBuffer());
+        const fileExtension = value.type.split("/")[1]; // Get file extension from MIME type
+        tempFilePath = path.join("/tmp", `upload-${Date.now()}.${fileExtension}`); // Save to temp directory
+
+        await writeFile(tempFilePath, buffer); // Write the file
+        data.append(key, fs.createReadStream(tempFilePath)); // Append file stream
+      } else if (typeof value === "string") {
+        data.append(key, value); // Append regular text fields
+      }
+    }
+
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
       url: 'https://testdonate.luangphorsodh.com/api/donate/form',
       headers: { 
         'Authorization': '9613972343509313335bdc6a7fe20772c9bdd4ad', 
-        'Content-Type': 'application/json', 
         ...data.getHeaders()
       },
-      data : data
+      data: data
     };
 
     const response = await axios.request(config);
     console.log(JSON.stringify(response.data));
+
+    // Cleanup temporary file if it exists
+    if (tempFilePath && fs.existsSync(tempFilePath)) {
+      fs.unlinkSync(tempFilePath);
+    }
+
     return NextResponse.json(response.data);
   } catch (error) {
     console.error('Error:', error);
     return NextResponse.json({ error: 'An error occurred while creating the profile' }, { status: 500 });
   }
 }
-
-
