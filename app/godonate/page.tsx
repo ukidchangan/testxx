@@ -23,6 +23,7 @@ export default function CreatePage() {
     const [displayName, setDisplayName] = useState("Loading...");
     const [userId, setUserId] = useState("Unknown");
     const [profilePicture, setProfilePicture] = useState<string>("");
+    const [donorInfo, setDonorInfo] = useState<any>(null);
 
 
     const getFormattedDate = () => {
@@ -35,6 +36,37 @@ export default function CreatePage() {
       
         return `${year}-${month}-${day} ${hours}:${minutes}`;
       };
+
+      useEffect(() => {
+        if (userId !== "Unknown" && userId !== "") {
+          fetchDonorInfo(userId);
+        }
+      }, [userId]);
+      const fetchDonorInfo = async (userId: string) => {
+    
+        const apiUrl = `/api/hello?userid=${userId}`;
+        try {
+          const response = await fetch(apiUrl, {
+            method: "GET",
+            mode: "no-cors",
+          });
+    
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+    
+          const data = await response.json();
+    
+          try{
+          setDonorInfo(data);
+          } catch (error) {}
+        } catch (error) {
+          console.error("Error fetching donor info:", error);
+
+        }
+      };
+
+
       useEffect(() => {
         fetchCategoryInfo();
       }, []);
@@ -57,6 +89,8 @@ export default function CreatePage() {
           console.error("Error fetching donor info:", error);
       
         }
+
+
       };
       useEffect(() => {
         const initializeLiff = async () => {
@@ -238,7 +272,7 @@ export default function CreatePage() {
             <input
               type="text"
               name="fullname"
-              value={formData.fullname}
+              value={donorInfo.data?.[0]?.name}
               onChange={handleChange}
               required
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
