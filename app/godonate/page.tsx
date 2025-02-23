@@ -229,8 +229,37 @@ export default function CreatePage() {
         padding: '20px', // Add padding for mobile
         filter: isSubmitting ? 'blur(5px)' : 'none', // Apply blur effect
         pointerEvents: isSubmitting ? 'none' : 'auto', // Disable interactions
+        position: 'relative', // Required for the overlay positioning
       }}
     >
+      {/* Overlay with "Processing..." message */}
+      {isSubmitting && (
+        <div
+          style={{
+            position: 'fixed', // Fixed position to cover the entire screen
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white background
+            zIndex: 1000, // Ensure it's above everything else
+          }}
+        >
+          <div
+            style={{
+              fontSize: '24px',
+              fontWeight: 'bold',
+              color: '#007bff',
+            }}
+          >
+            Processing...
+          </div>
+        </div>
+      )}
+
       <div
         style={{
           width: '100%',
