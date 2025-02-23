@@ -288,16 +288,16 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
           <div style={{ marginBottom: '15px' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ชื่อผู้บริจาค :</label>
-            {/* <input
+            <input
               type="้hidden"
               name="fullname"
               value={donorInfo[0]?.name || ""}
               onChange={handleChange}
               required
-              readOnly
+              
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            /> */}
-            {donorInfo[0]?.name || ""}
+            />
+            {/* {donorInfo[0]?.name || ""} */}
           </div>
 
       <div style={{ marginBottom: '15px' }}>
