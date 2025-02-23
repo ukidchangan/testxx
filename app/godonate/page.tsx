@@ -317,7 +317,7 @@ export default function CreatePage() {
             <input
               type="text"
               name="amount"
-              value={formData.amount}
+              value="100"
               onChange={handleChange}
               required
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
