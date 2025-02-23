@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
+const [previewImage, setPreviewImage] = useState<string | null>(null);
 
 
 export default function CreatePage() {
@@ -159,15 +160,19 @@ export default function CreatePage() {
       [name]: value,
     }));
   };
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]; // Use optional chaining to avoid errors
-    if (file) {
-      setFormData((prev) => ({
-        ...prev,
-        attachment: file, // Store file object safely
-      }));
-    }
-  };
+
+const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0];
+  if (file) {
+    setFormData((prev) => ({
+      ...prev,
+      attachment: file,
+    }));
+    // Generate a preview URL
+    setPreviewImage(URL.createObjectURL(file));
+  }
+};
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
@@ -333,6 +338,12 @@ export default function CreatePage() {
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
+            {/* Display preview if an image is selected */}
+  {previewImage && (
+    <div style={{ marginTop: '10px', textAlign: 'center' }}>
+      <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+    </div>
+  )}
 
 
           {/* Submit Button */}
