@@ -181,7 +181,7 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     data.append("lineoa_userid", userId);
     data.append("lineoa_profile", profilePicture);
     data.append("lineoa_displayname", displayName);
-    data.append("fullname", formData.fullname);
+    data.append("fullname", donorInfo[0]?.name || "");
     data.append("amount", formData.amount);
     data.append("product_id", formData.product_id);
     data.append("donate_date", getFormattedDate());
