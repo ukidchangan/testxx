@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import liff from "@line/liff";
 
 const LiffPage = () => {
-
-  const [categories, setCategories] = useState<any>(null);
   const [displayName, setDisplayName] = useState("Loading...");
   const [userId, setUserId] = useState("Unknown");
   const [profilePicture, setProfilePicture] = useState<string>("");
@@ -65,33 +63,6 @@ const LiffPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchCategoryInfo();
-  }, []);
-  const fetchCategoryInfo = async () => {
-    
-    const apiUrl = `/api/getcategory`;
-    try {
-      const response = await fetch(apiUrl, {
-        method: "GET",
-        mode: "no-cors",
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-  
-      const data = await response.json();
-      setCategories(data);
-    } catch (error) {
-      console.error("Error fetching donor info:", error);
-  
-    }
-
-
-  };
-
-
   return (
     <div style={{
       display: "flex",
@@ -127,10 +98,10 @@ const LiffPage = () => {
               textAlign: "center"
             }}>
               <h3>{donation.name}</h3>
-              <p><strong>หมวดหมู่การบริจาค:</strong> {donation.product_id} </p>
               <p><strong>ชื่อ:</strong> {donation.donor}</p>
               <p><strong>เบอร์:</strong> {donation.mobile}</p>
               <p><strong>จำนวน:</strong> {donation.amount} บาท</p>
+              <p><strong>รวมทั้งหมด:</strong> {donation.amount_total} บาท</p>
               <p><strong>สถานะ:</strong> {donation.state}</p>
               <p><strong>วันที่บริจาค:</strong> {donation.donate_date}</p>
             </div>
