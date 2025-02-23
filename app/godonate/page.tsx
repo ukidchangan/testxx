@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
-const [previewImage, setPreviewImage] = useState<string | null>(null);
+
 
 
 export default function CreatePage() {
@@ -39,7 +39,7 @@ export default function CreatePage() {
     const [userId, setUserId] = useState("Unknown");
     const [profilePicture, setProfilePicture] = useState<string>("");
     const [donorInfo, setDonorInfo] = useState<DonorInfo[]>([]);
-
+    const [previewImage, setPreviewImage] = useState<string | null>(null);
 
     const getFormattedDate = () => {
         const now = new Date();
