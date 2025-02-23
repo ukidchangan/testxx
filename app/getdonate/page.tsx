@@ -112,10 +112,7 @@ const LiffPage = () => {
               textAlign: "left",
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
               cursor: "pointer",
-              ":hover": {
-                transform: "translateY(-5px)",
-                boxShadow: "0px 12px 24px rgba(0, 0, 0, 0.2)"
-              }
+
             }}>
               <h3 style={{ 
                 color: "#333", 
