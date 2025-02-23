@@ -36,6 +36,7 @@ export default function CreatePage() {
   const [profilePicture, setProfilePicture] = useState<string>("");
   const [donorInfo, setDonorInfo] = useState<DonorInfo[]>([]);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
 
   const getFormattedDate = () => {
     const now = new Date();
@@ -172,6 +173,7 @@ export default function CreatePage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true); // Set loading state to true
 
     // Create FormData object to send the file
     const data = new FormData();
@@ -210,6 +212,8 @@ export default function CreatePage() {
     } catch (error) {
       console.error('Error:', error);
       alert('An error occurred while submitting the form.');
+    } finally {
+      setIsSubmitting(false); // Set loading state to false
     }
   };
 
@@ -223,6 +227,8 @@ export default function CreatePage() {
         minHeight: '100vh',
         backgroundColor: '#f0f8ff',
         padding: '20px', // Add padding for mobile
+        filter: isSubmitting ? 'blur(5px)' : 'none', // Apply blur effect
+        pointerEvents: isSubmitting ? 'none' : 'auto', // Disable interactions
       }}
     >
       <div
@@ -320,8 +326,9 @@ export default function CreatePage() {
                 cursor: 'pointer',
                 width: '100%', // Full-width button on mobile
               }}
+              disabled={isSubmitting} // Disable button when submitting
             >
-              Submit
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </form>
