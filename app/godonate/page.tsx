@@ -136,7 +136,7 @@ export default function CreatePage() {
     lineoa_profile: '',
     lineoa_displayname: '',
     fullname: '',
-    amount: '',
+    amount: '100',
     attachment: '' as string | File,
     product_id: '',
     donate_date: getFormattedDate(),
@@ -322,7 +322,7 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             <input
               type="text"
               name="amount"
-              value="100"
+              value={formData.amount}
               onChange={handleChange}
               required
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
