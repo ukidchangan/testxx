@@ -4,13 +4,11 @@ import liff from "@line/liff";
 
 const LiffPage = () => {
   const [displayName, setDisplayName] = useState("Loading...");
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState("Unknown");
   const [profilePicture, setProfilePicture] = useState<string>("");
   const [donorInfo, setDonorInfo] = useState<any>(null);
   const [error, setError] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Initialize LIFF
   useEffect(() => {
     const initializeLiff = async () => {
       try {
@@ -25,19 +23,15 @@ const LiffPage = () => {
         }
       } catch (err) {
         console.error("LIFF Initialization failed", err);
-        setError("Failed to initialize LIFF.");
         setDisplayName("Error loading profile");
-      } finally {
-        setIsLoading(false);
       }
     };
 
     initializeLiff();
   }, []);
 
-  // Fetch donor info when userId is available
   useEffect(() => {
-    if (userId) {
+    if (userId !== "Unknown" && userId !== "") {
       fetchDonorInfo(userId);
     }
   }, [userId]);
@@ -48,9 +42,9 @@ const LiffPage = () => {
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
-          Authorization: "9613972343509313335bdc6a7fe20772c9bdd4ad",
-          "Content-Type": "application/json",
-        },
+          "Authorization": "9613972343509313335bdc6a7fe20772c9bdd4ad",
+          "Content-Type": "application/json"
+        }
       });
 
       if (!response.ok) {
@@ -69,112 +63,81 @@ const LiffPage = () => {
   };
 
   return (
-    <div className="container">
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "20px",
+      backgroundColor: "#f0f8ff",
+      minHeight: "100vh",
+      fontFamily: "'Arial', sans-serif"
+    }}>
       {profilePicture && (
-        <img
-          src={profilePicture}
-          alt="Profile"
-          className="profile-image"
+        <img 
+          src={profilePicture} 
+          alt="Profile" 
+          style={{ 
+            borderRadius: "50%", 
+            width: "100px", 
+            height: "100px", 
+            marginBottom: "20px",
+            border: "3px solid #fff",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
+          }} 
         />
       )}
-      <h1 className="title">ประวัติการบริจาค</h1>
-      <h2 className="subtitle">{displayName}</h2>
-      <p className="user-id">USER ID: {userId}</p>
+      <h1 style={{ color: "#333", marginBottom: "10px" }}>ประวัติการบริจาค</h1>
+      <h2 style={{ color: "#555", marginBottom: "20px" }}>{displayName}</h2>
+      <p style={{ color: "#777", marginBottom: "20px" }}>USER ID: {userId}</p>
 
       {error ? (
-        <p className="error-message">{error}</p>
-      ) : isLoading ? (
-        <p className="loading-message">กำลังโหลดข้อมูล...</p>
+        <p style={{ color: "red" }}>{error}</p>
       ) : donorInfo ? (
-        <div className="donation-grid">
+        <div style={{ 
+          display: "flex", 
+          flexWrap: "wrap", 
+          justifyContent: "center", 
+          gap: "20px",
+          maxWidth: "1200px",
+          width: "100%"
+        }}>
           {donorInfo.data.map((donation: any) => (
-            <div key={donation.id} className="donation-card">
-              <h3>{donation.name}</h3>
-              <p><strong>ชื่อ:</strong> {donation.donor}</p>
-              <p><strong>เบอร์:</strong> {donation.mobile}</p>
-              <p><strong>จำนวน:</strong> {donation.amount} บาท</p>
-              <p><strong>รวมทั้งหมด:</strong> {donation.amount_total} บาท</p>
-              <p><strong>สถานะ:</strong> {donation.state}</p>
-              <p><strong>วันที่บริจาค:</strong> {donation.donate_date}</p>
+            <div key={donation.id} style={{
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "15px",
+              boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.1)",
+              width: "300px",
+              textAlign: "left",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              cursor: "pointer",
+              ":hover": {
+                transform: "translateY(-5px)",
+                boxShadow: "0px 12px 24px rgba(0, 0, 0, 0.2)"
+              }
+            }}>
+              <h3 style={{ 
+                color: "#333", 
+                marginBottom: "15px", 
+                fontSize: "1.5em",
+                borderBottom: "2px solid #f0f8ff",
+                paddingBottom: "10px"
+              }}>
+                {donation.name}
+              </h3>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>ชื่อ:</strong> {donation.donor}</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>เบอร์:</strong> {donation.mobile}</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>จำนวน:</strong> {donation.amount} บาท</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>รวมทั้งหมด:</strong> {donation.amount_total} บาท</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>สถานะ:</strong> {donation.state}</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>วันที่บริจาค:</strong> {donation.donate_date}</p>
             </div>
           ))}
         </div>
       ) : (
-        <p className="no-data-message">ไม่มีข้อมูลการบริจาค</p>
+        <p style={{ color: "#777" }}>กำลังโหลดข้อมูล...</p>
       )}
-
-      <style jsx>{`
-        .container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 20px;
-          background-color: #f0f8ff;
-          min-height: 100vh;
-          font-family: Arial, sans-serif;
-        }
-        .profile-image {
-          border-radius: 50%;
-          width: 100px;
-          height: 100px;
-          margin-bottom: 20px;
-        }
-        .title {
-          font-size: 24px;
-          color: #333;
-          margin-bottom: 10px;
-        }
-        .subtitle {
-          font-size: 20px;
-          color: #555;
-          margin-bottom: 10px;
-        }
-        .user-id {
-          font-size: 16px;
-          color: #777;
-          margin-bottom: 20px;
-        }
-        .error-message {
-          color: red;
-          font-size: 16px;
-        }
-        .loading-message, .no-data-message {
-          font-size: 16px;
-          color: #555;
-        }
-        .donation-grid {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 15px;
-          width: 100%;
-          max-width: 1200px;
-        }
-        .donation-card {
-          background-color: #fff;
-          padding: 15px;
-          border-radius: 10px;
-          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-          width: 280px;
-          text-align: center;
-        }
-        .donation-card h3 {
-          font-size: 18px;
-          color: #333;
-          margin-bottom: 10px;
-        }
-        .donation-card p {
-          font-size: 14px;
-          color: #555;
-          margin: 5px 0;
-        }
-        @media (max-width: 768px) {
-          .donation-card {
-            width: 100%;
-          }
-        }
-      `}</style>
     </div>
   );
 };
