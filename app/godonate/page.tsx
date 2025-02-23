@@ -18,12 +18,26 @@ export default function CreatePage() {
     list_price: number;
     url: string;
   }
+
+  interface DonorInfo {
+    id: number;
+    name: string;
+    street: string;
+    street2: string;
+    city: string;
+    zip: string;
+    mobile: string;
+    email: string;
+    lineoa_userid: string;
+    lineoa_display: string;
+    lineoa_profile: string;
+  }
   
     const [categories, setCategories] = useState<Category[]>([]);
     const [displayName, setDisplayName] = useState("Loading...");
     const [userId, setUserId] = useState("Unknown");
     const [profilePicture, setProfilePicture] = useState<string>("");
-    const [donorInfo, setDonorInfo] = useState<any>(null);
+    const [donorInfo, setDonorInfo] = useState<DonorInfo[]>([]);
 
 
     const getFormattedDate = () => {
@@ -58,7 +72,7 @@ export default function CreatePage() {
           const data = await response.json();
     
           try{
-          setDonorInfo(data);
+            setDonorInfo(data.data || []);
           } catch (error) {}
         } catch (error) {
           console.error("Error fetching donor info:", error);
@@ -272,9 +286,10 @@ export default function CreatePage() {
             <input
               type="text"
               name="fullname"
-              value={donorInfo.data?.[0]?.name}
+              value={donorInfo[0]?.name || ""}
               onChange={handleChange}
               required
+              readOnly
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
