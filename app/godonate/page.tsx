@@ -291,8 +291,8 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             <input
               type="้hidden"
               name="fullname"
-              value={formData.fullname}
-              onChange={handleChange}
+              value={donorInfo[0]?.name || ""}
+    
               required
               
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
