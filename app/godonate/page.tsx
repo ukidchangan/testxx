@@ -129,8 +129,8 @@ export default function CreatePage() {
     attachment: '' as string | File,
     product_id: '',
     donate_date: getFormattedDate(),
-    amulet_type: 'post',
-    anumotana_type: 'lineoa',
+    amulet_type: '',
+    anumotana_type: '',
     category: ''
   });
 
@@ -184,8 +184,8 @@ export default function CreatePage() {
     data.append("amount", formData.amount);
     data.append("product_id", formData.product_id);
     data.append("donate_date", getFormattedDate());
-    data.append("amulet_type", "post");
-    data.append("anumotana_type", "lineoa");
+    data.append("amulet_type", formData.amulet_type);
+    data.append("anumotana_type", formData.anumotana_type);
 
     // Append the file only if it's selected
     if (formData.attachment) {
@@ -311,6 +311,58 @@ export default function CreatePage() {
                   {category.name}
                 </option>
               ))}
+            </select>
+          </div>
+
+          <div style={{ marginBottom: '15px' }}>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลือก การรับพระ:</label>
+            <select
+              name="amulet_type"
+              value={formData.amulet_type}
+              onChange={handleSelectChange}
+              required
+              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+            >
+              <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
+
+                <option key="watluang" value="watluang">
+                ที่วัด
+                </option>
+                <option key="post" value="post">
+                ไปรษณีย์
+                </option>                
+                <option key="na" value="na">
+                *** ไม่รับ ***
+                </option>
+            </select>
+          </div>
+
+          <div style={{ marginBottom: '15px' }}>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลือก ใบอนุโมทนา :</label>
+            <select
+              name="anumotana_type"
+              value={formData.anumotana_type}
+              onChange={handleSelectChange}
+              required
+              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+            >
+              <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
+
+                <option key="watluang" value="watluang">
+                ที่วัด
+                </option>
+                <option key="post" value="post">
+                ไปรษณีย์
+                </option> 
+                <option key="lineoa" value="lineoa">
+                ไลน์โอเอ
+                </option>  
+                <option key="email" value="email">
+                อีเมล์
+                </option>                 
+                <option key="na" value="na">
+                *** ไม่รับ ***
+                </option>
             </select>
           </div>
 
