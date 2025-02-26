@@ -12,7 +12,7 @@ export default function CreatePage() {
     const [userId, setUserId] = useState("Unknown");
     const [profilePicture, setProfilePicture] = useState<string>("");
 
-      useEffect(() => {
+      useEffect(() => { 
         const initializeLiff = async () => {
           try {
             await liff.init({ liffId: process.env.LIFE_ID as string });
