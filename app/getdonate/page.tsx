@@ -42,7 +42,6 @@ const LiffPage = () => {
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
-          "Authorization": "9613972343509313335bdc6a7fe20772c9bdd4ad",
           "Content-Type": "application/json"
         }
       });
