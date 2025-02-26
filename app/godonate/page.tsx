@@ -125,7 +125,7 @@ export default function CreatePage() {
     lineoa_profile: '',
     lineoa_displayname: '',
     fullname: "",
-    amount: '100',
+    amount: '',
     attachment: '' as string | File,
     product_id: '',
     donate_date: getFormattedDate(),
@@ -279,13 +279,13 @@ export default function CreatePage() {
             />
           )}
         </h1>
-        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>ผู้บริจาคเงินสาธุ</h1>
+        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>ผู้บริจาคบุญ</h1>
         <p>{displayName}</p>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
 
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ชื่อผู้บริจาค :</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>บริจาคเพื่อ :</label>
             <input
               type="text"
               name="fullname"
