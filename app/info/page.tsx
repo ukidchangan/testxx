@@ -12,7 +12,7 @@ const LiffPage = () => {
   useEffect(() => {
     const initializeLiff = async () => {
       try {
-        await liff.init({ liffId: process.env.LIFE_ID as string  });
+        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string  });
 
         if (!liff.isLoggedIn()) {
           liff.login();
