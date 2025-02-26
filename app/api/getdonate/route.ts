@@ -8,16 +8,13 @@ export async function GET(req: NextRequest) {
 
 
     try {
-        // Construct the API URL with the given user ID
-        // const apiUrl = `https://testdonate.luangphorsodh.com/api/lineoa/profile/list?lineoa_userid=${userid}`;
-        //  const apiUrl = `https://testdonate.luangphorsodh.com/api/donate/list/?lineoa_userid=U9cd87cd0a095b3c1a062cab85dbf9701`;
-         const apiUrl = `https://testdonate.luangphorsodh.com/api/donate/list/?lineoa_userid=${userid}`;
+         const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/donate/list/?lineoa_userid=${userid}`;
     
         // Fetch data from external API
         const response = await fetch(apiUrl, {
           method: "GET",
           headers: {
-            Authorization: "9613972343509313335bdc6a7fe20772c9bdd4ad",
+            Authorization:  process.env.API_AUTHORIZATION as string,
             "Content-Type": "application/json",
           },
         });
@@ -40,15 +37,3 @@ export async function GET(req: NextRequest) {
 }
 
 ////////
-
-// import { NextResponse } from 'next/server';
-// import type { NextRequest } from 'next/server';
-
-// export async function GET(req: NextRequest) {
-//     const { searchParams } = new URL(req.url);
-//     const userid = searchParams.get("userid");
-    
-//     console.log(userid);
-
-//     return NextResponse.json({ message: 'Hello from Next.js!' });
-// }

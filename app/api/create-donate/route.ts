@@ -35,9 +35,9 @@ export async function POST(request: Request) {
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: 'https://testdonate.luangphorsodh.com/api/donate/form',
+      url: '${process.env.NEXT_PUBLIC_API_BASE_URL}api/donate/form',
       headers: { 
-        'Authorization': '9613972343509313335bdc6a7fe20772c9bdd4ad', 
+        'Authorization':  process.env.API_AUTHORIZATION, 
         ...data.getHeaders()
       },
       data: data

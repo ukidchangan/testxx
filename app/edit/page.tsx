@@ -25,7 +25,7 @@ export default function EditPage() {
   useEffect(() => {
     const initializeLiff = async () => {
       try {
-        await liff.init({ liffId: "2006843844-y5kJv8l5" });
+        await liff.init({ liffId:process.env.LIFE_ID as string  });
 
         if (!liff.isLoggedIn()) {
           liff.login();
@@ -58,7 +58,6 @@ export default function EditPage() {
         method: "GET",
         mode: "no-cors",
         headers: {
-          "Authorization": "9613972343509313335bdc6a7fe20772c9bdd4ad",
           "Content-Type": "application/json"
         }
       });
