@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: '${process.env.API_BASE_URL}/api/lineoa/profile/edit',
+      url: `${process.env.API_BASE_URL}/api/lineoa/profile/edit`,
       headers: { 
         'Authorization': process.env.API_AUTHORIZATION, 
         'Content-Type': 'application/json', 
