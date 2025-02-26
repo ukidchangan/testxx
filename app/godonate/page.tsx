@@ -384,6 +384,7 @@ export default function CreatePage() {
               name="attachment"
               accept="image/*"
               onChange={handleFileChange}
+              required
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
