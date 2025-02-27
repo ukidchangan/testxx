@@ -175,7 +175,7 @@ export default function EditPage() {
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
-          <div style={{ marginBottom: '15px', display: 'none' }}>
+          <div style={{ marginBottom: '15px', display: 'none', visibility: 'hidden' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>LINE OA Profile:</label>
             <input
               type="text"
@@ -187,7 +187,7 @@ export default function EditPage() {
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
-          <div style={{ marginBottom: '15px', display: 'none' }}>
+          <div style={{ marginBottom: '15px', display: 'none', visibility: 'hidden' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>LINE OA Display Name:</label>
             <input
               type="text"
