@@ -108,7 +108,7 @@ const LiffPage = () => {
       }}>
         ยินดีต้อนรับ, {displayName}
       </h1>
-      <div style={{ display: 'none', visibility: 'hidden'}}
+      <div style={{ display: 'none', visibility: 'hidden'}}>
         <p style={{ 
           fontSize: "14px", 
           color: "#666", 
