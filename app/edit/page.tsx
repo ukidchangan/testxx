@@ -233,7 +233,7 @@ export default function EditPage() {
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ที่อยุ่ #1:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ที่อยุ่:</label>
             <input
               type="text"
               name="street"
@@ -244,7 +244,7 @@ export default function EditPage() {
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ที่อยู่ 2:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ที่อยู่เพิ่มเติม:</label>
             <input
               type="text"
               name="street2"

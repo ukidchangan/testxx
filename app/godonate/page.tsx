@@ -279,8 +279,8 @@ export default function CreatePage() {
             />
           )}
         </h1>
-        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>ผู้บริจาคบุญ</h1>
-        <p>{displayName}</p>
+        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>จิตศรัทธาบริจาค</h1>
+  
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
 

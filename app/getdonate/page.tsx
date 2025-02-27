@@ -88,8 +88,7 @@ const LiffPage = () => {
       )}
       <h1 style={{ color: "#333", marginBottom: "10px" }}>ประวัติการบริจาค</h1>
       <h2 style={{ color: "#555", marginBottom: "20px" }}>{displayName}</h2>
-      <p style={{ color: "#777", marginBottom: "20px" }}>USER ID: {userId}</p>
-
+      
       {error ? (
         <p style={{ color: "red" }}>{error}</p>
       ) : donorInfo ? (
