@@ -285,7 +285,7 @@ export default function CreatePage() {
           {/* Form Fields */}
 
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>บริจาคเพื่อ :</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>บริจาคในนาม :</label>
             <input
               type="text"
               name="fullname"
