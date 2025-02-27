@@ -4,13 +4,13 @@ export async function GET() {
 
 
     try {
-         const apiUrl = `${process.env.API_BASE_URL}/api/category`;
+         const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/category`;
     
         // Fetch data from external API
         const response = await fetch(apiUrl, {
           method: "GET",
           headers: {
-            Authorization:  process.env.API_AUTHORIZATION as string,
+            Authorization:  process.env.NEXT_PUBLIC_API_AUTHORIZATION as string,
             "Content-Type": "application/json",
           },
         });

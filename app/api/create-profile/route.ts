@@ -13,9 +13,9 @@ export async function POST(request: Request) {
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: `${process.env.API_BASE_URL}/api/lineoa/profile/create`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/lineoa/profile/create`,
       headers: { 
-        'Authorization': process.env.API_AUTHORIZATION,
+        'Authorization': process.env.NEXT_PUBLIC_API_AUTHORIZATION,
         'Content-Type': 'application/json', 
         ...data.getHeaders()
       },
