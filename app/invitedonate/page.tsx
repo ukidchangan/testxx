@@ -62,7 +62,7 @@ const InviteDonatePage = () => {
                       className="btn btn-primary  h-100 w-100 py-2"
                       style={{ fontSize: "1.1rem" }}
                     >
-                      <Link href="/info" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+                      <Link href="/create" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
                      ลงทะเบียน/แก้ไข
                      </Link>
                     </button>
