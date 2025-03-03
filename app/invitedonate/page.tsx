@@ -13,6 +13,8 @@ const InviteDonatePage = () => {
       useEffect(() => { 
         const initializeLiff = async () => {
           try {
+            alert("cccc");
+            alert("c = "+process.env.NEXT_PUBLIC_LIFE_ID);
             await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
     
             if (!liff.isLoggedIn()) {
