@@ -5,6 +5,34 @@ import Image from 'next/image';
 import Link from "next/link";
 
 const InviteDonatePage = () => {
+
+    const [displayName, setDisplayName] = useState("Loading...");
+    const [userId, setUserId] = useState("Unknown");
+    const [profilePicture, setProfilePicture] = useState<string>("");
+
+      useEffect(() => { 
+        const initializeLiff = async () => {
+          try {
+            await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
+    
+            if (!liff.isLoggedIn()) {
+              liff.login();
+            } else {
+              const profile = await liff.getProfile();
+              setDisplayName(profile.displayName || "Unknown User");
+              setProfilePicture(profile.pictureUrl || "");
+              setUserId(profile.userId || "");
+              console.log("Already logged in.");
+            }
+          } catch (err) {
+            console.error("LIFF Initialization failed", err);
+            setDisplayName("Error loading profile");
+          }
+        };
+    
+        initializeLiff();
+      }, []);
+
   return (
     <div style={{ backgroundColor: "#f0f8ff", minHeight: "100vh", padding: "20px" }}>
       <div className="container">
@@ -12,7 +40,7 @@ const InviteDonatePage = () => {
         <div className="row">
           <div className="col">
             <div className="p-3 border bg-light text-center rounded">
-              <h2>ขั้นตอนบริจาคทำบุญ</h2>
+              <h2>ขั้นตอนบริจาคทำบุญ {displayName}</h2>
             </div>
           </div>
         </div>
@@ -62,7 +90,7 @@ const InviteDonatePage = () => {
                       className="btn btn-primary  h-100 w-100 py-2"
                       style={{ fontSize: "1.1rem" }}
                     >
-                      <Link href="/create" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+                      <Link href="/invitedonate/info" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
                      ลงทะเบียน/แก้ไข
                      </Link>
                     </button>
