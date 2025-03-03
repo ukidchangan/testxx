@@ -18,10 +18,11 @@ const InviteDonatePage = () => {
             await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
     
             if (!liff.isLoggedIn()) {
+              alert("yyyy");
               liff.login();
             } else {
               const profile = await liff.getProfile();
-              alert("xxxx"+profile.displayName)
+              alert("xxxx"+profile.displayName);
               setDisplayName(profile.displayName || "Unknown User");
               setProfilePicture(profile.pictureUrl || "");
               setUserId(profile.userId || "");
