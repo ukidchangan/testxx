@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
+import Image from 'next/image';
 
 export default function CreatePage() {
   interface Category {
@@ -280,7 +281,21 @@ export default function CreatePage() {
           )}
         </h1>
         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>จิตศรัทธาบริจาค</h1>
-  
+   {/* Row 2 - Image */}
+          <div className="row mt-2">
+            <div className="col">
+              <div className="text-center" >
+                <Image 
+                  src="/flow0.jpg" // Path to the image in the public folder
+                  alt="Donation Flow"
+                  width={800} // Set the width
+                  height={400} // Set the height
+                  layout="responsive" // Ensure the image is responsive
+                  className="rounded"
+                />
+              </div>
+            </div>
+          </div>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
 
