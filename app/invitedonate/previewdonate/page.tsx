@@ -12,6 +12,8 @@ export default function PreviewDonatePage() {
   const [amulet_type_text, setAmulet_type_text] = useState<string | null>(null);
   const [anumotana_type_text, setAnumotana_type_text] = useState<string | null>(null);
   const [product_text, setProduct_text] = useState<string | null>(null);
+  const [profilePicture, setProfilePicture] = useState<string | null>(null);
+  
 
   useEffect(() => {
     // Retrieve form data and preview image from localStorage
@@ -20,6 +22,7 @@ export default function PreviewDonatePage() {
     const amulet_type_text = localStorage.getItem('amulet_type_text');
     const anumotana_type_text = localStorage.getItem('anumotana_type_text');
     const product_text = localStorage.getItem('product_text');
+    const profilePicture = localStorage.getItem('profilePicture');
 
     if (storedFormData) {
       setFormData(JSON.parse(storedFormData));
@@ -36,6 +39,9 @@ export default function PreviewDonatePage() {
     if (storedPreviewImage) {
       setPreviewImage(storedPreviewImage);
     }
+    if (profilePicture) {
+        setProfilePicture(profilePicture);
+      }
   }, []);
 
   const handleSubmit = async () => {
@@ -104,8 +110,33 @@ export default function PreviewDonatePage() {
           boxShadow: '0px 0px 10px #ddd',
         }}
       >
-        <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>Preview Donation</h1>
-
+        <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>ตรวจสอบข้อมูล</h1>
+     {/* Row 2 - Image */}
+        <div className="row mt-2">
+          <div className="col">
+            <div className="text-center" >
+              <Image 
+                src="/flow1.jpg" // Path to the image in the public folder
+                alt="Donation Flow"
+                width={800} // Set the width
+                height={400} // Set the height
+                layout="responsive" // Ensure the image is responsive
+                className="rounded"
+              />
+            </div>
+          </div>
+        </div>
+        <div style={{ marginBottom: '15px' }}>
+        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>
+            {profilePicture && (
+              <img
+                src={profilePicture}
+                alt="Profile"
+                style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }}
+              />
+            )}
+          </h1>
+          </div>
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>บริจาคในนาม :</label>
           <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>

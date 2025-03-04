@@ -197,7 +197,7 @@ export default function CreatePage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     const data = new FormData();
     data.append("lineoa_userid", userId);
     data.append("lineoa_profile", profilePicture);
@@ -214,7 +214,7 @@ export default function CreatePage() {
     if (formData.attachment) {
       data.append("attachment", formData.attachment);
     }
-    localStorage.setItem('datax', JSON.stringify(data) );
+    localStorage.setItem('datax', JSON.stringify(data));
     // Store form data and preview image in localStorage
     localStorage.setItem('formData', JSON.stringify(formData));
     if (previewImage) {
@@ -242,15 +242,17 @@ export default function CreatePage() {
     // alert(formData.product_id);
     // alert(product_text);
     if (amulet_type_text) {
-    localStorage.setItem('amulet_type_text', amulet_type_text.text );
+      localStorage.setItem('amulet_type_text', amulet_type_text.text);
     }
     if (anumotana_type_text) {
-      localStorage.setItem('anumotana_type_text', anumotana_type_text.text );
-      }
-      if (product_text) {
-        localStorage.setItem('product_text', product_text.name );
-        }
-  
+      localStorage.setItem('anumotana_type_text', anumotana_type_text.text);
+    }
+    if (product_text) {
+      localStorage.setItem('product_text', product_text.name);
+    }
+    if (profilePicture) {
+      localStorage.setItem('profilePicture', profilePicture);
+    }
     // Navigate to the preview page
     window.location.href = "/invitedonate/previewdonate";
   };
@@ -304,309 +306,309 @@ export default function CreatePage() {
 
   return (
     <div>
-    <form onSubmit={handleSubmit}>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        backgroundColor: '#f0f8ff',
-        padding: '10px', // Add padding for mobile
-        filter: isSubmitting ? 'blur(5px)' : 'none', // Apply blur effect
-        pointerEvents: isSubmitting ? 'none' : 'auto', // Disable interactions
-        position: 'relative', // Required for the overlay positioning
-      }}
-    >
-     
-        {/* Overlay with "Processing..." message */}
-        {isSubmitting && (
-          <div
-            style={{
-              position: 'fixed', // Fixed position to cover the entire screen
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white background
-              zIndex: 1000, // Ensure it's above everything else
-            }}
-          >
-            <div
-              style={{
-                fontSize: '24px',
-                fontWeight: 'bold',
-                color: '#007bff',
-              }}
-            >
-              Processing...
-            </div>
-          </div>
-        )}
-
+      <form onSubmit={handleSubmit}>
         <div
           style={{
-            width: '100%',
-            maxWidth: '500px', // Limit width for better readability
-            backgroundColor: '#fff',
-            padding: '10px',
-            borderRadius: '10px',
-            boxShadow: '0px 0px 10px #ddd',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '100vh',
+            backgroundColor: '#f0f8ff',
+            padding: '10px', // Add padding for mobile
+            filter: isSubmitting ? 'blur(5px)' : 'none', // Apply blur effect
+            pointerEvents: isSubmitting ? 'none' : 'auto', // Disable interactions
+            position: 'relative', // Required for the overlay positioning
           }}
         >
-          <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>
-            {profilePicture && (
-              <img
-                src={profilePicture}
-                alt="Profile"
-                style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }}
-              />
-            )}
-          </h1>
-          <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>จิตศรัทธาบริจาค</h1>
-          {/* Row 2 - Image */}
-          <div className="row mt-2">
-            <div className="col">
-              <div className="text-center" >
-                <Image
-                  src="/flow2.jpg" // Path to the image in the public folder
-                  alt="Donation Flow"
-                  width={800} // Set the width
-                  height={400} // Set the height
-                  layout="responsive" // Ensure the image is responsive
-                  className="rounded"
-                />
+
+          {/* Overlay with "Processing..." message */}
+          {isSubmitting && (
+            <div
+              style={{
+                position: 'fixed', // Fixed position to cover the entire screen
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white background
+                zIndex: 1000, // Ensure it's above everything else
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '24px',
+                  fontWeight: 'bold',
+                  color: '#007bff',
+                }}
+              >
+                Processing...
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Form Fields */}
-
-          <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>บริจาคในนาม :</label>
-            <input
-              type="text"
-              name="fullname"
-              value={formData.fullname}
-              onChange={handleChange}
-              required
-              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            />
-          </div>
-
-          <div style={{ marginBottom: '15px' }}>
-
-
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <tbody>
-                <tr>
-                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-
-                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
-                    <select
-                      name="product_id"
-                      value={formData.product_id}
-                      onChange={handleSelectChange}
-                      required
-                      style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                    >
-                      <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
-                      {categories.map((category) => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
-
-                  </td>
-                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-
-
-                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
-                    <input
-                      type="text"
-                      name="amount"
-                      value={formData.amount}
-                      onChange={handleChange}
-                      required
-                      style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                    />
-
-
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div style={{ marginBottom: '15px' }}>
-
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :</label>
-            <input
-              type="text"
-              name="donate_for"
-              value={formData.donate_for}
-              onChange={handleChange}
-              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            />
-          </div>
-          <div style={{ marginBottom: '15px' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <tbody>
-                <tr>
-                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-
-                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับพระของขวัญ:</label>
-                    <select
-                      name="amulet_type"
-                      value={formData.amulet_type}
-                      onChange={handleSelectChange}
-                      required
-                      style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                    >
-                      <option key="na" value="na">*** ไม่รับ ***</option>
-
-                      <option key="watluang" value="watluang">
-                        ที่วัด
-                      </option>
-                      <option key="post" value="post">
-                        ไปรษณีย์
-                      </option>
-                      {/* <option key="na" value="na">
-                *** ไม่รับ ***
-                </option> */}
-                    </select>
-
-                  </td>
-                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับใบอนุโมทนา :</label>
-                    <select
-                      name="anumotana_type"
-                      value={formData.anumotana_type}
-                      onChange={handleSelectChange}
-                      required
-                      style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                    >
-                      <option value="lineoa">ไลน์โอเอ</option>
-
-                      <option key="watluang" value="watluang">
-                        ที่วัด
-                      </option>
-                      <option key="post" value="post">
-                        ไปรษณีย์
-                      </option>
-                      <option key="email" value="email">
-                        อีเมล์
-                      </option>
-                      <option key="na" value="na">
-                        *** ไม่รับ ***
-                      </option>
-                    </select>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-          </div>
-
-          <div style={{ marginBottom: '15px' }}><br /><br />
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
-            {selectedCategory?.url && (
-              <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                <img onClick={handleCopyAccount} src={selectedCategory?.url} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+          <div
+            style={{
+              width: '100%',
+              maxWidth: '500px', // Limit width for better readability
+              backgroundColor: '#fff',
+              padding: '10px',
+              borderRadius: '10px',
+              boxShadow: '0px 0px 10px #ddd',
+            }}
+          >
+            <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>
+              {profilePicture && (
+                <img
+                  src={profilePicture}
+                  alt="Profile"
+                  style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }}
+                />
+              )}
+            </h1>
+            <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>จิตศรัทธาบริจาค</h1>
+            {/* Row 2 - Image */}
+            <div className="row mt-2">
+              <div className="col">
+                <div className="text-center" >
+                  <Image
+                    src="/flow2.jpg" // Path to the image in the public folder
+                    alt="Donation Flow"
+                    width={800} // Set the width
+                    height={400} // Set the height
+                    layout="responsive" // Ensure the image is responsive
+                    className="rounded"
+                  />
+                </div>
               </div>
-            )}
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <tbody>
-                <tr>
-                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-                    <div style={{ marginBottom: '15px' }}>
-                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
+            </div>
+
+            {/* Form Fields */}
+
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>บริจาคในนาม :</label>
+              <input
+                type="text"
+                name="fullname"
+                value={formData.fullname}
+                onChange={handleChange}
+                required
+                style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+              />
+            </div>
+
+            <div style={{ marginBottom: '15px' }}>
+
+
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <tbody>
+                  <tr>
+                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+
+                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
+                      <select
+                        name="product_id"
+                        value={formData.product_id}
+                        onChange={handleSelectChange}
+                        required
+                        style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                      >
+                        <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
+                        {categories.map((category) => (
+                          <option key={category.id} value={category.id}>
+                            {category.name}
+                          </option>
+                        ))}
+                      </select>
+
+                    </td>
+                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+
+
+                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
                       <input
-                        type="file"
-                        name="attachment"
-                        accept="image/*"
-                        onChange={handleFileChange}
+                        type="text"
+                        name="amount"
+                        value={formData.amount}
+                        onChange={handleChange}
                         required
                         style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
                       />
-                    </div>
-                    {previewImage && (
-                      <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                        <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :</label>
+              <input
+                type="text"
+                name="donate_for"
+                value={formData.donate_for}
+                onChange={handleChange}
+                style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+              />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <tbody>
+                  <tr>
+                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+
+                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับพระของขวัญ:</label>
+                      <select
+                        name="amulet_type"
+                        value={formData.amulet_type}
+                        onChange={handleSelectChange}
+                        required
+                        style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                      >
+                        <option key="na" value="na">*** ไม่รับ ***</option>
+
+                        <option key="watluang" value="watluang">
+                          ที่วัด
+                        </option>
+                        <option key="post" value="post">
+                          ไปรษณีย์
+                        </option>
+                        {/* <option key="na" value="na">
+                *** ไม่รับ ***
+                </option> */}
+                      </select>
+
+                    </td>
+                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับใบอนุโมทนา :</label>
+                      <select
+                        name="anumotana_type"
+                        value={formData.anumotana_type}
+                        onChange={handleSelectChange}
+                        required
+                        style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                      >
+                        <option value="lineoa">ไลน์โอเอ</option>
+
+                        <option key="watluang" value="watluang">
+                          ที่วัด
+                        </option>
+                        <option key="post" value="post">
+                          ไปรษณีย์
+                        </option>
+                        <option key="email" value="email">
+                          อีเมล์
+                        </option>
+                        <option key="na" value="na">
+                          *** ไม่รับ ***
+                        </option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+
+            <div style={{ marginBottom: '15px' }}><br /><br />
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
+              {selectedCategory?.url && (
+                <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                  <img onClick={handleCopyAccount} src={selectedCategory?.url} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+                </div>
+              )}
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <tbody>
+                  <tr>
+                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+                      <div style={{ marginBottom: '15px' }}>
+                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
+                        <input
+                          type="file"
+                          name="attachment"
+                          accept="image/*"
+                          onChange={handleFileChange}
+                          required
+                          style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                        />
                       </div>
-                    )}
+                      {previewImage && (
+                        <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                          <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+                        </div>
+                      )}
 
-                  </td>
-                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-                    <div style={{ marginBottom: '15px' }}>
+                    </td>
+                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+                      <div style={{ marginBottom: '15px' }}>
 
-                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:
-                        <input
-                          onClick={handleCopyAccount}
-                          type="text"
-                          name="bank_account"
-                          value={selectedCategory?.bank_account || ''}
-                          readOnly
-                          style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                        />
-                      </label>
+                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:
+                          <input
+                            onClick={handleCopyAccount}
+                            type="text"
+                            name="bank_account"
+                            value={selectedCategory?.bank_account || ''}
+                            readOnly
+                            style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                          />
+                        </label>
 
-                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี:
-                        <input
-                          type="text"
-                          onClick={handleCopyAccount}
-                          name="bank_holder"
-                          value={selectedCategory?.bank_holder || ''}
-                          readOnly
-                          style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                        />
-                      </label>
+                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี:
+                          <input
+                            type="text"
+                            onClick={handleCopyAccount}
+                            name="bank_holder"
+                            value={selectedCategory?.bank_holder || ''}
+                            readOnly
+                            style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                          />
+                        </label>
 
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+
           </div>
-
+          <footer style={{
+            position: "fixed",
+            bottom: "0",
+            width: "100%",
+            backgroundColor: "#fff",
+            padding: "15px",
+            boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
+            textAlign: "center"
+          }}>
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+              <button
+                type="submit"
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#007bff',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                  width: '100%',
+                }}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </button>
+            </div>
+          </footer>
 
 
         </div>
-        <footer style={{
-          position: "fixed",
-          bottom: "0",
-          width: "100%",
-          backgroundColor: "#fff",
-          padding: "15px",
-          boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
-          textAlign: "center"
-        }}>
-          <div style={{ textAlign: 'center', marginTop: '20px' }}>
-            <button
-              type="submit"
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#007bff',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                width: '100%',
-              }}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Submitting...' : 'Submit'}
-            </button>
-          </div>
-        </footer>
-
-
+      </form>
     </div>
-    </form>
-        </div>
   );
 }
