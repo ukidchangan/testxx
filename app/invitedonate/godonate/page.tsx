@@ -513,12 +513,7 @@ export default function CreatePage() {
         <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
           <div style={{ marginBottom: '15px' }}>
 
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <tbody>
-                <tr>
-                  <td style={{ width: '90%', padding: '5px', verticalAlign: 'top' }}>
-                    
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:
+          <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:
               <input
               onClick={handleCopyAccount}
                 type="text"
@@ -528,28 +523,11 @@ export default function CreatePage() {
                 style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
               />
             </label>
-</td><td style={{ width: '10%', padding: '5px' }}>
-            <button
-              type="button"
-              onClick={handleCopyAccount}
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#007bff',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                width: '100%',
-
-              }}
-            >
-              copy
-            </button>
-            </td></tr></tbody></table>
 
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี:
               <input
                 type="text"
+                onClick={handleCopyAccount}
                 name="bank_holder"
                 value={selectedCategory?.bank_holder || ''}
                 readOnly
