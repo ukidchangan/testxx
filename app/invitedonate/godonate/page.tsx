@@ -160,7 +160,7 @@ export default function CreatePage() {
     const bankAccountValue = selectedCategory?.bank_account || '';
     navigator.clipboard.writeText(bankAccountValue)
       .then(() => {
-        alert('คัดลอดบัญชี '+bankAccountValue+' เรียบร้อย');
+        alert('คัดลอดบัญชี ' + bankAccountValue + ' เรียบร้อย');
       })
       .catch((err) => {
         console.error('Failed to copy: ', err);
@@ -197,13 +197,13 @@ export default function CreatePage() {
 
   // const handleSubmitX = async (e: React.FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
-  
+
   //   // Store form data and preview image in localStorage
   //   localStorage.setItem('formData', JSON.stringify(formData));
   //   if (previewImage) {
   //     localStorage.setItem('previewImage', previewImage);
   //   }
-  
+
   //   // Navigate to the preview page
   //   window.location.href = "/invitedonate/previewdonate";
   // };
@@ -270,70 +270,71 @@ export default function CreatePage() {
         position: 'relative', // Required for the overlay positioning
       }}
     >
-      {/* Overlay with "Processing..." message */}
-      {isSubmitting && (
-        <div
-          style={{
-            position: 'fixed', // Fixed position to cover the entire screen
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white background
-            zIndex: 1000, // Ensure it's above everything else
-          }}
-        >
+      <form onSubmit={handleSubmit}>
+        {/* Overlay with "Processing..." message */}
+        {isSubmitting && (
           <div
             style={{
-              fontSize: '24px',
-              fontWeight: 'bold',
-              color: '#007bff',
+              position: 'fixed', // Fixed position to cover the entire screen
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white background
+              zIndex: 1000, // Ensure it's above everything else
             }}
           >
-            Processing...
-          </div>
-        </div>
-      )}
-
-      <div
-        style={{
-          width: '100%',
-          maxWidth: '500px', // Limit width for better readability
-          backgroundColor: '#fff',
-          padding: '10px',
-          borderRadius: '10px',
-          boxShadow: '0px 0px 10px #ddd',
-        }}
-      >
-        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>
-          {profilePicture && (
-            <img
-              src={profilePicture}
-              alt="Profile"
-              style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }}
-            />
-          )}
-        </h1>
-        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>จิตศรัทธาบริจาค</h1>
-        {/* Row 2 - Image */}
-        <div className="row mt-2">
-          <div className="col">
-            <div className="text-center" >
-              <Image
-                src="/flow2.jpg" // Path to the image in the public folder
-                alt="Donation Flow"
-                width={800} // Set the width
-                height={400} // Set the height
-                layout="responsive" // Ensure the image is responsive
-                className="rounded"
-              />
+            <div
+              style={{
+                fontSize: '24px',
+                fontWeight: 'bold',
+                color: '#007bff',
+              }}
+            >
+              Processing...
             </div>
           </div>
-        </div>
-        <form onSubmit={handleSubmit}>
+        )}
+
+        <div
+          style={{
+            width: '100%',
+            maxWidth: '500px', // Limit width for better readability
+            backgroundColor: '#fff',
+            padding: '10px',
+            borderRadius: '10px',
+            boxShadow: '0px 0px 10px #ddd',
+          }}
+        >
+          <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>
+            {profilePicture && (
+              <img
+                src={profilePicture}
+                alt="Profile"
+                style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }}
+              />
+            )}
+          </h1>
+          <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>จิตศรัทธาบริจาค</h1>
+          {/* Row 2 - Image */}
+          <div className="row mt-2">
+            <div className="col">
+              <div className="text-center" >
+                <Image
+                  src="/flow2.jpg" // Path to the image in the public folder
+                  alt="Donation Flow"
+                  width={800} // Set the width
+                  height={400} // Set the height
+                  layout="responsive" // Ensure the image is responsive
+                  className="rounded"
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Form Fields */}
 
           <div style={{ marginBottom: '15px' }}>
@@ -465,76 +466,79 @@ export default function CreatePage() {
 
           </div>
 
-          <div style={{ marginBottom: '15px' }}><br/><br/>
-  <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
-  {selectedCategory?.url && (
-            <div style={{ marginTop: '10px', textAlign: 'center' }}>
-              <img src={selectedCategory?.url} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-            </div>
-          )}
-  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-    <tbody>
-      <tr>
-        <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-          <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
-            <input
-              type="file"
-              name="attachment"
-              accept="image/*"
-              onChange={handleFileChange}
-              required
-              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            />
+          <div style={{ marginBottom: '15px' }}><br /><br />
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
+            {selectedCategory?.url && (
+              <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                <img src={selectedCategory?.url} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+              </div>
+            )}
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <tbody>
+                <tr>
+                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+                    <div style={{ marginBottom: '15px' }}>
+                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
+                      <input
+                        type="file"
+                        name="attachment"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        required
+                        style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                      />
+                    </div>
+                    {previewImage && (
+                      <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                        <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+                      </div>
+                    )}
+
+                  </td>
+                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+                    <div style={{ marginBottom: '15px' }}>
+
+                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:
+                        <input
+                          onClick={handleCopyAccount}
+                          type="text"
+                          name="bank_account"
+                          value={selectedCategory?.bank_account || ''}
+                          readOnly
+                          style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                        />
+                      </label>
+
+                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี:
+                        <input
+                          type="text"
+                          onClick={handleCopyAccount}
+                          name="bank_holder"
+                          value={selectedCategory?.bank_holder || ''}
+                          readOnly
+                          style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                        />
+                      </label>
+
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          {previewImage && (
-            <div style={{ marginTop: '10px', textAlign: 'center' }}>
-              <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-            </div>
-          )}
 
-        </td>
-        <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-          <div style={{ marginBottom: '15px' }}>
 
-          <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:
-              <input
-              onClick={handleCopyAccount}
-                type="text"
-                name="bank_account"
-                value={selectedCategory?.bank_account || ''}
-                readOnly
-                style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-              />
-            </label>
 
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี:
-              <input
-                type="text"
-                onClick={handleCopyAccount}
-                name="bank_holder"
-                value={selectedCategory?.bank_holder || ''}
-                readOnly
-                style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-              />
-            </label>
-   
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<footer style={{
-      position: "fixed",
-      bottom: "0",
-      width: "100%",
-      backgroundColor: "#fff",
-      padding: "15px",
-      boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
-      textAlign: "center"
-    }}>
+        </div>
+        <footer style={{
+          position: "fixed",
+          bottom: "0",
+          width: "100%",
+          backgroundColor: "#fff",
+          padding: "15px",
+          boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
+          textAlign: "center"
+        }}>
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <button
               type="submit"
@@ -552,11 +556,9 @@ export default function CreatePage() {
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
-      </footer>
+        </footer>
 
-        </form>
-      </div>
-      
+      </form>
     </div>
   );
 }
