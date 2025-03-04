@@ -4,25 +4,28 @@ import liff from "@line/liff";
 import Image from 'next/image';
 import Link from "next/link";
 
+
 const InviteDonatePage = () => {
 
     const [displayName, setDisplayName] = useState("Loading...");
     const [userId, setUserId] = useState("Unknown");
     const [profilePicture, setProfilePicture] = useState<string>("");
-
+    // 2006843844-y5kJv8l5   DAM
+    // 2006843844-NMl82war
       useEffect(() => { 
         const initializeLiff = async () => {
           try {
-            alert("99999");
-            alert("c = "+process.env.NEXT_PUBLIC_LIFE_ID);
+            // alert("99999");
+            // alert("c = "+process.env.NEXT_PUBLIC_LIFE_ID);
             await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
+            
     
             if (!liff.isLoggedIn()) {
-              alert("yyyy");
+              // alert("yyyy");
               liff.login();
             } else {
               const profile = await liff.getProfile();
-              alert("xxxx"+profile.displayName);
+              // alert("xxxx"+profile.displayName);
               setDisplayName(profile.displayName || "Unknown User");
               setProfilePicture(profile.pictureUrl || "");
               setUserId(profile.userId || "");

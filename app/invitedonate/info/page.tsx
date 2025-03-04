@@ -22,7 +22,7 @@ const LiffPage = () => {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
-          setUserId(profile.userId || "");
+          setUserId(profile.userId+"XXX"  || "");
           console.log("Already logged in.");
         }
       } catch (err) {
@@ -151,7 +151,7 @@ const LiffPage = () => {
           <p style={{ marginBottom: "10px" }}><strong>ชื่อ-นามสกุล: </strong> {donorInfo.data?.[0]?.name}</p>
           <p style={{ marginBottom: "10px" }}><strong>เบอร์มือถือ: </strong> {donorInfo.data?.[0]?.mobile}</p>
           <p style={{ marginBottom: "10px" }}><strong>อีเมล์: </strong> {donorInfo.data?.[0]?.email}</p>
-          <p style={{ marginBottom: "10px" }}><strong>ที่อยู่: </strong> {donorInfo.data?.[0]?.street}</p>
+          <p style={{ marginBottom: "10px" }}><strong>ที่อยู่(ใช้สำหรับกรณีส่งเอกสารทางไปรษณีย์): </strong> {donorInfo.data?.[0]?.street}</p>
           <p style={{ marginBottom: "10px" }}><strong>ที่อยู่เพิ่มเติม: </strong> {donorInfo.data?.[0]?.street2}</p>
           <p style={{ marginBottom: "10px" }}><strong>จังหวัด: </strong> {donorInfo.data?.[0]?.city}</p>
           <p style={{ marginBottom: "10px" }}><strong>ไปรษณีย์: </strong> {donorInfo.data?.[0]?.zip}</p>
