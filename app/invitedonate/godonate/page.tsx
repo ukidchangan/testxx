@@ -11,8 +11,9 @@ export default function CreatePage() {
     type: string;
     favorite: boolean;
     category: string;
+    bank_holder: string;
     bank_account: string;
-    bank: string;
+    bank_name: string;
     list_price: number;
     url: string;
   }
@@ -40,6 +41,8 @@ export default function CreatePage() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
 
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+
   const getFormattedDate = () => {
     const now = new Date();
     const year = now.getFullYear();
@@ -47,7 +50,7 @@ export default function CreatePage() {
     const day = String(now.getDate()).padStart(2, '0');
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
-  
+
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
 
@@ -102,7 +105,7 @@ export default function CreatePage() {
   useEffect(() => {
     const initializeLiff = async () => {
       try {
-        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string  });
+        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
 
         if (!liff.isLoggedIn()) {
           liff.login();
@@ -110,7 +113,7 @@ export default function CreatePage() {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
-          setUserId(profile.userId+"YYY" || "");
+          setUserId(profile.userId + "YYY" || "");
           console.log("Already logged in.");
         }
       } catch (err) {
@@ -134,7 +137,7 @@ export default function CreatePage() {
     amulet_type: '',
     anumotana_type: '',
     category: '',
-    donate_for:''
+    donate_for: ''
   });
 
   useEffect(() => {
@@ -160,6 +163,14 @@ export default function CreatePage() {
       ...prev,
       [name]: value,
     }));
+
+    if (name === "product_id" && value) {
+      const selected = categories.find(category => category.id === parseInt(value));
+      if (selected) {
+        setSelectedCategory(selected);
+      }
+    }
+
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -276,29 +287,29 @@ export default function CreatePage() {
       >
         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>
           {profilePicture && (
-            <img 
-              src={profilePicture} 
-              alt="Profile" 
-              style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }} 
+            <img
+              src={profilePicture}
+              alt="Profile"
+              style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }}
             />
           )}
         </h1>
         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>จิตศรัทธาบริจาค</h1>
-   {/* Row 2 - Image */}
-          <div className="row mt-2">
-            <div className="col">
-              <div className="text-center" >
-                <Image 
-                  src="/flow2.jpg" // Path to the image in the public folder
-                  alt="Donation Flow"
-                  width={800} // Set the width
-                  height={400} // Set the height
-                  layout="responsive" // Ensure the image is responsive
-                  className="rounded"
-                />
-              </div>
+        {/* Row 2 - Image */}
+        <div className="row mt-2">
+          <div className="col">
+            <div className="text-center" >
+              <Image
+                src="/flow2.jpg" // Path to the image in the public folder
+                alt="Donation Flow"
+                width={800} // Set the width
+                height={400} // Set the height
+                layout="responsive" // Ensure the image is responsive
+                className="rounded"
+              />
             </div>
           </div>
+        </div>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
 
@@ -316,44 +327,44 @@ export default function CreatePage() {
 
           <div style={{ marginBottom: '15px' }}>
 
-      
+
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <tbody>
                 <tr>
-                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
+                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
 
-                  <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
-            <select
-              name="product_id"
-              value={formData.product_id}
-              onChange={handleSelectChange}
-              required
-              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            >
-              <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
+                    <select
+                      name="product_id"
+                      value={formData.product_id}
+                      onChange={handleSelectChange}
+                      required
+                      style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                    >
+                      <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
+                      {categories.map((category) => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </select>
 
-                   </td>
-                   <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
+                  </td>
+                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
 
-               
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
-            <input
-              type="text"
-              name="amount"
-              value={formData.amount}
-              onChange={handleChange}
-              required
-              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            />
-        
 
-                   </td>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
+                    <input
+                      type="text"
+                      name="amount"
+                      value={formData.amount}
+                      onChange={handleChange}
+                      required
+                      style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                    />
+
+
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -370,75 +381,74 @@ export default function CreatePage() {
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <tbody>
                 <tr>
-                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
+                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
 
-                  <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับพระของขวัญ:</label>
-            <select
-              name="amulet_type"
-              value={formData.amulet_type}
-              onChange={handleSelectChange}
-              required
-              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            >
-              <option key="na"  value="na">*** ไม่รับ ***</option>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับพระของขวัญ:</label>
+                    <select
+                      name="amulet_type"
+                      value={formData.amulet_type}
+                      onChange={handleSelectChange}
+                      required
+                      style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                    >
+                      <option key="na" value="na">*** ไม่รับ ***</option>
 
-                <option key="watluang" value="watluang">
-                ที่วัด
-                </option>
-                <option key="post" value="post">
-                ไปรษณีย์
-                </option>                
-                {/* <option key="na" value="na">
+                      <option key="watluang" value="watluang">
+                        ที่วัด
+                      </option>
+                      <option key="post" value="post">
+                        ไปรษณีย์
+                      </option>
+                      {/* <option key="na" value="na">
                 *** ไม่รับ ***
                 </option> */}
-            </select>
+                    </select>
 
-                    </td>
-                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
+                  </td>
+                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
                     <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับใบอนุโมทนา :</label>
-            <select
-              name="anumotana_type"
-              value={formData.anumotana_type}
-              onChange={handleSelectChange}
-              required
-              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            >
-              <option value="lineoa">ไลน์โอเอ</option>
+                    <select
+                      name="anumotana_type"
+                      value={formData.anumotana_type}
+                      onChange={handleSelectChange}
+                      required
+                      style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                    >
+                      <option value="lineoa">ไลน์โอเอ</option>
 
-                <option key="watluang" value="watluang">
-                ที่วัด
-                </option>
-                <option key="post" value="post">
-                ไปรษณีย์
-                </option> 
-                {/* <option key="lineoa" value="lineoa">
+                      <option key="watluang" value="watluang">
+                        ที่วัด
+                      </option>
+                      <option key="post" value="post">
+                        ไปรษณีย์
+                      </option>
+                      {/* <option key="lineoa" value="lineoa">
                 ไลน์โอเอ
                 </option>   */}
-                <option key="email" value="email">
-                อีเมล์
-                </option>                 
-                <option key="na" value="na">
-                *** ไม่รับ ***
-                </option>
-            </select>
-                    </td>
+                      <option key="email" value="email">
+                        อีเมล์
+                      </option>
+                      <option key="na" value="na">
+                        *** ไม่รับ ***
+                      </option>
+                    </select>
+                  </td>
                 </tr>
-            </tbody>
-        </table>   
-      
+              </tbody>
+            </table>
+
           </div>
 
           <div style={{ marginBottom: '15px' }}>
-          <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <tbody>
-                <tr>
-                <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
-
-                <div style={{ marginBottom: '15px' }}>
+  <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <tbody>
+      <tr>
+        <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+          <div style={{ marginBottom: '15px' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
             <input
               type="file"
@@ -449,14 +459,11 @@ export default function CreatePage() {
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
-          {/* Display preview if an image is selected */}
           {previewImage && (
             <div style={{ marginTop: '10px', textAlign: 'center' }}>
               <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
             </div>
           )}
-
-          {/* Submit Button */}
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <button
               type="submit"
@@ -467,46 +474,40 @@ export default function CreatePage() {
                 border: 'none',
                 borderRadius: '5px',
                 cursor: 'pointer',
-                width: '100%', // Full-width button on mobile
+                width: '100%',
               }}
-              disabled={isSubmitting} // Disable button when submitting
+              disabled={isSubmitting}
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
-
-
-                    </td>
-                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
-                  <div style={{ marginBottom: '15px' }}>
-          <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี :
-          <input
-              type="text"
-            //   name="donate_for"
-            //   value={formData.donate_for}
-            //   onChange={handleChange}
-            //   required
-              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            />   
+        </td>
+        <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+          <div style={{ marginBottom: '15px' }}>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี :
+              <input
+                type="text"
+                name="bank_account"
+                value={selectedCategory?.bank_account || ''}
+                readOnly
+                style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+              />
             </label>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ชื่อบัญชี :
-          <input
-              type="text"
-            //   name="donate_for"
-            //   value={formData.donate_for}
-            //   onChange={handleChange}
-            //   required
-              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            />   
+              <input
+                type="text"
+                name="bank_holder"
+                value={selectedCategory?.bank_holder || ''}
+                readOnly
+                style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+              />
             </label>
           </div>
-                </td>
-                </tr>
-                </tbody>
-                </table>
-        
-
-          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
         </form>
