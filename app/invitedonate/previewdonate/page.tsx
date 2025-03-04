@@ -10,18 +10,23 @@ export default function PreviewDonatePage() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [amulet_type_text, setAmulet_type_text] = useState<string | null>(null);
+  const [anumotana_type_text, setAnumotana_type_text] = useState<string | null>(null);
 
   useEffect(() => {
     // Retrieve form data and preview image from localStorage
     const storedFormData = localStorage.getItem('formData');
     const storedPreviewImage = localStorage.getItem('previewImage');
     const amulet_type_text = localStorage.getItem('amulet_type_text');
+    const anumotana_type_text = localStorage.getItem('anumotana_type_text');
 
     if (storedFormData) {
       setFormData(JSON.parse(storedFormData));
     }
     if (amulet_type_text) {
         setAmulet_type_text(amulet_type_text);
+      }
+      if (anumotana_type_text) {
+        setAnumotana_type_text(anumotana_type_text);
       }
     if (storedPreviewImage) {
       setPreviewImage(storedPreviewImage);
@@ -134,7 +139,7 @@ export default function PreviewDonatePage() {
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับใบอนุโมทนา :</label>
           <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
-            {formData.anumotana_type}
+            {anumotana_type_text}
           </div>
         </div>
 
