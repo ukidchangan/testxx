@@ -198,22 +198,26 @@ export default function CreatePage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = new FormData();
-    data.append("lineoa_userid", userId);
-    data.append("lineoa_profile", profilePicture);
-    data.append("lineoa_displayname", displayName);
-    data.append("fullname", formData.fullname);
-    data.append("amount", formData.amount);
-    data.append("product_id", formData.product_id);
-    data.append("donate_date", getFormattedDate());
-    data.append("amulet_type", formData.amulet_type);
-    data.append("anumotana_type", formData.anumotana_type);
-    data.append("donate_for", formData.donate_for);
+    // const data = new FormData();
+    // data.append("lineoa_userid", userId);
+    // data.append("lineoa_profile", profilePicture);
+    // data.append("lineoa_displayname", displayName);
+    // data.append("fullname", formData.fullname);
+    // data.append("amount", formData.amount);
+    // data.append("product_id", formData.product_id);
+    // data.append("donate_date", getFormattedDate());
+    // data.append("amulet_type", formData.amulet_type);
+    // data.append("anumotana_type", formData.anumotana_type);
+    // data.append("donate_for", formData.donate_for);
 
-    // Append the file only if it's selected
-    if (formData.attachment) {
-      data.append("attachment", formData.attachment);
-    }
+    formData.lineoa_userid = userId;
+    formData.lineoa_profile = profilePicture;
+    formData.lineoa_displayname = displayName;
+
+    // // Append the file only if it's selected
+    // if (formData.attachment) {
+    //   data.append("attachment", formData.attachment);
+    // }
     alert(formData.attachment);
     // localStorage.setItem('datax', data);
     // Store form data and preview image in localStorage

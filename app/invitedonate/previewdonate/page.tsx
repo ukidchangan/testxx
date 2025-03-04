@@ -19,7 +19,6 @@ export default function PreviewDonatePage() {
   
     return (
       <div>
-        <h1>Formatted Amount</h1>
         <p>{formattedAmount}</p>
       </div>
     );
