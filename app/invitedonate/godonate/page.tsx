@@ -26,6 +26,7 @@ export default function CreatePage() {
     zip: string;
     mobile: string;
     email: string;
+    donate_for: string;
     lineoa_userid: string;
     lineoa_display: string;
     lineoa_profile: string;
@@ -132,7 +133,8 @@ export default function CreatePage() {
     donate_date: getFormattedDate(),
     amulet_type: '',
     anumotana_type: '',
-    category: ''
+    category: '',
+    donate_for:''
   });
 
   useEffect(() => {
@@ -360,10 +362,9 @@ export default function CreatePage() {
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :</label>
             <input
               type="text"
-            //   name="fullname"
-            //   value={formData.fullname}
-            //   onChange={handleChange}
-              required
+              name="donate_for"
+              value={formData.donate_for}
+              onChange={handleChange}
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
@@ -431,6 +432,16 @@ export default function CreatePage() {
 
           <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
+          </div>
+          <div style={{ marginBottom: '15px' }}>
+          <input
+              type="text"
+            //   name="fullname"
+            //   value={formData.fullname}
+            //   onChange={handleChange}
+              required
+              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+            />   
           </div>
 
           <div style={{ marginBottom: '15px' }}>
