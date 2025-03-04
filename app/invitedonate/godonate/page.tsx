@@ -195,65 +195,65 @@ export default function CreatePage() {
     }
   };
 
+  // const handleSubmitX = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  
+  //   // Store form data and preview image in localStorage
+  //   localStorage.setItem('formData', JSON.stringify(formData));
+  //   if (previewImage) {
+  //     localStorage.setItem('previewImage', previewImage);
+  //   }
+  
+  //   // Navigate to the preview page
+  //   window.location.href = "/invitedonate/previewdonate";
+  // };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    // Store form data and preview image in localStorage
-    localStorage.setItem('formData', JSON.stringify(formData));
-    if (previewImage) {
-      localStorage.setItem('previewImage', previewImage);
+    setIsSubmitting(true); // Set loading state to true
+
+    // Create FormData object to send the file
+    const data = new FormData();
+    data.append("lineoa_userid", userId);
+    data.append("lineoa_profile", profilePicture);
+    data.append("lineoa_displayname", displayName);
+    data.append("fullname", formData.fullname);
+    data.append("amount", formData.amount);
+    data.append("product_id", formData.product_id);
+    data.append("donate_date", getFormattedDate());
+    data.append("amulet_type", formData.amulet_type);
+    data.append("anumotana_type", formData.anumotana_type);
+    data.append("donate_for", formData.donate_for);
+
+    // Append the file only if it's selected
+    if (formData.attachment) {
+      data.append("attachment", formData.attachment);
     }
-  
-    // Navigate to the preview page
-    window.location.href = "/invitedonate/previewdonate";
+
+    try {
+      const response = await fetch('/api/create-donate', {
+        method: 'POST',
+        body: data, // Send FormData instead of JSON
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          alert('บริจาคเสร็จสิ้น');
+          window.location.href = "/getdonate";
+        } else {
+          alert(`Failed to create profile: ${result.message}`);
+        }
+      } else {
+        alert('Failed to create profile.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while submitting the form.');
+    } finally {
+      setIsSubmitting(false); // Set loading state to false
+    }
   };
-
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true); // Set loading state to true
-
-  //   // Create FormData object to send the file
-  //   const data = new FormData();
-  //   data.append("lineoa_userid", userId);
-  //   data.append("lineoa_profile", profilePicture);
-  //   data.append("lineoa_displayname", displayName);
-  //   data.append("fullname", formData.fullname);
-  //   data.append("amount", formData.amount);
-  //   data.append("product_id", formData.product_id);
-  //   data.append("donate_date", getFormattedDate());
-  //   data.append("amulet_type", formData.amulet_type);
-  //   data.append("anumotana_type", formData.anumotana_type);
-  //   data.append("donate_for", formData.donate_for);
-
-  //   // Append the file only if it's selected
-  //   if (formData.attachment) {
-  //     data.append("attachment", formData.attachment);
-  //   }
-
-  //   try {
-  //     const response = await fetch('/api/create-donate', {
-  //       method: 'POST',
-  //       body: data, // Send FormData instead of JSON
-  //     });
-
-  //     if (response.ok) {
-  //       const result = await response.json();
-  //       if (result.success) {
-  //         alert('บริจาคเสร็จสิ้น');
-  //         window.location.href = "/getdonate";
-  //       } else {
-  //         alert(`Failed to create profile: ${result.message}`);
-  //       }
-  //     } else {
-  //       alert('Failed to create profile.');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //     alert('An error occurred while submitting the form.');
-  //   } finally {
-  //     setIsSubmitting(false); // Set loading state to false
-  //   }
-  // };
 
   return (
     <div
@@ -467,6 +467,11 @@ export default function CreatePage() {
 
           <div style={{ marginBottom: '15px' }}>
   <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
+  {selectedCategory?.url && (
+            <div style={{ marginTop: '10px', textAlign: 'center' }}>
+              <img src={selectedCategory?.url} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+            </div>
+          )}
   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
     <tbody>
       <tr>
