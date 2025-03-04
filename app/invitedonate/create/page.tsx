@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
+import Image from 'next/image';
 
 
 export default function CreatePage() {
@@ -23,7 +24,7 @@ export default function CreatePage() {
               const profile = await liff.getProfile();
               setDisplayName(profile.displayName || "Unknown User");
               setProfilePicture(profile.pictureUrl || "");
-              setUserId(profile.userId+"XXX" || "");
+              setUserId(profile.userId+"YYY" || "");
               console.log("Already logged in.");
             }
           } catch (err) {
@@ -121,6 +122,21 @@ export default function CreatePage() {
         />
       )}</h1>
          <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>    ลงทะเบียนข้อมูลผู้บริจาค</h1>
+                 {/* Row 2 - Image */}
+                 <div className="row mt-2">
+                   <div className="col">
+                     <div className="text-center" >
+                       <Image 
+                         src="/flow1.jpg" // Path to the image in the public folder
+                         alt="Donation Flow"
+                         width={800} // Set the width
+                         height={400} // Set the height
+                         layout="responsive" // Ensure the image is responsive
+                         className="rounded"
+                       />
+                     </div>
+                   </div>
+                 </div>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
           <div style={{ marginBottom: '15px', display: 'none', visibility: 'hidden' }}>

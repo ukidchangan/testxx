@@ -19,7 +19,7 @@ const LiffPage = () => {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
-          setUserId(profile.userId+"XXX" || "");
+          setUserId(profile.userId+"YYY" || "");
         }
       } catch (err) {
         console.error("LIFF Initialization failed", err);
