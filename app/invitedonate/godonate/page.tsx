@@ -504,7 +504,7 @@ export default function CreatePage() {
                         required
                         style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
                       >
-                        <option value="lineoa">ไลน์โอเอ</option>
+                        <option key="lineoa"  value="lineoa">ไลน์โอเอ</option>
 
                         <option key="watluang" value="watluang">
                           ที่วัด
