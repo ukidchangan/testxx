@@ -516,10 +516,11 @@ export default function CreatePage() {
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <tbody>
                 <tr>
-                  <td style={{ width: '80%', padding: '5px', verticalAlign: 'top' }}>
+                  <td style={{ width: '90%', padding: '5px', verticalAlign: 'top' }}>
                     
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:
               <input
+              onClick={handleCopyAccount}
                 type="text"
                 name="bank_account"
                 value={selectedCategory?.bank_account || ''}
@@ -527,21 +528,18 @@ export default function CreatePage() {
                 style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
               />
             </label>
-</td><td style={{ width: '20%', padding: '5px', verticalAlign: 'top' }}>
+</td><td style={{ width: '10%', padding: '5px' }}>
             <button
               type="button"
               onClick={handleCopyAccount}
               style={{
+                padding: '10px 20px',
                 backgroundColor: '#007bff',
                 color: '#fff',
                 border: 'none',
                 borderRadius: '5px',
                 cursor: 'pointer',
                 width: '100%',
-
-
-                padding: '5x 10px',
-
 
               }}
             >
