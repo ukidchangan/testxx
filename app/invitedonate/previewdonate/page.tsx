@@ -157,6 +157,7 @@ export default function PreviewDonatePage() {
         padding: '20px',
       }}
     >
+        <form onSubmit={handleSubmit}>
       <div
         style={{
           width: '100%',
@@ -245,8 +246,7 @@ export default function PreviewDonatePage() {
 
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
           <button
-            type="button"
-            onClick={handleSubmit}
+            type="submit"
             style={{
               padding: '10px 20px',
               backgroundColor: '#007bff',
@@ -261,7 +261,7 @@ export default function PreviewDonatePage() {
             {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
         </div>
-      </div>
+      </div></form>
     </div>
   );
 }
