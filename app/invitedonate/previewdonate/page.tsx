@@ -11,6 +11,7 @@ export default function PreviewDonatePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [amulet_type_text, setAmulet_type_text] = useState<string | null>(null);
   const [anumotana_type_text, setAnumotana_type_text] = useState<string | null>(null);
+  const [product_text, setProduct_text] = useState<string | null>(null);
 
   useEffect(() => {
     // Retrieve form data and preview image from localStorage
@@ -18,6 +19,7 @@ export default function PreviewDonatePage() {
     const storedPreviewImage = localStorage.getItem('previewImage');
     const amulet_type_text = localStorage.getItem('amulet_type_text');
     const anumotana_type_text = localStorage.getItem('anumotana_type_text');
+    const product_text = localStorage.getItem('product_text');
 
     if (storedFormData) {
       setFormData(JSON.parse(storedFormData));
@@ -27,6 +29,9 @@ export default function PreviewDonatePage() {
       }
       if (anumotana_type_text) {
         setAnumotana_type_text(anumotana_type_text);
+      }
+      if (product_text) {
+        setProduct_text(product_text);
       }
     if (storedPreviewImage) {
       setPreviewImage(storedPreviewImage);
@@ -111,7 +116,7 @@ export default function PreviewDonatePage() {
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
           <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
-            {formData.product_id}
+            {product_text}
           </div>
         </div>
 

@@ -237,12 +237,16 @@ export default function CreatePage() {
 
     const amulet_type_text = amuletTypeOptions.find((option) => option.value === formData.amulet_type);
     const anumotana_type_text = anumotanaTypeOptions.find((option) => option.value === formData.anumotana_type);
+    const product_text = categories.find((option) => option.name === formData.product_id);
     if (amulet_type_text) {
     localStorage.setItem('amulet_type_text', amulet_type_text.text );
     }
     if (anumotana_type_text) {
       localStorage.setItem('anumotana_type_text', anumotana_type_text.text );
       }
+      if (product_text) {
+        localStorage.setItem('product_text', product_text.type );
+        }
   
     // Navigate to the preview page
     window.location.href = "/invitedonate/previewdonate";
