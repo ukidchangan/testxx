@@ -216,8 +216,8 @@ export default function CreatePage() {
     // data.append("anumotana_type", formData.anumotana_type);
     // data.append("donate_for", formData.donate_for);
 
-    alert(formData.amulet_type);
-    alert(formData.anumotana_type);
+    // alert(formData.amulet_type);
+    // alert(formData.anumotana_type);
     formData.lineoa_userid = userId;
     formData.lineoa_profile = profilePicture;
     formData.lineoa_displayname = displayName;

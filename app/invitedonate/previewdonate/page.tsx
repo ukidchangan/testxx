@@ -71,9 +71,9 @@ export default function PreviewDonatePage() {
     data.append("donate_for", formData.donate_for);
 
     // Append the file only if it's selected
-    if (formData.attachment) {
-      data.append("attachment", formData.attachment);
-    }
+    // if (formData.attachment) {
+    //   data.append("attachment", formData.attachment);
+    // }
 
     try {
       const response = await fetch('/api/create-donate', {
