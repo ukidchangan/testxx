@@ -116,7 +116,7 @@ export default function PreviewDonatePage() {
           <div className="col">
             <div className="text-center" >
               <Image 
-                src="/flow1.jpg" // Path to the image in the public folder
+                src="/flow3.jpg" // Path to the image in the public folder
                 alt="Donation Flow"
                 width={800} // Set the width
                 height={400} // Set the height
@@ -139,42 +139,42 @@ export default function PreviewDonatePage() {
           </div>
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>บริจาคในนาม :</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
+          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc',color:'#3361ff' }}>
             {formData.fullname}
           </div>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
+          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' ,color:'#3361ff'}}>
             {product_text}
           </div>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
+          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' ,color:'#3361ff'}}>
             {formData.amount}
           </div>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
+          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc',color:'#3361ff' }}>
             {formData.donate_for}
           </div>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับพระของขวัญ:</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
+          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' ,color:'#3361ff'}}>
             {amulet_type_text}
           </div>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับใบอนุโมทนา :</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
+          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc',color:'#3361ff' }}>
             {anumotana_type_text}
           </div>
         </div>
