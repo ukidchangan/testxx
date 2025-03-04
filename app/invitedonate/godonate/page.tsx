@@ -214,7 +214,8 @@ export default function CreatePage() {
     if (formData.attachment) {
       data.append("attachment", formData.attachment);
     }
-    localStorage.setItem('datax', JSON.stringify(data));
+    alert(formData.attachment);
+    // localStorage.setItem('datax', data);
     // Store form data and preview image in localStorage
     localStorage.setItem('formData', JSON.stringify(formData));
     if (previewImage) {
@@ -430,7 +431,7 @@ export default function CreatePage() {
 
                       <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
                       <input
-                        type="text"
+                        type="number"
                         name="amount"
                         value={formData.amount}
                         onChange={handleChange}

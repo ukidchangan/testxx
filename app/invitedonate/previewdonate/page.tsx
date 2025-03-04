@@ -14,7 +14,17 @@ export default function PreviewDonatePage() {
   const [product_text, setProduct_text] = useState<string | null>(null);
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
   
-
+  const MoneyFormatter = ({ amount }: { amount: number }) => {
+    const formattedAmount = new Intl.NumberFormat().format(amount);
+  
+    return (
+      <div>
+        <h1>Formatted Amount</h1>
+        <p>{formattedAmount}</p>
+      </div>
+    );
+  };
+  
   useEffect(() => {
     // Retrieve form data and preview image from localStorage
     const storedFormData = localStorage.getItem('formData');
@@ -154,7 +164,7 @@ export default function PreviewDonatePage() {
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
           <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' ,color:'#3361ff'}}>
-            {formData.amount}
+          <MoneyFormatter amount={formData.amount} />
           </div>
         </div>
 
