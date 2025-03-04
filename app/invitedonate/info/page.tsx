@@ -185,7 +185,7 @@ const LiffPage = () => {
       <button
         onClick={handleEditClick}
         style={{
-          width: "100%",
+          width: "50%",
           maxWidth: "400px",
           padding: "12px 20px",
           backgroundColor: "#007bff",
@@ -202,6 +202,25 @@ const LiffPage = () => {
         onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#007bff")}
       >
         แก้ไขข้อมูล
+      </button>
+      <button
+        onClick={handleEditClick}
+        style={{
+          width: "50%",
+          maxWidth: "400px",
+          padding: "12px 20px",
+          backgroundColor: "#33ff6b",
+          color: "#fff",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+          fontSize: "16px",
+          fontWeight: "bold",
+          transition: "background-color 0.3s ease",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
+        }}
+      >
+        บริจาคทำบุญ
       </button>
     </footer>
     </div>
