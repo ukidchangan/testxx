@@ -317,7 +317,7 @@ export default function CreatePage() {
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <tbody>
                 <tr>
-                  <td style={{ width: '50%', padding: '5px' }}>
+                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
 
                   <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
             <select
@@ -336,7 +336,7 @@ export default function CreatePage() {
             </select>
 
                    </td>
-                   <td style={{ width: '50%', padding: '5px' }}>
+                   <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
 
                
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
