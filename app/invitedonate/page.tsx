@@ -53,7 +53,7 @@ const InviteDonatePage = () => {
         </div>
 
         {/* Row 2 - Image */}
-        <div className="row mt-4">
+        <div className="row mt-2">
           <div className="col">
             <div className="text-center" >
               <Image 
@@ -69,7 +69,7 @@ const InviteDonatePage = () => {
         </div>
 
         {/* Row 3 - Instructions */}
-        <div className="row mt-4">
+        <div className="row mt-2">
           <div className="col">
             <div className="p-3 border bg-light text-left rounded">
               <p>
