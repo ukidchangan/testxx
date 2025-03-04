@@ -122,6 +122,9 @@ const LiffPage = () => {
                 {donation.name}
               </h3>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>บริจาคในนาม:</strong> {donation.donor}</p>
+              {donation.donate_for && (
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>บริจากเพื่อ:</strong> {donation.donate_for}</p>
+              )}
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>เบอร์มือถือ:</strong> {donation.mobile}</p>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>จำนวน:</strong> {donation.amount} บาท</p>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>สถานะ:</strong> {donation.state}</p>
