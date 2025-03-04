@@ -160,13 +160,6 @@ const LiffPage = () => {
           </div>
         </div>
 
-        {/* Row 4 - Buttons */}
-        <div className="row mt-4">
-          <div className="col">
-      
-          </div>
-        </div>
-        {/* Footer with Edit Button */}
 
       </div>
 
@@ -193,7 +186,7 @@ const LiffPage = () => {
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
-          fontSize: "16px",
+          fontSize: "24px",
           fontWeight: "bold",
           transition: "background-color 0.3s ease",
           boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
@@ -209,7 +202,7 @@ const LiffPage = () => {
           width: "50%",
           maxWidth: "400px",
           padding: "12px 20px",
-          backgroundColor: "#188754",
+          backgroundColor: "#007bff",
           color: "#fff",
           border: "none",
           borderRadius: "5px",
