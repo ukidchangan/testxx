@@ -237,10 +237,10 @@ export default function CreatePage() {
 
     const amulet_type_text = amuletTypeOptions.find((option) => option.value === formData.amulet_type);
     const anumotana_type_text = anumotanaTypeOptions.find((option) => option.value === formData.anumotana_type);
-    const product_text = categories.find((option) => (option.id) === 2);
-    alert("OK");
-    alert(formData.product_id);
-    alert(product_text);
+    const product_text = categories.find((option) => (option.id) === parseInt(formData.product_id));
+    // alert("OK");
+    // alert(formData.product_id);
+    // alert(product_text);
     if (amulet_type_text) {
     localStorage.setItem('amulet_type_text', amulet_type_text.text );
     }
@@ -248,7 +248,7 @@ export default function CreatePage() {
       localStorage.setItem('anumotana_type_text', anumotana_type_text.text );
       }
       if (product_text) {
-        localStorage.setItem('product_text', product_text.type );
+        localStorage.setItem('product_text', product_text.name );
         }
   
     // Navigate to the preview page
