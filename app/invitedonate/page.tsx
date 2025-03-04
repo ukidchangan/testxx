@@ -107,8 +107,9 @@ const InviteDonatePage = () => {
                       className="btn btn-primary w-100 h-100 py-2"
                       style={{ fontSize: "1.1rem" }}
                     >
+                       <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
                       บริจาคทำบุญ
-
+                      </Link>
                     </button>
                   </td>
                 </tr>
