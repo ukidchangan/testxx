@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
+import Image from 'next/image';
 
 const LiffPage = () => {
   const [displayName, setDisplayName] = useState("Loading...");
@@ -118,7 +119,20 @@ const LiffPage = () => {
           USER ID: {userId}
         </p>
       </div>
-
+        <div className="row mt-4">
+          <div className="col">
+            <div className="text-center" >
+              <Image 
+                src="/flow0.jpg" // Path to the image in the public folder
+                alt="Donation Flow"
+                width={800} // Set the width
+                height={400} // Set the height
+                layout="responsive" // Ensure the image is responsive
+                className="rounded"
+              />
+            </div>
+          </div>
+        </div>
       {/* Donor Information */}
       {error ? (
         <p style={{ 
