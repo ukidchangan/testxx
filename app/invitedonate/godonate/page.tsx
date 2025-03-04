@@ -134,8 +134,8 @@ export default function CreatePage() {
     attachment: '' as string | File,
     product_id: '',
     donate_date: getFormattedDate(),
-    amulet_type: '',
-    anumotana_type: '',
+    amulet_type: 'na',
+    anumotana_type: 'lineoa',
     category: '',
     donate_for: ''
   });
@@ -216,6 +216,8 @@ export default function CreatePage() {
     // data.append("anumotana_type", formData.anumotana_type);
     // data.append("donate_for", formData.donate_for);
 
+    alert(formData.amulet_type);
+    alert(formData.anumotana_type);
     formData.lineoa_userid = userId;
     formData.lineoa_profile = profilePicture;
     formData.lineoa_displayname = displayName;
