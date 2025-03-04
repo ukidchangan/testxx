@@ -175,7 +175,12 @@ const LiffPage = () => {
       boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
       textAlign: "center"
     }}>
-      <button
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <tbody>
+                <tr>
+                  <td style={{ width: '50%', padding: '5px' }}>
+                  <button
         onClick={handleEditClick}
         style={{
           width: "50%",
@@ -186,7 +191,7 @@ const LiffPage = () => {
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
-          fontSize: "24px",
+          fontSize: "22px",
           fontWeight: "bold",
           transition: "background-color 0.3s ease",
           boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
@@ -196,6 +201,9 @@ const LiffPage = () => {
       >
         แก้ไขข้อมูล
       </button>
+                    </td>
+                    <td style={{ width: '50%', padding: '5px' }}>
+                        
       <button
         onClick={handleEditClick}
         style={{
@@ -207,7 +215,7 @@ const LiffPage = () => {
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
-          fontSize: "24px",
+          fontSize: "22px",
           fontWeight: "bold",
           transition: "background-color 0.3s ease",
           boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
@@ -215,6 +223,11 @@ const LiffPage = () => {
       >
         บริจาคทำบุญ
       </button>
+                    </td>
+                </tr>
+                </tbody>
+  </table>                
+   
     </footer>
     </div>
   );
