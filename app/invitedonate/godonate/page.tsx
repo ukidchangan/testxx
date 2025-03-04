@@ -365,7 +365,7 @@ export default function CreatePage() {
               required
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             >
-              <option value="na">*** ไม่รับ ***</option>
+              <option key="na"  value="na">*** ไม่รับ ***</option>
 
                 <option key="watluang" value="watluang">
                 ที่วัด
@@ -373,9 +373,9 @@ export default function CreatePage() {
                 <option key="post" value="post">
                 ไปรษณีย์
                 </option>                
-                <option key="na" value="na">
+                {/* <option key="na" value="na">
                 *** ไม่รับ ***
-                </option>
+                </option> */}
             </select>
           </div>
 
@@ -396,9 +396,9 @@ export default function CreatePage() {
                 <option key="post" value="post">
                 ไปรษณีย์
                 </option> 
-                <option key="lineoa" value="lineoa">
+                {/* <option key="lineoa" value="lineoa">
                 ไลน์โอเอ
-                </option>  
+                </option>   */}
                 <option key="email" value="email">
                 อีเมล์
                 </option>                 
