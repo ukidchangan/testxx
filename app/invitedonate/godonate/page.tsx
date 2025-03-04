@@ -189,6 +189,7 @@ export default function CreatePage() {
     data.append("donate_date", getFormattedDate());
     data.append("amulet_type", formData.amulet_type);
     data.append("anumotana_type", formData.anumotana_type);
+    data.append("donate_for", formData.donate_for);
 
     // Append the file only if it's selected
     if (formData.attachment) {
@@ -432,19 +433,12 @@ export default function CreatePage() {
 
           <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
-          </div>
-          <div style={{ marginBottom: '15px' }}>
-          <input
-              type="text"
-            //   name="fullname"
-            //   value={formData.fullname}
-            //   onChange={handleChange}
-              required
-              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-            />   
-          </div>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <tbody>
+                <tr>
+                <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
 
-          <div style={{ marginBottom: '15px' }}>
+                <div style={{ marginBottom: '15px' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
             <input
               type="file"
@@ -480,6 +474,41 @@ export default function CreatePage() {
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
+
+
+                    </td>
+                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
+                  <div style={{ marginBottom: '15px' }}>
+          <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี :
+          <input
+              type="text"
+            //   name="donate_for"
+            //   value={formData.donate_for}
+            //   onChange={handleChange}
+            //   required
+              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+            />   
+            </label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ชื่อบัญชี :
+          <input
+              type="text"
+            //   name="donate_for"
+            //   value={formData.donate_for}
+            //   onChange={handleChange}
+            //   required
+              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+            />   
+            </label>
+          </div>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+        
+
+          </div>
+
+
         </form>
       </div>
     </div>
