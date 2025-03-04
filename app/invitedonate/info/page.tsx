@@ -166,9 +166,7 @@ const LiffPage = () => {
       
           </div>
         </div>
-      </div>
-
-    {/* Footer with Edit Button */}
+        {/* Footer with Edit Button */}
     <footer style={{
         position: "fixed",
         bottom: "0",
@@ -200,6 +198,9 @@ const LiffPage = () => {
           แก้ไขข้อมูล
         </button>
       </footer>
+      </div>
+
+    
 
     </div>
 
