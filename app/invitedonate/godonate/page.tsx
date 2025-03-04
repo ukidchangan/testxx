@@ -237,7 +237,7 @@ export default function CreatePage() {
 
     const amulet_type_text = amuletTypeOptions.find((option) => option.value === formData.amulet_type);
     const anumotana_type_text = anumotanaTypeOptions.find((option) => option.value === formData.anumotana_type);
-    const product_text = categories.find((option) => option.name === formData.product_id);
+    const product_text = categories.find((option) => (option.id) === 2);
     alert("OK");
     alert(formData.product_id);
     alert(product_text);
