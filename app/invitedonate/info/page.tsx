@@ -94,7 +94,7 @@ const LiffPage = () => {
           }} 
         />
       )}
-              <h2>ขั้นตอนบริจาคทำบุญ {displayName}</h2>
+              <h2>  ข้อมูลผู้บริจาค {displayName}</h2>
             </div>
           </div>
         </div>
@@ -129,16 +129,7 @@ const LiffPage = () => {
           {error}
         </p>
       ) : donorInfo ? (
-        <div style={{ 
-          width: "100%", 
-          maxWidth: "400px", 
-          marginTop: "20px", 
-          textAlign: "left", 
-          backgroundColor: "#fff", 
-          padding: "20px", 
-          borderRadius: "10px", 
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
-        }}>
+        <div >
           <h3 style={{ 
             fontSize: "18px", 
             fontWeight: "bold", 
