@@ -355,9 +355,25 @@ export default function CreatePage() {
               </tbody>
             </table>
           </div>
-
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลือก การรับพระ:</label>
+
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :</label>
+            <input
+              type="text"
+            //   name="fullname"
+            //   value={formData.fullname}
+            //   onChange={handleChange}
+              required
+              style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+            />
+          </div>
+          <div style={{ marginBottom: '15px' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <tbody>
+                <tr>
+                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
+
+                  <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับพระของขวัญ:</label>
             <select
               name="amulet_type"
               value={formData.amulet_type}
@@ -377,10 +393,10 @@ export default function CreatePage() {
                 *** ไม่รับ ***
                 </option> */}
             </select>
-          </div>
 
-          <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลือก ใบอนุโมทนา :</label>
+                    </td>
+                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top'  }}>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับใบอนุโมทนา :</label>
             <select
               name="anumotana_type"
               value={formData.anumotana_type}
@@ -406,8 +422,16 @@ export default function CreatePage() {
                 *** ไม่รับ ***
                 </option>
             </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>   
+      
           </div>
 
+          <div style={{ marginBottom: '15px' }}>
+          <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
+          </div>
 
           <div style={{ marginBottom: '15px' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
