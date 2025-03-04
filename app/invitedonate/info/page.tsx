@@ -74,18 +74,14 @@ const LiffPage = () => {
   };
 
   return (
-    <div style={{ 
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: "center", 
-      justifyContent: "center", 
-      minHeight: "100vh", 
-      backgroundColor: "#f0f8ff",
-      padding: "20px",
-      paddingBottom: "80px" // Add padding to accommodate the footer
-    }}>
-      {/* Profile Picture */}
-      {profilePicture && (
+
+    <div style={{ backgroundColor: "#f0f8ff", minHeight: "100vh", padding: "20px" }}>
+      <div className="container">
+        {/* Row 1 - Header */}
+        <div className="row">
+          <div className="col">
+            <div className="p-3 border bg-light text-center rounded">
+                    {profilePicture && (
         <img 
           src={profilePicture} 
           alt="Profile" 
@@ -98,28 +94,13 @@ const LiffPage = () => {
           }} 
         />
       )}
+              <h2>ขั้นตอนบริจาคทำบุญ {displayName}</h2>
+            </div>
+          </div>
+        </div>
 
-      {/* Welcome Message */}
-      <h1 style={{ 
-        fontSize: "24px", 
-        fontWeight: "bold", 
-        marginBottom: "10px", 
-        color: "#333",
-        textAlign: "center"
-      }}>
-        ยินดีต้อนรับ, {displayName}
-      </h1>
-      <div style={{ display: 'none', visibility: 'hidden'}}>
-        <p style={{ 
-          fontSize: "14px", 
-          color: "#666", 
-          marginBottom: "20px",
-          textAlign: "center"
-        }}>
-          USER ID: {userId}
-        </p>
-      </div>
-        <div className="row mt-4">
+        {/* Row 2 - Image */}
+        <div className="row mt-2">
           <div className="col">
             <div className="text-center" >
               <Image 
@@ -133,7 +114,12 @@ const LiffPage = () => {
             </div>
           </div>
         </div>
-      {/* Donor Information */}
+
+        {/* Row 3 - Instructions */}
+        <div className="row mt-2">
+          <div className="col">
+            <div className="p-3 border bg-light text-left rounded">
+          {/* Donor Information */}
       {error ? (
         <p style={{ 
           color: "red", 
@@ -179,9 +165,20 @@ const LiffPage = () => {
           กำลังโหลดข้อมูล...
         </p>
       )}
+            </div>
+          </div>
+        </div>
 
-      {/* Footer with Edit Button */}
-      <footer style={{
+        {/* Row 4 - Buttons */}
+        <div className="row mt-4">
+          <div className="col">
+      
+          </div>
+        </div>
+      </div>
+
+    {/* Footer with Edit Button */}
+    <footer style={{
         position: "fixed",
         bottom: "0",
         width: "100%",
@@ -212,7 +209,10 @@ const LiffPage = () => {
           แก้ไขข้อมูล
         </button>
       </footer>
+
     </div>
+
+
   );
 };
 
