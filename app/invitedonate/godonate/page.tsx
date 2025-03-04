@@ -465,7 +465,7 @@ export default function CreatePage() {
 
           </div>
 
-          <div style={{ marginBottom: '50px' }}>
+          <div style={{ marginBottom: '15px' }}><br/><br/>
   <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
   {selectedCategory?.url && (
             <div style={{ marginTop: '10px', textAlign: 'center' }}>
@@ -516,9 +516,9 @@ export default function CreatePage() {
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <tbody>
                 <tr>
-                  <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+                  <td style={{ width: '80%', padding: '5px', verticalAlign: 'top' }}>
                     
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี :
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:
               <input
                 type="text"
                 name="bank_account"
@@ -527,7 +527,7 @@ export default function CreatePage() {
                 style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
               />
             </label>
-</td><td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+</td><td style={{ width: '20%', padding: '5px', verticalAlign: 'top' }}>
             <button
               type="button"
               onClick={handleCopyAccount}
@@ -541,11 +541,11 @@ export default function CreatePage() {
                 width: '100%',
               }}
             >
-              คัดลอกบัญชี
+              คัดลอก
             </button>
             </td></tr></tbody></table>
 
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี :
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี:
               <input
                 type="text"
                 name="bank_holder"
