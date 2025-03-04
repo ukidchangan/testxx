@@ -465,7 +465,7 @@ export default function CreatePage() {
 
           </div>
 
-          <div style={{ marginBottom: '15px' }}>
+          <div style={{ marginBottom: '50px' }}>
   <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
   {selectedCategory?.url && (
             <div style={{ marginTop: '10px', textAlign: 'center' }}>
