@@ -296,6 +296,8 @@ export default function CreatePage() {
   // };
 
   return (
+    <div>
+    <form onSubmit={handleSubmit}>
     <div
       style={{
         display: 'flex',
@@ -310,7 +312,7 @@ export default function CreatePage() {
         position: 'relative', // Required for the overlay positioning
       }}
     >
-      <form onSubmit={handleSubmit}>
+     
         {/* Overlay with "Processing..." message */}
         {isSubmitting && (
           <div
@@ -595,7 +597,9 @@ export default function CreatePage() {
           </div>
         </footer>
 
-      </form>
+
     </div>
+    </form>
+        </div>
   );
 }
