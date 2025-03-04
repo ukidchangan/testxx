@@ -264,7 +264,7 @@ export default function CreatePage() {
         justifyContent: 'center',
         minHeight: '100vh',
         backgroundColor: '#f0f8ff',
-        padding: '20px', // Add padding for mobile
+        padding: '5px', // Add padding for mobile
         filter: isSubmitting ? 'blur(5px)' : 'none', // Apply blur effect
         pointerEvents: isSubmitting ? 'none' : 'auto', // Disable interactions
         position: 'relative', // Required for the overlay positioning
@@ -532,7 +532,6 @@ export default function CreatePage() {
               type="button"
               onClick={handleCopyAccount}
               style={{
-                padding: '10px 20px',
                 backgroundColor: '#007bff',
                 color: '#fff',
                 border: 'none',
@@ -541,7 +540,7 @@ export default function CreatePage() {
                 width: '100%',
               }}
             >
-              คัดลอก
+              copy
             </button>
             </td></tr></tbody></table>
 
