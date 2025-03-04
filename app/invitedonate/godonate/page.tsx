@@ -286,7 +286,7 @@ export default function CreatePage() {
             <div className="col">
               <div className="text-center" >
                 <Image 
-                  src="/flow0.jpg" // Path to the image in the public folder
+                  src="/flow2.jpg" // Path to the image in the public folder
                   alt="Donation Flow"
                   width={800} // Set the width
                   height={400} // Set the height
