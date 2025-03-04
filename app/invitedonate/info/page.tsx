@@ -73,6 +73,10 @@ const LiffPage = () => {
     window.location.href = "/invitedonate/edit";
   };
 
+  const handleDonateClick = () => {
+    window.location.href = "/invitedonate/godonate";
+  };
+
   return (
 <div>
     <div style={{ backgroundColor: "#f0f8ff", minHeight: "100vh", padding: "20px" }}>
@@ -205,7 +209,7 @@ const LiffPage = () => {
                     <td style={{ width: '50%', padding: '5px' }}>
                         
       <button
-        onClick={handleEditClick}
+        onClick={handleDonateClick}
         style={{
           width: "100%",
           maxWidth: "400px",
