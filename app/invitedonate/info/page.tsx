@@ -74,7 +74,7 @@ const LiffPage = () => {
   };
 
   return (
-
+<div>
     <div style={{ backgroundColor: "#f0f8ff", minHeight: "100vh", padding: "20px" }}>
       <div className="container">
         {/* Row 1 - Header */}
@@ -167,44 +167,44 @@ const LiffPage = () => {
           </div>
         </div>
         {/* Footer with Edit Button */}
-    <footer style={{
-        position: "fixed",
-        bottom: "0",
-        width: "100%",
-        backgroundColor: "#fff",
-        padding: "15px",
-        boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
-        textAlign: "center"
-      }}>
-        <button
-          onClick={handleEditClick}
-          style={{
-            width: "100%",
-            maxWidth: "400px",
-            padding: "12px 20px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-            fontSize: "16px",
-            fontWeight: "bold",
-            transition: "background-color 0.3s ease",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#005bb5")}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#007bff")}
-        >
-          แก้ไขข้อมูล
-        </button>
-      </footer>
+
       </div>
 
     
 
     </div>
-
-
+    <footer style={{
+      position: "fixed",
+      bottom: "0",
+      width: "100%",
+      backgroundColor: "#fff",
+      padding: "15px",
+      boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
+      textAlign: "center"
+    }}>
+      <button
+        onClick={handleEditClick}
+        style={{
+          width: "100%",
+          maxWidth: "400px",
+          padding: "12px 20px",
+          backgroundColor: "#007bff",
+          color: "#fff",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+          fontSize: "16px",
+          fontWeight: "bold",
+          transition: "background-color 0.3s ease",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
+        }}
+        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#005bb5")}
+        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#007bff")}
+      >
+        แก้ไขข้อมูล
+      </button>
+    </footer>
+    </div>
   );
 };
 
