@@ -85,7 +85,7 @@ export default function PreviewDonatePage() {
         const result = await response.json();
         if (result.success) {
           alert('บริจาคเสร็จสิ้น');
-          window.location.href = "/getdonate";
+          window.location.href = "/invitedonate/getdonate";
         } else {
           alert(`Failed to create profile: ${result.message}`);
         }

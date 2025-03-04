@@ -19,7 +19,7 @@ const LiffPage = () => {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
-          setUserId(profile.userId || "");
+          setUserId(profile.userId+"YYY" || "");
         }
       } catch (err) {
         console.error("LIFF Initialization failed", err);
@@ -52,7 +52,7 @@ const LiffPage = () => {
 
       const data = await response.json();
       if (data.message !== "Successfully") {
-        window.location.href = "/invitedonate/create";
+        window.location.href = "/create";
       }
       setDonorInfo(data);
     } catch (error) {
