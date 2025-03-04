@@ -59,9 +59,9 @@ export default function PreviewDonatePage() {
 
     // Create FormData object to send the file
     const data = new FormData();
-    data.append("lineoa_userid", formData.userId);
-    data.append("lineoa_profile", formData.profilePicture);
-    data.append("lineoa_displayname",formData. displayName);
+    data.append("lineoa_userid", formData.lineoa_userid);
+    data.append("lineoa_profile", formData.lineoa_profile);
+    data.append("lineoa_displayname",formData.lineoa_displayname);
     data.append("fullname", formData.fullname);
     data.append("amount", formData.amount);
     data.append("product_id", formData.product_id);
