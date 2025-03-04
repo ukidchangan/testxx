@@ -156,6 +156,16 @@ export default function CreatePage() {
       [name]: value,
     }));
   };
+  const handleCopyAccount = () => {
+    const bankAccountValue = selectedCategory?.bank_account || '';
+    navigator.clipboard.writeText(bankAccountValue)
+      .then(() => {
+        alert('คัดลอดบัญชี '+bankAccountValue+' เรียบร้อย');
+      })
+      .catch((err) => {
+        console.error('Failed to copy: ', err);
+      });
+  };
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -493,7 +503,7 @@ export default function CreatePage() {
                 style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
               />
             </label>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ชื่อบัญชี :
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี :
               <input
                 type="text"
                 name="bank_holder"
@@ -502,6 +512,21 @@ export default function CreatePage() {
                 style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
               />
             </label>
+            <button
+              type="button"
+              onClick={handleCopyAccount}
+              style={{
+                padding: '10px 20px',
+                backgroundColor: '#007bff',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                width: '100%',
+              }}
+            >
+              คัดลอกบัญชี
+            </button>
           </div>
         </td>
       </tr>
