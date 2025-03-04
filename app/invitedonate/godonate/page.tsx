@@ -492,23 +492,7 @@ export default function CreatePage() {
               <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
             </div>
           )}
-          <div style={{ textAlign: 'center', marginTop: '20px' }}>
-            <button
-              type="submit"
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#007bff',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                width: '100%',
-              }}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Submitting...' : 'Submit'}
-            </button>
-          </div>
+
         </td>
         <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
           <div style={{ marginBottom: '15px' }}>
@@ -542,9 +526,37 @@ export default function CreatePage() {
   </table>
 </div>
 
+<footer style={{
+      position: "fixed",
+      bottom: "0",
+      width: "100%",
+      backgroundColor: "#fff",
+      padding: "15px",
+      boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
+      textAlign: "center"
+    }}>
+          <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <button
+              type="submit"
+              style={{
+                padding: '10px 20px',
+                backgroundColor: '#007bff',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                width: '100%',
+              }}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
+          </div>
+      </footer>
 
         </form>
       </div>
+      
     </div>
   );
 }
