@@ -183,7 +183,7 @@ const LiffPage = () => {
                   <button
         onClick={handleEditClick}
         style={{
-          width: "50%",
+          width: "100%",
           maxWidth: "400px",
           padding: "12px 20px",
           backgroundColor: "#007bff",
@@ -207,7 +207,7 @@ const LiffPage = () => {
       <button
         onClick={handleEditClick}
         style={{
-          width: "50%",
+          width: "100%",
           maxWidth: "400px",
           padding: "12px 20px",
           backgroundColor: "#007bff",
