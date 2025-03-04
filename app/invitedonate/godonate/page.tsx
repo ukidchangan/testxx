@@ -338,7 +338,7 @@ export default function CreatePage() {
                    </td>
                    <td style={{ width: '50%', padding: '5px' }}>
 
-                   <div style={{ marginBottom: '15px' }}>
+               
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
             <input
               type="text"
@@ -348,7 +348,7 @@ export default function CreatePage() {
               required
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
-          </div>
+        
 
                    </td>
                 </tr>
