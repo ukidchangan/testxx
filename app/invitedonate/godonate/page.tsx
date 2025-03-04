@@ -219,6 +219,7 @@ export default function CreatePage() {
     formData.lineoa_userid = userId;
     formData.lineoa_profile = profilePicture;
     formData.lineoa_displayname = displayName;
+    formData.donate_date =getFormattedDate();
 
     // // Append the file only if it's selected
     // if (formData.attachment) {

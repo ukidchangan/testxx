@@ -53,32 +53,39 @@ export default function PreviewDonatePage() {
       }
   }, []);
 
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true); // Set loading state to true
 
+    // Create FormData object to send the file
     const data = new FormData();
-    if (formData) {
-      Object.keys(formData).forEach(key => {
-        data.append(key, formData[key]);
-      });
-    }
+    data.append("lineoa_userid", formData.userId);
+    data.append("lineoa_profile", formData.profilePicture);
+    data.append("lineoa_displayname",formData. displayName);
+    data.append("fullname", formData.fullname);
+    data.append("amount", formData.amount);
+    data.append("product_id", formData.product_id);
+    data.append("donate_date", formData.donate_date);
+    data.append("amulet_type", formData.amulet_type);
+    data.append("anumotana_type", formData.anumotana_type);
+    data.append("donate_for", formData.donate_for);
 
-    if (previewImage) {
-      const blob = await fetch(previewImage).then(res => res.blob());
-      data.append("attachment", blob, "preview-image.jpg");
+    // Append the file only if it's selected
+    if (formData.attachment) {
+      data.append("attachment", formData.attachment);
     }
 
     try {
       const response = await fetch('/api/create-donate', {
         method: 'POST',
-        body: data,
+        body: data, // Send FormData instead of JSON
       });
 
       if (response.ok) {
         const result = await response.json();
         if (result.success) {
           alert('บริจาคเสร็จสิ้น');
-          router.push("/getdonate");
+          window.location.href = "/getdonate";
         } else {
           alert(`Failed to create profile: ${result.message}`);
         }
@@ -89,9 +96,50 @@ export default function PreviewDonatePage() {
       console.error('Error:', error);
       alert('An error occurred while submitting the form.');
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false); // Set loading state to false
     }
   };
+
+
+//   const handleSubmit = async () => {
+//     setIsSubmitting(true);
+
+//     const data = new FormData();
+//     if (formData) {
+//       Object.keys(formData).forEach(key => {
+//         data.append(key, formData[key]);
+//       });
+//     }
+
+//     if (previewImage) {
+//       const blob = await fetch(previewImage).then(res => res.blob());
+//       data.append("attachment", blob, "preview-image.jpg");
+//     }
+
+//     try {
+//       const response = await fetch('/api/create-donate', {
+//         method: 'POST',
+//         body: data,
+//       });
+
+//       if (response.ok) {
+//         const result = await response.json();
+//         if (result.success) {
+//           alert('บริจาคเสร็จสิ้น');
+//           router.push("/getdonate");
+//         } else {
+//           alert(`Failed to create profile: ${result.message}`);
+//         }
+//       } else {
+//         alert('Failed to create profile.');
+//       }
+//     } catch (error) {
+//       console.error('Error:', error);
+//       alert('An error occurred while submitting the form.');
+//     } finally {
+//       setIsSubmitting(false);
+//     }
+//   };
 
   if (!formData) {
     return <div>Loading...</div>;
