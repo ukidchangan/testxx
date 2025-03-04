@@ -197,13 +197,13 @@ export default function CreatePage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     // Store form data and preview image in localStorage
     localStorage.setItem('formData', JSON.stringify(formData));
     if (previewImage) {
       localStorage.setItem('previewImage', previewImage);
     }
-
+  
     // Navigate to the preview page
     window.location.href = "/invitedonate/previewdonate";
   };
