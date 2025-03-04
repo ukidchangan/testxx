@@ -264,7 +264,7 @@ export default function CreatePage() {
         justifyContent: 'center',
         minHeight: '100vh',
         backgroundColor: '#f0f8ff',
-        padding: '5px', // Add padding for mobile
+        padding: '10px', // Add padding for mobile
         filter: isSubmitting ? 'blur(5px)' : 'none', // Apply blur effect
         pointerEvents: isSubmitting ? 'none' : 'auto', // Disable interactions
         position: 'relative', // Required for the overlay positioning
@@ -303,7 +303,7 @@ export default function CreatePage() {
           width: '100%',
           maxWidth: '500px', // Limit width for better readability
           backgroundColor: '#fff',
-          padding: '20px',
+          padding: '10px',
           borderRadius: '10px',
           boxShadow: '0px 0px 10px #ddd',
         }}
@@ -538,6 +538,11 @@ export default function CreatePage() {
                 borderRadius: '5px',
                 cursor: 'pointer',
                 width: '100%',
+
+
+                padding: '5x 10px',
+
+
               }}
             >
               copy
