@@ -198,10 +198,46 @@ export default function CreatePage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
+    const data = new FormData();
+    data.append("lineoa_userid", userId);
+    data.append("lineoa_profile", profilePicture);
+    data.append("lineoa_displayname", displayName);
+    data.append("fullname", formData.fullname);
+    data.append("amount", formData.amount);
+    data.append("product_id", formData.product_id);
+    data.append("donate_date", getFormattedDate());
+    data.append("amulet_type", formData.amulet_type);
+    data.append("anumotana_type", formData.anumotana_type);
+    data.append("donate_for", formData.donate_for);
+
+    // Append the file only if it's selected
+    if (formData.attachment) {
+      data.append("attachment", formData.attachment);
+    }
+    localStorage.setItem('datax', JSON.stringify(data) );
     // Store form data and preview image in localStorage
     localStorage.setItem('formData', JSON.stringify(formData));
     if (previewImage) {
       localStorage.setItem('previewImage', previewImage);
+    }
+
+    const amuletTypeOptions = [
+      { value: "na", text: "*** ไม่รับ ***" },
+      { value: "watluang", text: "ที่วัด" },
+      { value: "post", text: "ไปรษณีย์" },
+    ];
+
+    const anumotanaTypeOptions = [
+      { value: "lineoa", text: "ไลน์โอเอ" },
+      { value: "watluang", text: "ที่วัด" },
+      { value: "post", text: "ไปรษณีย์" },
+      { value: "email", text: "อีเมล์" },
+      { value: "na", text: "*** ไม่รับ ***" },
+    ];
+
+    const amulet_type_text = amuletTypeOptions.find((option) => option.value === formData.amulet_type);
+    if (amulet_type_text) {
+    localStorage.setItem('amulet_type_text', amulet_type_text.text );
     }
   
     // Navigate to the preview page
@@ -449,9 +485,6 @@ export default function CreatePage() {
                       <option key="post" value="post">
                         ไปรษณีย์
                       </option>
-                      {/* <option key="lineoa" value="lineoa">
-                ไลน์โอเอ
-                </option>   */}
                       <option key="email" value="email">
                         อีเมล์
                       </option>
