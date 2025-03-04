@@ -151,6 +151,12 @@ export default function CreatePage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+        // Allow only numeric input
+        if (name === "amount" && !/^\d*$/.test(value)) {
+          return; // Do nothing if the input is not a number
+        }
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -218,7 +224,7 @@ export default function CreatePage() {
     // if (formData.attachment) {
     //   data.append("attachment", formData.attachment);
     // }
-    alert(formData.attachment);
+    // alert(formData.attachment);
     // localStorage.setItem('datax', data);
     // Store form data and preview image in localStorage
     localStorage.setItem('formData', JSON.stringify(formData));
