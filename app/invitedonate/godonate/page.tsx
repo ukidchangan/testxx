@@ -40,7 +40,7 @@ export default function CreatePage() {
   const [profilePicture, setProfilePicture] = useState<string>("");
   const [donorInfo, setDonorInfo] = useState<DonorInfo[]>([]);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
-  const [imageBase64,setImageBase64] = useState<string | null>(null);
+  const [imageBase64, setImageBase64] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
 
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
@@ -154,10 +154,10 @@ export default function CreatePage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-        // Allow only numeric input
-        if (name === "amount" && !/^\d*$/.test(value)) {
-          return; // Do nothing if the input is not a number
-        }
+    // Allow only numeric input
+    if (name === "amount" && !/^\d*$/.test(value)) {
+      return; // Do nothing if the input is not a number
+    }
 
     setFormData((prev) => ({
       ...prev,
@@ -202,15 +202,15 @@ export default function CreatePage() {
       setPreviewImage(URL.createObjectURL(file));
 
       ////////////////////
-  // Convert to Base64
-  const reader = new FileReader();
-  reader.onload = () => {
-    const base64String = reader.result as string;
-    // If you only want the Base64 data (without MIME type prefix)
-    // const base64Data = base64String.split(',')[1];
-    setImageBase64(base64String);
-  };
-  reader.readAsDataURL(file);
+      // Convert to Base64
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result as string;
+        // If you only want the Base64 data (without MIME type prefix)
+        // const base64Data = base64String.split(',')[1];
+        setImageBase64(base64String);
+      };
+      reader.readAsDataURL(file);
       /////////////////////
 
     }
@@ -233,17 +233,17 @@ export default function CreatePage() {
 
     // alert(formData.amulet_type);
     // alert(formData.anumotana_type);
-        // Validate if amount is a number
-        const amount = formData.amount;
-        if (isNaN(Number(amount)) || amount.trim() === "") {
-          alert("กรุณากรอกจำนวนเงินบริจาคเป็นตัวเลขเท่านั้น");
-          return; // Stop the function if validation fails
-        }
-    
+    // Validate if amount is a number
+    const amount = formData.amount;
+    if (isNaN(Number(amount)) || amount.trim() === "") {
+      alert("กรุณากรอกจำนวนเงินบริจาคเป็นตัวเลขเท่านั้น");
+      return; // Stop the function if validation fails
+    }
+
     formData.lineoa_userid = userId;
     formData.lineoa_profile = profilePicture;
     formData.lineoa_displayname = displayName;
-    formData.donate_date =getFormattedDate();
+    formData.donate_date = getFormattedDate();
 
     // // Append the file only if it's selected
     // if (formData.attachment) {
@@ -292,7 +292,7 @@ export default function CreatePage() {
     if (imageBase64) {
       localStorage.setItem('imageBase64', imageBase64);
     }
-    
+
     // Navigate to the preview page
     window.location.href = "/invitedonate/previewdonate";
   };
@@ -443,46 +443,41 @@ export default function CreatePage() {
             <div style={{ marginBottom: '15px' }}>
 
 
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <tbody>
-                  <tr>
-                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-
-                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
-                      <select
-                        name="product_id"
-                        value={formData.product_id}
-                        onChange={handleSelectChange}
-                        required
-                        style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                      >
-                        <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
-                        {categories.map((category) => (
-                          <option key={category.id} value={category.id}>
-                            {category.name}
-                          </option>
-                        ))}
-                      </select>
-
-                    </td>
-                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
 
 
-                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
-                      <input
-                        type="number"
-                        name="amount"
-                        value={formData.amount}
-                        onChange={handleChange}
-                        required
-                        style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                      />
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
+              <select
+                name="product_id"
+                value={formData.product_id}
+                onChange={handleSelectChange}
+                required
+                style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+              >
+                <option value="">-- กรุณาเลือกหมวดหมู่ --</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+
+            </div>
+
+            <div style={{ marginBottom: '15px' }}>
 
 
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
+              <input
+                type="number"
+                name="amount"
+                value={formData.amount}
+                onChange={handleChange}
+                required
+                style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+              />
+
+
+
             </div>
             <div style={{ marginBottom: '15px' }}>
 
@@ -532,7 +527,7 @@ export default function CreatePage() {
                         required
                         style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
                       >
-                        <option key="lineoa"  value="lineoa">ไลน์โอเอ</option>
+                        <option key="lineoa" value="lineoa">ไลน์โอเอ</option>
 
                         <option key="watluang" value="watluang">
                           ที่วัด
@@ -555,64 +550,61 @@ export default function CreatePage() {
             </div>
 
             <div style={{ marginBottom: '15px' }}><br /><br />
+
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
                 </div>
               )}
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <tbody>
-                  <tr>
-                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-                      <div style={{ marginBottom: '15px' }}>
-                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
-                        <input
-                          type="file"
-                          name="attachment"
-                          accept="image/*"
-                          onChange={handleFileChange}
-                          required
-                          style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                        />
-                      </div>
-                      {previewImage && (
-                        <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                          <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-                        </div>
-                      )}
 
-                    </td>
-                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-                      <div style={{ marginBottom: '15px' }}>
+            </div>
+            <div style={{ marginBottom: '15px' }}>
 
-                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:
-                          <input
-                            onClick={handleCopyAccount}
-                            type="text"
-                            name="bank_account"
-                            value={selectedCategory?.bank_account || ''}
-                            readOnly
-                            style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                          />
-                        </label>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:
+                <input
+                  onClick={handleCopyAccount}
+                  type="text"
+                  name="bank_account"
+                  value={selectedCategory?.bank_account || ''}
+                  readOnly
+                  style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                />
+              </label>
 
-                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี:
-                          <input
-                            type="text"
-                            onClick={handleCopyAccount}
-                            name="bank_holder"
-                            value={selectedCategory?.bank_holder || ''}
-                            readOnly
-                            style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                          />
-                        </label>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี:
+                <input
+                  type="text"
+                  onClick={handleCopyAccount}
+                  name="bank_holder"
+                  value={selectedCategory?.bank_holder || ''}
+                  readOnly
+                  style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                />
+              </label>
 
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+
+
+              <div style={{ marginBottom: '15px' }}>
+                <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
+                <input
+                  type="file"
+                  name="attachment"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  required
+                  style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                />
+              </div>
+              {previewImage && (
+                <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                  <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+                </div>
+              )}
+
+
             </div>
 
 

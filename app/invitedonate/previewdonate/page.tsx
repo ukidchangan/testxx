@@ -20,7 +20,7 @@ export default function PreviewDonatePage() {
   
     return (
       <div>
-        <p>{formattedAmount}</p>
+        <p>{formattedAmount} บาท</p>
       </div>
     );
   };
@@ -168,42 +168,42 @@ export default function PreviewDonatePage() {
           </div>
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>บริจาคในนาม :</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc',color:'#3361ff' }}>
+          <div style={{ padding: '8px', borderRadius: '5px',color:'	#4169E1' }}>
             {formData.fullname}
           </div>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' ,color:'#3361ff'}}>
+          <div style={{ padding: '8px', borderRadius: '5px', color:'#4169E1'}}>
             {product_text}
           </div>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' ,color:'#3361ff'}}>
+          <div style={{ padding: '8px', borderRadius: '5px', color:'#4169E1'}}>
           <MoneyFormatter amount={formData.amount} />
           </div>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc',color:'#3361ff' }}>
+          <div style={{ padding: '8px', borderRadius: '5px', color:'#4169E1' }}>
             {formData.donate_for}
           </div>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับพระของขวัญ:</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc' ,color:'#3361ff'}}>
+          <div style={{ padding: '8px', borderRadius: '5px', color:'#4169E1'}}>
             {amulet_type_text}
           </div>
         </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับใบอนุโมทนา :</label>
-          <div style={{ padding: '8px', borderRadius: '5px', border: '1px solid #ccc',color:'#3361ff' }}>
+          <div style={{ padding: '8px', borderRadius: '5px', color:'#4169E1' }}>
             {anumotana_type_text}
           </div>
         </div>
