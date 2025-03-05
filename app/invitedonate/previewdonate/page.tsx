@@ -58,12 +58,12 @@ export default function PreviewDonatePage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true); // Set loading state to true
-  
+
     // Create FormData object to send the file
     const data = new FormData();
     data.append("lineoa_userid", formData.lineoa_userid);
     data.append("lineoa_profile", formData.lineoa_profile);
-    data.append("lineoa_displayname", formData.lineoa_displayname);
+    data.append("lineoa_displayname",formData.lineoa_displayname);
     data.append("fullname", formData.fullname);
     data.append("amount", formData.amount);
     data.append("product_id", formData.product_id);
@@ -71,43 +71,37 @@ export default function PreviewDonatePage() {
     data.append("amulet_type", formData.amulet_type);
     data.append("anumotana_type", formData.anumotana_type);
     data.append("donate_for", formData.donate_for);
-  
-    // Append the image file if previewImage exists and is a valid Blob URL
-    if (previewImage && previewImage.startsWith("blob:")) {
-      try {
-        console.log("Fetching image from Blob URL:", previewImage);
-  
-        // Fetch the Blob from the Blob URL
-        const response = await fetch(previewImage);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch image: ${response.statusText}`);
-        }
-  
-        const blob = await response.blob();
-        console.log("Blob fetched successfully:", blob);
-  
-        // Create a File object from the Blob
-        const file = new File([blob], "previewImage.jpg", { type: blob.type });
-  
-        // Append the File to the FormData
-        data.append("attachment", file);
-        console.log("Image appended to FormData");
-      } catch (error) {
-        console.error('Error fetching the image:', error);
-        alert('An error occurred while processing the image. Please try again.');
-        setIsSubmitting(false);
-        return;
-      }
-    } else {
-      console.warn("Preview image is not a valid Blob URL or is missing:", previewImage);
+
+    // Append the file only if it's selected
+    // if (formData.attachment) {
+    //   data.append("attachment", formData.attachment);
+    // }
+  // Append the image file if previewImage exists
+  if (previewImage) {
+    try {
+      // Fetch the Blob from the Blob URL
+      const response = await fetch(previewImage);
+      const blob = await response.blob();
+
+      // Create a File object from the Blob
+      const file = new File([blob], formData.lineoa_userid+"previewImage.jpg", { type: blob.type });
+
+      // Append the File to the FormData
+      data.append("attachment", file);
+    } catch (error) {
+      console.error('Error fetching the image:', error);
+      alert('An error occurred while processing the image.'+error);
+      setIsSubmitting(false);
+      return;
     }
+  }
   
     try {
       const response = await fetch('/api/create-donate', {
         method: 'POST',
         body: data, // Send FormData instead of JSON
       });
-  
+
       if (response.ok) {
         const result = await response.json();
         if (result.success) {
@@ -126,72 +120,6 @@ export default function PreviewDonatePage() {
       setIsSubmitting(false); // Set loading state to false
     }
   };
-
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true); // Set loading state to true
-
-  //   // Create FormData object to send the file
-  //   const data = new FormData();
-  //   data.append("lineoa_userid", formData.lineoa_userid);
-  //   data.append("lineoa_profile", formData.lineoa_profile);
-  //   data.append("lineoa_displayname",formData.lineoa_displayname);
-  //   data.append("fullname", formData.fullname);
-  //   data.append("amount", formData.amount);
-  //   data.append("product_id", formData.product_id);
-  //   data.append("donate_date", formData.donate_date);
-  //   data.append("amulet_type", formData.amulet_type);
-  //   data.append("anumotana_type", formData.anumotana_type);
-  //   data.append("donate_for", formData.donate_for);
-
-  //   // Append the file only if it's selected
-  //   // if (formData.attachment) {
-  //   //   data.append("attachment", formData.attachment);
-  //   // }
-  // // Append the image file if previewImage exists
-  // if (previewImage) {
-  //   try {
-  //     // Fetch the Blob from the Blob URL
-  //     const response = await fetch(previewImage);
-  //     const blob = await response.blob();
-
-  //     // Create a File object from the Blob
-  //     const file = new File([blob], formData.lineoa_userid+"previewImage.jpg", { type: blob.type });
-
-  //     // Append the File to the FormData
-  //     data.append("attachment", file);
-  //   } catch (error) {
-  //     console.error('Error fetching the image:', error);
-  //     alert('An error occurred while processing the image.'+error);
-  //     setIsSubmitting(false);
-  //     return;
-  //   }
-  // }
-  
-  //   try {
-  //     const response = await fetch('/api/create-donate', {
-  //       method: 'POST',
-  //       body: data, // Send FormData instead of JSON
-  //     });
-
-  //     if (response.ok) {
-  //       const result = await response.json();
-  //       if (result.success) {
-  //         alert('บริจาคเสร็จสิ้น');
-  //         window.location.href = "/invitedonate/getdonate";
-  //       } else {
-  //         alert(`Failed to create profile: ${result.message}`);
-  //       }
-  //     } else {
-  //       alert('Failed to create profile.');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //     alert('An error occurred while submitting the form.');
-  //   } finally {
-  //     setIsSubmitting(false); // Set loading state to false
-  //   }
-  // };
 
 
   if (!formData) {

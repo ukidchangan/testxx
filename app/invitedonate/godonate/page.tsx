@@ -39,6 +39,7 @@ export default function CreatePage() {
   const [profilePicture, setProfilePicture] = useState<string>("");
   const [donorInfo, setDonorInfo] = useState<DonorInfo[]>([]);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [imageBase64,setImageBase64] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
 
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
@@ -198,6 +199,19 @@ export default function CreatePage() {
       }));
       // Generate a preview URL
       setPreviewImage(URL.createObjectURL(file));
+
+      ////////////////////
+  // Convert to Base64
+  const reader = new FileReader();
+  reader.onload = () => {
+    const base64String = reader.result as string;
+    // If you only want the Base64 data (without MIME type prefix)
+    // const base64Data = base64String.split(',')[1];
+    setImageBase64(base64String);
+  };
+  reader.readAsDataURL(file);
+      /////////////////////
+
     }
   };
 
@@ -274,6 +288,10 @@ export default function CreatePage() {
     if (profilePicture) {
       localStorage.setItem('profilePicture', profilePicture);
     }
+    if (imageBase64) {
+      localStorage.setItem('imageBase64', imageBase64);
+    }
+    
     // Navigate to the preview page
     window.location.href = "/invitedonate/previewdonate";
   };
