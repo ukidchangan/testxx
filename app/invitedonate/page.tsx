@@ -21,7 +21,7 @@ const InviteDonatePage = () => {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
-          setUserId(profile.userId+"AAA" || "");
+          setUserId(profile.userId|| "");
           console.log("Already logged in.");
         }
       } catch (err) {
