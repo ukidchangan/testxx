@@ -110,7 +110,9 @@ export default function PreviewDonatePage() {
       setIsSubmitting(false); // Set loading state to false
     }
   };
-
+  const handleBack = () => {
+    router.push("/invitedonate/godonate"); // Navigate back to the donation form page
+  };
 
   if (!formData) {
     return <div>Loading...</div>;
@@ -225,12 +227,31 @@ export default function PreviewDonatePage() {
               border: 'none',
               borderRadius: '5px',
               cursor: 'pointer',
-              width: '100%',
+              width: '50%',
             }}
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
+
+
+          <button
+            type="button"
+            onClick={handleBack} 
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#007bff',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              width: '50%',
+            }}
+     
+          >
+           Back
+          </button>
+
         </div>
       </div></form>
     </div>
