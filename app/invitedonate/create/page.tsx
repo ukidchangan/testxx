@@ -12,6 +12,7 @@ export default function CreatePage() {
     const [displayName, setDisplayName] = useState("Loading...");
     const [userId, setUserId] = useState("Unknown");
     const [profilePicture, setProfilePicture] = useState<string>("");
+    const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
 
       useEffect(() => { 
         const initializeLiff = async () => {
@@ -24,7 +25,7 @@ export default function CreatePage() {
               const profile = await liff.getProfile();
               setDisplayName(profile.displayName || "Unknown User");
               setProfilePicture(profile.pictureUrl || "");
-              setUserId(profile.userId+"BBB"|| "");
+              setUserId(profile.userId+"CCC"|| "");
               console.log("Already logged in.");
             }
           } catch (err) {
@@ -61,6 +62,11 @@ export default function CreatePage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     e.preventDefault();
+
+    setIsSubmitting(true); // Activate blur effect and change button text
+
+    document.body.classList.add("blurred"); // Apply blur to the page
+
     formData.lineoa_userid=userId;
     formData.lineoa_profile=profilePicture;
     formData.lineoa_displayname=displayName;
@@ -87,6 +93,9 @@ export default function CreatePage() {
     } catch (error) {
       console.error('Error:', error);
       alert('An error occurred while submitting the form.');
+    } finally {
+      setIsSubmitting(false);
+      document.body.classList.remove("blurred"); // Remove blur after processing
     }
   };
 
@@ -255,7 +264,7 @@ export default function CreatePage() {
           {/* Submit Button */}
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <button
-              type="submit"
+              type="submit" disabled={isSubmitting}
               style={{
                 padding: '10px 20px',
                 backgroundColor: '#007bff',
@@ -266,11 +275,18 @@ export default function CreatePage() {
                 width: '100%', // Full-width button on mobile
               }}
             >
-              Submit
+              {isSubmitting ? "Submitting..." : "Submit"}
             </button>
           </div>
         </form>
       </div>
+       {/* Global CSS for blurring effect */}
+       <style jsx global>{`
+        .blurred {
+          filter: blur(5px);
+          pointer-events: none;
+        }
+      `}</style>
     </div>
   );
 }
