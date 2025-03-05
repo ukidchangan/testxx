@@ -72,9 +72,10 @@ export default function CreatePage() {
         },
         body: JSON.stringify(formData),
       });
-
+      
       if (response.ok) {
         const result = await response.json(); // Parse the JSON response
+        alert(result);
         if (result.success) {
           alert('Profile created successfully!');
           window.location.href = "/invitedonate/info";
