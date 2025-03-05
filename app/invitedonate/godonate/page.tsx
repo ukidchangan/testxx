@@ -704,7 +704,7 @@ export default function CreatePage() {
               <button
                 type="button"
                 
-                onChange={handleSubmit2}
+                onClick={handleSubmit2}
                 style={{
                   padding: '10px 20px',
                   backgroundColor: '#007bff',
