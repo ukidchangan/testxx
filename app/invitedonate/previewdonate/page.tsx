@@ -208,10 +208,10 @@ export default function PreviewDonatePage() {
           </div>
         </div>
 
-        {previewImage && (
+        {imageBase64 && (
           <div style={{ marginBottom: '15px' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>หลักฐานการโอนเงิน :</label>
-            <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+            <img src={imageBase64} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
           </div>
         )}
 
