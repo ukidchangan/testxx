@@ -14,7 +14,7 @@ const LiffPage = () => {
           liff.login();
         } else {
           const profile = await liff.getProfile();
-          setUserId(profile.userId +"YYY"|| "");
+          setUserId(profile.userId || "");
           console.log("Already logged in.");
         }
       } catch (err) {

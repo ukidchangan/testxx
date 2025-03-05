@@ -13,8 +13,8 @@ const LiffPage = () => {
   useEffect(() => {
     const initializeLiff = async () => {
       try {
-        console.log("XXXXXXXX");
-        console.log(process.env.NEXT_PUBLIC_LIFE_ID);
+        // console.log("XXXXXXXX");
+        // console.log(process.env.NEXT_PUBLIC_LIFE_ID);
         await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string  });
 
         if (!liff.isLoggedIn()) {
@@ -23,7 +23,7 @@ const LiffPage = () => {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
-          setUserId(profile.userId+"YYY"  || "");
+          setUserId(profile.userId  || "");
           console.log("Already logged in.");
         }
       } catch (err) {

@@ -34,7 +34,7 @@ export default function EditPage() {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
-          setUserId(profile.userId+"YYY"  || "");
+          setUserId(profile.userId  || "");
           console.log("Already logged in.");
         }
       } catch (err) {

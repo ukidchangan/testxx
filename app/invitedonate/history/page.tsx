@@ -13,7 +13,7 @@ const LiffPage = () => {
   
     return (
       <div>
-        <p>{formattedAmount}</p>
+        {formattedAmount} บาท
       </div>
     );
   };
@@ -27,7 +27,7 @@ const LiffPage = () => {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
-          setUserId(profile.userId+"YYY" || "");
+          setUserId(profile.userId || "");
         }
       } catch (err) {
         console.error("LIFF Initialization failed", err);
@@ -131,7 +131,7 @@ const LiffPage = () => {
               </h3>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>บริจาคในนาม:</strong> {donation.donor}</p>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>เบอร์มือถือ:</strong> {donation.mobile}</p>
-              <p style={{ color: "#555", marginBottom: "10px" }}><strong>จำนวน:</strong><MoneyFormatter amount={donation.amount} /> บาท</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>จำนวน: <MoneyFormatter amount={donation.amount} /></strong> </p>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>สถานะ:</strong> {donation.state}</p>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>วันที่บริจาค:</strong> {donation.donate_date}</p>
             </div>
