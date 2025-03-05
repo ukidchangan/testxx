@@ -24,7 +24,7 @@ export default function CreatePage() {
               const profile = await liff.getProfile();
               setDisplayName(profile.displayName || "Unknown User");
               setProfilePicture(profile.pictureUrl || "");
-              setUserId(profile.userId +"AAA"|| "");
+              setUserId(profile.userId+"BBB"|| "");
               console.log("Already logged in.");
             }
           } catch (err) {
@@ -75,7 +75,6 @@ export default function CreatePage() {
       
       if (response.ok) {
         const result = await response.json(); // Parse the JSON response
-        alert(result);
         if (result.success) {
           alert('Profile created successfully!');
           window.location.href = "/invitedonate/info";
