@@ -39,7 +39,20 @@ const InviteDonatePage = () => {
     
         initializeLiff();
       }, []);
-
+      const handleBackHome = () => {
+        liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string })
+          .then(() => {
+            if (liff.isInClient()) {
+              // Close the LIFF app
+              liff.closeWindow();
+            } else {
+              console.log('This app is not running in the LINE app.');
+            }
+          })
+          .catch((err) => {
+            console.error('LIFF initialization failed', err);
+          });
+      };
   return (
     <div style={{ backgroundColor: "#f0f8ff", minHeight: "100vh", padding: "20px" }}>
       <div className="container">
@@ -129,7 +142,7 @@ const InviteDonatePage = () => {
                     <button
                       className="btn btn-danger  w-100 py-2"
                       style={{ fontSize: "1.1rem" }}
-                      onClick={() => window.close()}
+                      onClick={handleBackHome}
                     >
                       Back Home
                     </button>
