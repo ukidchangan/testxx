@@ -76,7 +76,26 @@ export default function PreviewDonatePage() {
     // if (formData.attachment) {
     //   data.append("attachment", formData.attachment);
     // }
+  // Append the image file if previewImage exists
+  if (previewImage) {
+    try {
+      // Fetch the Blob from the Blob URL
+      const response = await fetch(previewImage);
+      const blob = await response.blob();
 
+      // Create a File object from the Blob
+      const file = new File([blob], "previewImage.jpg", { type: blob.type });
+
+      // Append the File to the FormData
+      data.append("attachment", file);
+    } catch (error) {
+      console.error('Error fetching the image:', error);
+      alert('An error occurred while processing the image.');
+      setIsSubmitting(false);
+      return;
+    }
+  }
+  
     try {
       const response = await fetch('/api/create-donate', {
         method: 'POST',
