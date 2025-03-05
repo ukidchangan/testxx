@@ -6,8 +6,6 @@ import Image from 'next/image';
 import { useSearchParams } from "next/navigation";
 
 export default function CreatePage() {
-  const searchParams = useSearchParams();
-  const idx = searchParams.get("from"); // Get 'idx' from URL
   interface Category {
     id: number;
     name: string;
@@ -131,7 +129,6 @@ export default function CreatePage() {
   }, []);
 
   const [formData, setFormData] = useState({
-
     lineoa_userid: '',
     lineoa_profile: '',
     lineoa_displayname: '',
@@ -147,7 +144,6 @@ export default function CreatePage() {
   });
 
   useEffect(() => {
-
     if (donorInfo.length > 0) {
       setFormData((prev) => ({
         ...prev,
@@ -348,12 +344,14 @@ export default function CreatePage() {
   //     setIsSubmitting(false); // Set loading state to false
   //   }
   // };
- 
   useEffect(() => {
-    if (idx) {
-      alert("ค่าจาก URL: " + idx);
-    }
-  }, [idx]); // Run when 'idx' changes
+    try {
+      alert("xxxxxxxxx");
+    const searchParams = useSearchParams();
+    const idx = searchParams.get("from"); // Get 'idx' from URL
+    alert("yyyyyyyy"+idx);
+    } catch (error) {}
+  }, []);
   return (
     <div>
       <form onSubmit={handleSubmit}>
