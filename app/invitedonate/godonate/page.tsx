@@ -16,6 +16,7 @@ export default function CreatePage() {
     bank_name: string;
     list_price: number;
     url: string;
+    image: string;
   }
 
   interface DonorInfo {
@@ -555,9 +556,9 @@ export default function CreatePage() {
 
             <div style={{ marginBottom: '15px' }}><br /><br />
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
-              {selectedCategory?.url && (
+              {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                  <img onClick={handleCopyAccount} src={selectedCategory?.url} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+                  <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
                 </div>
               )}
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
