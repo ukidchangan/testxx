@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { useSearchParams } from "next/navigation";
 
 export default function CreatePage() {
+  const searchParams = useSearchParams();
+  const idx = searchParams.get("from"); // Get 'idx' from URL
   interface Category {
     id: number;
     name: string;
@@ -346,17 +348,12 @@ export default function CreatePage() {
   //     setIsSubmitting(false); // Set loading state to false
   //   }
   // };
-  const searchParams = useSearchParams();
-  const idx = searchParams.get("from"); // Get 'idx' from URL
+ 
   useEffect(() => {
-    try {
-      if (idx) {
-        alert("ค่าจาก URL:"+ idx);
-      }else{
-
-      }
-    } catch (error) {}
-  }, [idx]);
+    if (idx) {
+      alert("ค่าจาก URL: " + idx);
+    }
+  }, [idx]); // Run when 'idx' changes
   return (
     <div>
       <form onSubmit={handleSubmit}>
