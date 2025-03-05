@@ -75,7 +75,14 @@ const InviteDonatePage = () => {
         <div className="row">
           <div className="col">
             <div className="p-3 border bg-light text-center rounded">
-              <h2>ขั้นตอนบริจาคทำบุญ {displayName}</h2>
+              <h2>ขั้นตอนบริจาคทำบุญ</h2>  
+              {profilePicture && (
+        <img 
+          src={profilePicture} 
+          alt="Profile" 
+          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }} 
+        />)}
+              <h2>{displayName}</h2>
             </div>
           </div>
         </div>
