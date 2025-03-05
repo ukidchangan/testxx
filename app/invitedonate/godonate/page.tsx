@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
 import Image from 'next/image';
+import { useSearchParams } from "next/navigation";
 
 export default function CreatePage() {
   interface Category {
@@ -128,6 +129,7 @@ export default function CreatePage() {
   }, []);
 
   const [formData, setFormData] = useState({
+
     lineoa_userid: '',
     lineoa_profile: '',
     lineoa_displayname: '',
@@ -143,6 +145,7 @@ export default function CreatePage() {
   });
 
   useEffect(() => {
+    alert("VVVVV");
     if (donorInfo.length > 0) {
       setFormData((prev) => ({
         ...prev,
@@ -343,7 +346,14 @@ export default function CreatePage() {
   //     setIsSubmitting(false); // Set loading state to false
   //   }
   // };
-
+  useEffect(() => {
+    try {
+      alert("xxxxxxxxx");
+    const searchParams = useSearchParams();
+    const idx = searchParams.get("from"); // Get 'idx' from URL
+    alert("yyyyyyyy"+idx);
+    } catch (error) {}
+  }, []);
   return (
     <div>
       <form onSubmit={handleSubmit}>

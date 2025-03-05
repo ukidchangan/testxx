@@ -112,7 +112,7 @@ export default function PreviewDonatePage() {
     }
   };
   const handleBack = () => {
-    router.push("/invitedonate/godonate"); // Navigate back to the donation form page
+    router.push("/invitedonate/godonate?from=page"); // Navigate back to the donation form page
   };
 
   if (!formData) {
