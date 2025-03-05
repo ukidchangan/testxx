@@ -23,7 +23,7 @@ const LiffPage = () => {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
-          setUserId(profile.userId+"AAA"   || "");
+          setUserId(profile.userId+"BBB"   || "");
           console.log("Already logged in.");
         }
       } catch (err) {
