@@ -9,7 +9,8 @@ export async function GET(req: NextRequest) {
     try {
         // Construct the API URL with the given user ID
         const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/lineoa/profile/list?lineoa_userid=${userid}`;
-    
+        console.log("apiUrl="+apiUrl);
+        console.log("NEXT_PUBLIC_API_AUTHORIZATION="+process.env.NEXT_PUBLIC_API_AUTHORIZATION);
         // Fetch data from external API
         const response = await fetch(apiUrl, {
           method: "GET",
