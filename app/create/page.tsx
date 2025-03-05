@@ -1,40 +1,36 @@
-// app/create/page.tsx
 "use client"; // This is required to use client-side features like useState, useEffect, etc.
 
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
 
-
 export default function CreatePage() {
+  const [displayName, setDisplayName] = useState("Loading...");
+  const [userId, setUserId] = useState("Unknown");
+  const [profilePicture, setProfilePicture] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
 
+  useEffect(() => { 
+    const initializeLiff = async () => {
+      try {
+        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
 
-    const [displayName, setDisplayName] = useState("Loading...");
-    const [userId, setUserId] = useState("Unknown");
-    const [profilePicture, setProfilePicture] = useState<string>("");
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        } else {
+          const profile = await liff.getProfile();
+          setDisplayName(profile.displayName || "Unknown User");
+          setProfilePicture(profile.pictureUrl || "");
+          setUserId(profile.userId +"dd"|| "");
+          console.log("Already logged in.");
+        }
+      } catch (err) {
+        console.error("LIFF Initialization failed", err);
+        setDisplayName("Error loading profile");
+      }
+    };
 
-      useEffect(() => { 
-        const initializeLiff = async () => {
-          try {
-            await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
-    
-            if (!liff.isLoggedIn()) {
-              liff.login();
-            } else {
-              const profile = await liff.getProfile();
-              setDisplayName(profile.displayName || "Unknown User");
-              setProfilePicture(profile.pictureUrl || "");
-              setUserId(profile.userId || "");
-              console.log("Already logged in.");
-            }
-          } catch (err) {
-            console.error("LIFF Initialization failed", err);
-            setDisplayName("Error loading profile");
-          }
-        };
-    
-        initializeLiff();
-      }, []);
-
+    initializeLiff();
+  }, []);
 
   const [formData, setFormData] = useState({
     lineoa_userid: '',
@@ -58,11 +54,13 @@ export default function CreatePage() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-
     e.preventDefault();
-    formData.lineoa_userid=userId;
-    formData.lineoa_profile=profilePicture;
-    formData.lineoa_displayname=displayName;
+    setIsLoading(true); // Set loading to true when form is submitted
+
+    formData.lineoa_userid = userId;
+    formData.lineoa_profile = profilePicture;
+    formData.lineoa_displayname = displayName;
+
     try {
       const response = await fetch('/api/create-profile', {
         method: 'POST',
@@ -86,6 +84,8 @@ export default function CreatePage() {
     } catch (error) {
       console.error('Error:', error);
       alert('An error occurred while submitting the form.');
+    } finally {
+      setIsLoading(false); // Set loading to false when the process is finished
     }
   };
 
@@ -98,29 +98,31 @@ export default function CreatePage() {
         justifyContent: 'center',
         minHeight: '100vh',
         backgroundColor: '#f0f8ff',
-        padding: '20px', // Add padding for mobile
+        padding: '20px',
+        filter: isLoading ? 'blur(5px)' : 'none', // Apply blur effect when loading
+        transition: 'filter 0.3s ease', // Smooth transition for blur effect
       }}
     >
       <div
         style={{
           width: '100%',
-          maxWidth: '500px', // Limit width for better readability
+          maxWidth: '500px',
           backgroundColor: '#fff',
           padding: '20px',
           borderRadius: '10px',
           boxShadow: '0px 0px 10px #ddd',
         }}
       >
-     
         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>
-        {profilePicture && (
-        <img 
-          src={profilePicture} 
-          alt="Profile" 
-          style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }} 
-        />
-      )}</h1>
-         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>    ลงทะเบียนข้อมูลผู้บริจาค</h1>
+          {profilePicture && (
+            <img 
+              src={profilePicture} 
+              alt="Profile" 
+              style={{ borderRadius: "50%", width: "150px", height: "150px", marginBottom: "0px", textAlign: 'center' }} 
+            />
+          )}
+        </h1>
+        <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>ลงทะเบียนข้อมูลผู้บริจาค</h1>
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
           <div style={{ marginBottom: '15px', display: 'none', visibility: 'hidden' }}>
@@ -240,17 +242,18 @@ export default function CreatePage() {
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <button
               type="submit"
+              disabled={isLoading} // Disable button when loading
               style={{
                 padding: '10px 20px',
-                backgroundColor: '#007bff',
+                backgroundColor: isLoading ? '#ccc' : '#007bff', // Change button color when loading
                 color: '#fff',
                 border: 'none',
                 borderRadius: '5px',
-                cursor: 'pointer',
-                width: '100%', // Full-width button on mobile
+                cursor: isLoading ? 'not-allowed' : 'pointer', // Change cursor when loading
+                width: '100%',
               }}
             >
-              Submit
+              {isLoading ? 'Submitting...' : 'Submit'} // Change button text when loading
             </button>
           </div>
         </form>
