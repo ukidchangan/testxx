@@ -96,7 +96,8 @@ export default function PreviewDonatePage() {
         const result = await response.json();
         if (result.success) {
           alert('บริจาคเสร็จสิ้น');
-          window.location.href = "/invitedonate/getdonate";
+          // window.location.href = "/invitedonate/getdonate";
+          window.location.href = "/invitedonate";
         } else {
           alert(`Failed to create profile: ${result.message}`);
         }
@@ -248,19 +249,16 @@ export default function PreviewDonatePage() {
           <button
             type="button"
             onClick={handleBack} 
+            className="btn btn-danger w-100 py-2"
             style={{
               width: "100%",
               maxWidth: "400px",
-              padding: "12px 20px",
-              backgroundColor: "#007bff",
-              color: "#fff",
+              padding: "12px 20px",          
               border: "none",
               borderRadius: "5px",
               cursor: "pointer",
               fontSize: "22px",
               fontWeight: "bold",
-              transition: "background-color 0.3s ease",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
             }}
      
           >
