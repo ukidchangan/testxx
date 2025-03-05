@@ -633,7 +633,7 @@ export default function CreatePage() {
                 }}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
+                {isSubmitting ? 'ถัดไป...' : 'ถัดไป'}
               </button>
             </div>
           </footer>

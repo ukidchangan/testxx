@@ -275,7 +275,7 @@ export default function CreatePage() {
                 width: '100%', // Full-width button on mobile
               }}
             >
-              {isSubmitting ? "Submitting..." : "Submit"}
+              {isSubmitting ? "ประมวลผล..." : "ยืนยัน"}
             </button>
           </div>
         </form>

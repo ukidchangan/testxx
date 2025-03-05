@@ -308,7 +308,7 @@ export default function EditPage() {
                 width: '100%', // Full-width button on mobile
               }}
             >
-              Update
+              ยืนยัน
             </button>
           </div>
         </form>

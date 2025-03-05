@@ -242,7 +242,7 @@ export default function PreviewDonatePage() {
             }}
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Submitting...' : 'Submit'}
+            {isSubmitting ? 'ประมวลผล...' : 'ยืนยัน'}
           </button>
 
 </td><td>
@@ -253,16 +253,19 @@ export default function PreviewDonatePage() {
             style={{
               width: "100%",
               maxWidth: "400px",
-              padding: "12px 20px",          
+              padding: "12px 20px",
+              color: "#fff",
               border: "none",
               borderRadius: "5px",
               cursor: "pointer",
               fontSize: "22px",
               fontWeight: "bold",
+              transition: "background-color 0.3s ease",
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
             }}
      
           >
-           Back
+           กลับ
           </button>
           </td>
           </tr></tbody></table>

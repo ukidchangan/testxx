@@ -141,7 +141,14 @@ const InviteDonatePage = () => {
                   <td style={{ width: '50%', padding: '5px' }}>
                     <button
                       className="btn btn-primary w-100 h-100 py-2"
-                      style={{ fontSize: "1.1rem" }}
+                      style={{ 
+                        fontSize: "1.1rem", 
+                        height: "100%", // Ensure the button takes full height
+                        display: "flex", // Use flexbox to align the link inside
+                        alignItems: "center", // Vertically center the link
+                        justifyContent: "center", // Horizontally center the link
+                        padding: 0, // Remove default padding to ensure full height
+                      }}
                       onClick={() => setIsLoading(true)}
                     >
                       <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
@@ -165,10 +172,17 @@ const InviteDonatePage = () => {
                   <td style={{ width: '50%', padding: '5px' }}>
                     <button
                       className="btn btn-danger w-100 py-2"
-                      style={{ fontSize: "1.1rem" }}
+                      style={{ 
+                        fontSize: "1.1rem", 
+                        height: "100%", // Ensure the button takes full height
+                        display: "flex", // Use flexbox to align the link inside
+                        alignItems: "center", // Vertically center the link
+                        justifyContent: "center", // Horizontally center the link
+                        padding: 0, // Remove default padding to ensure full height
+                      }}
                       onClick={handleBackHome}
                     >
-                      Back Home
+                      กลับ
                     </button>
                   </td>
                 </tr>
