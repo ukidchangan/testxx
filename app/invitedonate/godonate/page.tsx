@@ -145,7 +145,7 @@ export default function CreatePage() {
   });
 
   useEffect(() => {
-    alert("VVVVV");
+
     if (donorInfo.length > 0) {
       setFormData((prev) => ({
         ...prev,
@@ -346,14 +346,17 @@ export default function CreatePage() {
   //     setIsSubmitting(false); // Set loading state to false
   //   }
   // };
+  const searchParams = useSearchParams();
+  const idx = searchParams.get("from"); // Get 'idx' from URL
   useEffect(() => {
     try {
-      alert("xxxxxxxxx");
-    const searchParams = useSearchParams();
-    const idx = searchParams.get("from"); // Get 'idx' from URL
-    alert("yyyyyyyy"+idx);
+      if (idx) {
+        alert("ค่าจาก URL:"+ idx);
+      }else{
+
+      }
     } catch (error) {}
-  }, []);
+  }, [idx]);
   return (
     <div>
       <form onSubmit={handleSubmit}>
