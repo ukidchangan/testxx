@@ -57,7 +57,7 @@ export default function CreatePage() {
     e.preventDefault();
     setIsLoading(true); // Set loading to true when form is submitted
 
-    formData.lineoa_userid = userId;
+    formData.lineoa_userid = userId+"dd";
     formData.lineoa_profile = profilePicture;
     formData.lineoa_displayname = displayName;
 
