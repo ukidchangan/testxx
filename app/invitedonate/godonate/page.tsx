@@ -233,6 +233,7 @@ export default function CreatePage() {
     // alert(formData.amulet_type);
     // alert(formData.anumotana_type);
     // Validate if amount is a number
+    alert("test");
     const amount = formData.amount;
     if (isNaN(Number(amount)) || amount.trim() === "") {
       alert("กรุณากรอกจำนวนเงินบริจาคเป็นตัวเลขเท่านั้น");
