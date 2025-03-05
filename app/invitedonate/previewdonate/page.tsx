@@ -13,6 +13,7 @@ export default function PreviewDonatePage() {
   const [anumotana_type_text, setAnumotana_type_text] = useState<string | null>(null);
   const [product_text, setProduct_text] = useState<string | null>(null);
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
+  const [imageBase64, setImageBase64] = useState<string | null>(null);
   
   const MoneyFormatter = ({ amount }: { amount: number }) => {
     const formattedAmount = new Intl.NumberFormat().format(amount);
@@ -32,8 +33,9 @@ export default function PreviewDonatePage() {
     const anumotana_type_text = localStorage.getItem('anumotana_type_text');
     const product_text = localStorage.getItem('product_text');
     const profilePicture = localStorage.getItem('profilePicture');
+    const imageBase64 = localStorage.getItem('imageBase64');
     
-    alert(storedPreviewImage);
+    // alert(storedPreviewImage);
 
     if (storedFormData) {
       setFormData(JSON.parse(storedFormData));
@@ -53,6 +55,9 @@ export default function PreviewDonatePage() {
     if (profilePicture) {
         setProfilePicture(profilePicture);
       }
+      if (imageBase64) {
+        setImageBase64(imageBase64);
+      }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -71,30 +76,15 @@ export default function PreviewDonatePage() {
     data.append("amulet_type", formData.amulet_type);
     data.append("anumotana_type", formData.anumotana_type);
     data.append("donate_for", formData.donate_for);
+    if (imageBase64) {
+    data.append("attachment", imageBase64);
+    }
 
     // Append the file only if it's selected
     // if (formData.attachment) {
     //   data.append("attachment", formData.attachment);
     // }
   // Append the image file if previewImage exists
-  if (previewImage) {
-    try {
-      // Fetch the Blob from the Blob URL
-      const response = await fetch(previewImage);
-      const blob = await response.blob();
-
-      // Create a File object from the Blob
-      const file = new File([blob], formData.lineoa_userid+"previewImage.jpg", { type: blob.type });
-
-      // Append the File to the FormData
-      data.append("attachment", file);
-    } catch (error) {
-      console.error('Error fetching the image:', error);
-      alert('An error occurred while processing the image.'+error);
-      setIsSubmitting(false);
-      return;
-    }
-  }
   
     try {
       const response = await fetch('/api/create-donate', {
