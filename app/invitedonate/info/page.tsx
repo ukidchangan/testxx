@@ -143,7 +143,7 @@ const LiffPage = () => {
           }}>
             ข้อมูลผู้บริจาค
           </h3>
-          <p style={{ marginBottom: "10px" }}><strong>ชื่อ-นามสกุล: </strong> <p style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.name}</p></p>
+          <p style={{ marginBottom: "10px" }}><strong>ชื่อ-นามสกุล: </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.name}</strong></p>
           <p style={{ marginBottom: "10px" }}><strong>เบอร์มือถือ: </strong> {donorInfo.data?.[0]?.mobile}</p>
           <p style={{ marginBottom: "10px" }}><strong>อีเมล์: </strong> {donorInfo.data?.[0]?.email}</p>
           <p style={{ marginBottom: "10px" }}><strong>ที่อยู่(ใช้สำหรับกรณีส่งเอกสารทางไปรษณีย์): </strong> {donorInfo.data?.[0]?.street}</p>
