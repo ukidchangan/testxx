@@ -417,7 +417,7 @@ export default function CreatePage() {
                 />
               )}
             </h1>
-            <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>จิตศรัทธาบริจาค</h1>
+            <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>บริจาคทำบุญ</h1>
             {/* Row 2 - Image */}
             <div className="row mt-2">
               <div className="col">

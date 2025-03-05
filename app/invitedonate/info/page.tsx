@@ -144,12 +144,12 @@ const LiffPage = () => {
             ข้อมูลผู้บริจาค
           </h3>
           <p style={{ marginBottom: "10px" }}><strong>ชื่อ-นามสกุล: </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.name}</strong></p>
-          <p style={{ marginBottom: "10px" }}><strong>เบอร์มือถือ: </strong> {donorInfo.data?.[0]?.mobile}</p>
-          <p style={{ marginBottom: "10px" }}><strong>อีเมล์: </strong> {donorInfo.data?.[0]?.email}</p>
-          <p style={{ marginBottom: "10px" }}><strong>ที่อยู่(ใช้สำหรับกรณีส่งเอกสารทางไปรษณีย์): </strong> {donorInfo.data?.[0]?.street}</p>
-          <p style={{ marginBottom: "10px" }}><strong>ที่อยู่เพิ่มเติม: </strong> {donorInfo.data?.[0]?.street2}</p>
-          <p style={{ marginBottom: "10px" }}><strong>จังหวัด: </strong> {donorInfo.data?.[0]?.city}</p>
-          <p style={{ marginBottom: "10px" }}><strong>ไปรษณีย์: </strong> {donorInfo.data?.[0]?.zip}</p>
+          <p style={{ marginBottom: "10px" }}><strong>เบอร์มือถือ: </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.mobile}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>อีเมล์: </strong><strong style={{ color:'#4169E1'}} >  {donorInfo.data?.[0]?.email}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>ที่อยู่(ใช้สำหรับกรณีส่งเอกสารทางไปรษณีย์): </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.street}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>ที่อยู่เพิ่มเติม: </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.street2}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>จังหวัด: </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.city}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>ไปรษณีย์: </strong><strong style={{ color:'#4169E1'}} >  {donorInfo.data?.[0]?.zip}</strong></p>
         </div>
       ) : (
         <p style={{ 
