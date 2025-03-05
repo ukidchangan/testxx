@@ -216,87 +216,6 @@ export default function CreatePage() {
     }
   };
 
-  const handleSubmit2 = () => {
-   
-    // const data = new FormData();
-    // data.append("lineoa_userid", userId);
-    // data.append("lineoa_profile", profilePicture);
-    // data.append("lineoa_displayname", displayName);
-    // data.append("fullname", formData.fullname);
-    // data.append("amount", formData.amount);
-    // data.append("product_id", formData.product_id);
-    // data.append("donate_date", getFormattedDate());
-    // data.append("amulet_type", formData.amulet_type);
-    // data.append("anumotana_type", formData.anumotana_type);
-    // data.append("donate_for", formData.donate_for);
-
-    // alert(formData.amulet_type);
-    // alert(formData.anumotana_type);
-    // Validate if amount is a number
-    alert("test");
-    const amount = formData.amount;
-    if (isNaN(Number(amount)) || amount.trim() === "") {
-      alert("กรุณากรอกจำนวนเงินบริจาคเป็นตัวเลขเท่านั้น");
-      return; // Stop the function if validation fails
-    }
-
-    formData.lineoa_userid = userId;
-    formData.lineoa_profile = profilePicture;
-    formData.lineoa_displayname = displayName;
-    formData.donate_date = getFormattedDate();
-
-    // // Append the file only if it's selected
-    // if (formData.attachment) {
-    //   data.append("attachment", formData.attachment);
-    // }
-    // alert(formData.attachment);
-    // localStorage.setItem('datax', data);
-    // Store form data and preview image in localStorage
-    localStorage.setItem('formData', JSON.stringify(formData));
-    if (previewImage) {
-      localStorage.setItem('previewImage', previewImage);
-    }
-
-    const amuletTypeOptions = [
-      { value: "na", text: "*** ไม่รับ ***" },
-      { value: "watluang", text: "ที่วัด" },
-      { value: "post", text: "ไปรษณีย์" },
-    ];
-
-    const anumotanaTypeOptions = [
-      { value: "lineoa", text: "ไลน์โอเอ" },
-      { value: "watluang", text: "ที่วัด" },
-      { value: "post", text: "ไปรษณีย์" },
-      { value: "email", text: "อีเมล์" },
-      { value: "na", text: "*** ไม่รับ ***" },
-    ];
-
-    const amulet_type_text = amuletTypeOptions.find((option) => option.value === formData.amulet_type);
-    const anumotana_type_text = anumotanaTypeOptions.find((option) => option.value === formData.anumotana_type);
-    const product_text = categories.find((option) => (option.id) === parseInt(formData.product_id));
-    // alert("OK");
-    // alert(formData.product_id);
-    // alert(product_text);
-    if (amulet_type_text) {
-      localStorage.setItem('amulet_type_text', amulet_type_text.text);
-    }
-    if (anumotana_type_text) {
-      localStorage.setItem('anumotana_type_text', anumotana_type_text.text);
-    }
-    if (product_text) {
-      localStorage.setItem('product_text', product_text.name);
-    }
-    if (profilePicture) {
-      localStorage.setItem('profilePicture', profilePicture);
-    }
-    if (imageBase64) {
-      localStorage.setItem('imageBase64', imageBase64);
-    }
-
-    // Navigate to the preview page
-    window.location.href = "/invitedonate/previewdonate";
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -702,9 +621,7 @@ export default function CreatePage() {
           }}>
             <div style={{ textAlign: 'center', marginTop: '5px' }}>
               <button
-                type="button"
-                
-                onClick={handleSubmit2}
+                type="submit"
                 style={{
                   padding: '10px 20px',
                   backgroundColor: '#007bff',
@@ -714,9 +631,9 @@ export default function CreatePage() {
                   cursor: 'pointer',
                   width: '100%',
                 }}
-    
+                disabled={isSubmitting}
               >
-              ถัดไป
+                {isSubmitting ? 'ถัดไป...' : 'ถัดไป'}
               </button>
             </div>
           </footer>

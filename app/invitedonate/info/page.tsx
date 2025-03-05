@@ -167,7 +167,7 @@ const LiffPage = () => {
 
       </div>
 
-    
+    <br /><br /><br /><br />
 
     </div>
     <footer style={{
@@ -195,7 +195,7 @@ const LiffPage = () => {
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
-          fontSize: "22px",
+          fontSize: "16px",
           fontWeight: "bold",
           transition: "background-color 0.3s ease",
           boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
@@ -219,7 +219,7 @@ const LiffPage = () => {
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
-          fontSize: "22px",
+          fontSize: "16px",
           fontWeight: "bold",
           transition: "background-color 0.3s ease",
           boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
