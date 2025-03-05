@@ -84,13 +84,13 @@ export default function PreviewDonatePage() {
       const blob = await response.blob();
 
       // Create a File object from the Blob
-      const file = new File([blob], "previewImage.jpg", { type: blob.type });
+      const file = new File([blob], formData.lineoa_userid+"previewImage.jpg", { type: blob.type });
 
       // Append the File to the FormData
       data.append("attachment", file);
     } catch (error) {
       console.error('Error fetching the image:', error);
-      alert('An error occurred while processing the image.');
+      alert('An error occurred while processing the image.'+error);
       setIsSubmitting(false);
       return;
     }
