@@ -218,40 +218,56 @@ export default function PreviewDonatePage() {
         )}
 
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
+
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <tbody>
+                <tr>
+                  <td style={{ width: '50%', padding: '5px' }}>
           <button
             type="submit"
             style={{
-              padding: '10px 20px',
-              backgroundColor: '#007bff',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              width: '50%',
+              width: "100%",
+              maxWidth: "400px",
+              padding: "12px 20px",
+              backgroundColor: "#007bff",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              fontSize: "22px",
+              fontWeight: "bold",
+              transition: "background-color 0.3s ease",
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
             }}
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
 
-
+</td><td>
           <button
             type="button"
             onClick={handleBack} 
             style={{
-              padding: '10px 20px',
-              backgroundColor: '#007bff',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              width: '50%',
+              width: "100%",
+              maxWidth: "400px",
+              padding: "12px 20px",
+              backgroundColor: "#007bff",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              fontSize: "22px",
+              fontWeight: "bold",
+              transition: "background-color 0.3s ease",
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
             }}
      
           >
            Back
           </button>
-
+          </td>
+          </tr></tbody></table>
         </div>
       </div></form>
     </div>
