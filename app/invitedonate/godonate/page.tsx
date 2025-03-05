@@ -713,9 +713,9 @@ export default function CreatePage() {
                   cursor: 'pointer',
                   width: '100%',
                 }}
-                disabled={isSubmitting}
+    
               >
-                {isSubmitting ? 'ถัดไป...' : 'ถัดไป'}
+              ถัดไป
               </button>
             </div>
           </footer>
