@@ -8,7 +8,15 @@ const LiffPage = () => {
   const [profilePicture, setProfilePicture] = useState<string>("");
   const [donorInfo, setDonorInfo] = useState<any>(null);
   const [error, setError] = useState<string>("");
-
+  const MoneyFormatter = ({ amount }: { amount: number }) => {
+    const formattedAmount = new Intl.NumberFormat().format(amount);
+  
+    return (
+      <div>
+        <p>{formattedAmount}</p>
+      </div>
+    );
+  };
   useEffect(() => {
     const initializeLiff = async () => {
       try {
@@ -123,7 +131,7 @@ const LiffPage = () => {
               </h3>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>บริจาคในนาม:</strong> {donation.donor}</p>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>เบอร์มือถือ:</strong> {donation.mobile}</p>
-              <p style={{ color: "#555", marginBottom: "10px" }}><strong>จำนวน:</strong> {donation.amount} บาท</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>จำนวน:</strong><MoneyFormatter amount={donation.amount} /> บาท</p>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>สถานะ:</strong> {donation.state}</p>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>วันที่บริจาค:</strong> {donation.donate_date}</p>
             </div>

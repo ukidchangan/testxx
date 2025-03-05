@@ -627,7 +627,7 @@ export default function CreatePage() {
             boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
             textAlign: "center"
           }}>
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <div style={{ textAlign: 'center', marginTop: '5px' }}>
               <button
                 type="submit"
                 style={{
