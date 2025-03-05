@@ -4,58 +4,73 @@ import liff from "@line/liff";
 import Image from 'next/image';
 import Link from "next/link";
 
-
 const InviteDonatePage = () => {
+  const [displayName, setDisplayName] = useState("Loading...");
+  const [userId, setUserId] = useState("Unknown");
+  const [profilePicture, setProfilePicture] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false); // New state for loading
 
-    const [displayName, setDisplayName] = useState("Loading...");
-    const [userId, setUserId] = useState("Unknown");
-    const [profilePicture, setProfilePicture] = useState<string>("");
-    // 2006843844-y5kJv8l5   DAM
-    // 2006843844-NMl82war
-      useEffect(() => { 
-        const initializeLiff = async () => {
-          try {
-            // alert("99999");
-            // alert("c = "+process.env.NEXT_PUBLIC_LIFE_ID);
-            await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
-            
-    
-            if (!liff.isLoggedIn()) {
-              // alert("yyyy");
-              liff.login();
-            } else {
-              const profile = await liff.getProfile();
-              // alert("xxxx"+profile.displayName);
-              setDisplayName(profile.displayName || "Unknown User");
-              setProfilePicture(profile.pictureUrl || "");
-              setUserId(profile.userId || "");
-              console.log("Already logged in.");
-            }
-          } catch (err) {
-            console.error("LIFF Initialization failed", err);
-            setDisplayName("Error loading profile");
-          }
-        };
-    
-        initializeLiff();
-      }, []);
-      const handleBackHome = () => {
-        liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string })
-          .then(() => {
-            if (liff.isInClient()) {
-              // Close the LIFF app
-              liff.closeWindow();
-            } else {
-              console.log('This app is not running in the LINE app.');
-            }
-          })
-          .catch((err) => {
-            console.error('LIFF initialization failed', err);
-          });
-      };
+  useEffect(() => { 
+    const initializeLiff = async () => {
+      try {
+        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
+        
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        } else {
+          const profile = await liff.getProfile();
+          setDisplayName(profile.displayName || "Unknown User");
+          setProfilePicture(profile.pictureUrl || "");
+          setUserId(profile.userId || "");
+          console.log("Already logged in.");
+        }
+      } catch (err) {
+        console.error("LIFF Initialization failed", err);
+        setDisplayName("Error loading profile");
+      }
+    };
+
+    initializeLiff();
+  }, []);
+
+  const handleBackHome = () => {
+    setIsLoading(true); // Start loading
+    liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string })
+      .then(() => {
+        if (liff.isInClient()) {
+          liff.closeWindow();
+        } else {
+          console.log('This app is not running in the LINE app.');
+        }
+      })
+      .catch((err) => {
+        console.error('LIFF initialization failed', err);
+      })
+      .finally(() => {
+        setIsLoading(false); // Stop loading
+      });
+  };
+
   return (
-    <div style={{ backgroundColor: "#f0f8ff", minHeight: "100vh", padding: "20px" }}>
-      <div className="container">
+    <div style={{ backgroundColor: "#f0f8ff", minHeight: "100vh", padding: "20px", position: "relative" }}>
+      {isLoading && (
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          backdropFilter: "blur(5px)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 1000,
+        }}>
+          <div>Loading...</div> {/* You can replace this with a spinner or any other loading indicator */}
+        </div>
+      )}
+      <div className="container" style={{ filter: isLoading ? "blur(5px)" : "none" }}>
         {/* Row 1 - Header */}
         <div className="row">
           <div className="col">
@@ -68,7 +83,7 @@ const InviteDonatePage = () => {
         {/* Row 2 - Image */}
         <div className="row mt-2">
           <div className="col">
-            <div className="text-center" >
+            <div className="text-center">
               <Image 
                 src="/flow0.jpg" // Path to the image in the public folder
                 alt="Donation Flow"
@@ -107,21 +122,23 @@ const InviteDonatePage = () => {
                 <tr>
                   <td style={{ width: '50%', padding: '5px' }}>
                     <button
-                      className="btn btn-primary  h-100 w-100 py-2"
+                      className="btn btn-primary h-100 w-100 py-2"
                       style={{ fontSize: "1.1rem" }}
+                      onClick={() => setIsLoading(true)}
                     >
                       <Link href="/invitedonate/info" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                     ลงทะเบียน/แก้ไข
-                     </Link>
+                        ลงทะเบียน/แก้ไข
+                      </Link>
                     </button>
                   </td>
                   <td style={{ width: '50%', padding: '5px' }}>
                     <button
                       className="btn btn-primary w-100 h-100 py-2"
                       style={{ fontSize: "1.1rem" }}
+                      onClick={() => setIsLoading(true)}
                     >
-                       <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                      บริจาคทำบุญ
+                      <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+                        บริจาคทำบุญ
                       </Link>
                     </button>
                   </td>
@@ -131,16 +148,16 @@ const InviteDonatePage = () => {
                     <button
                       className="btn btn-success h-100 w-100 py-2"
                       style={{ fontSize: "1.1rem" }}
+                      onClick={() => setIsLoading(true)}
                     >
-                       <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                      ประวัติการบริจาค
+                      <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+                        ประวัติการบริจาค
                       </Link>
-
                     </button>
                   </td>
                   <td style={{ width: '50%', padding: '5px' }}>
                     <button
-                      className="btn btn-danger  w-100 py-2"
+                      className="btn btn-danger w-100 py-2"
                       style={{ fontSize: "1.1rem" }}
                       onClick={handleBackHome}
                     >
