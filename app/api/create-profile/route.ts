@@ -9,6 +9,7 @@ export async function POST(request: Request) {
     let data = new FormData();
     Object.keys(formDataxx).forEach((key) => {
       data.append(key, formDataxx[key]);
+      console.log("key="+key+"  "+formDataxx[key])
     });
     let config = {
       method: 'post',
