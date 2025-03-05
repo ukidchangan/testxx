@@ -32,6 +32,8 @@ export default function PreviewDonatePage() {
     const anumotana_type_text = localStorage.getItem('anumotana_type_text');
     const product_text = localStorage.getItem('product_text');
     const profilePicture = localStorage.getItem('profilePicture');
+    
+    alert(storedPreviewImage);
 
     if (storedFormData) {
       setFormData(JSON.parse(storedFormData));
@@ -100,46 +102,6 @@ export default function PreviewDonatePage() {
     }
   };
 
-
-//   const handleSubmit = async () => {
-//     setIsSubmitting(true);
-
-//     const data = new FormData();
-//     if (formData) {
-//       Object.keys(formData).forEach(key => {
-//         data.append(key, formData[key]);
-//       });
-//     }
-
-//     if (previewImage) {
-//       const blob = await fetch(previewImage).then(res => res.blob());
-//       data.append("attachment", blob, "preview-image.jpg");
-//     }
-
-//     try {
-//       const response = await fetch('/api/create-donate', {
-//         method: 'POST',
-//         body: data,
-//       });
-
-//       if (response.ok) {
-//         const result = await response.json();
-//         if (result.success) {
-//           alert('บริจาคเสร็จสิ้น');
-//           router.push("/getdonate");
-//         } else {
-//           alert(`Failed to create profile: ${result.message}`);
-//         }
-//       } else {
-//         alert('Failed to create profile.');
-//       }
-//     } catch (error) {
-//       console.error('Error:', error);
-//       alert('An error occurred while submitting the form.');
-//     } finally {
-//       setIsSubmitting(false);
-//     }
-//   };
 
   if (!formData) {
     return <div>Loading...</div>;
