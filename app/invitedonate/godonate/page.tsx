@@ -578,14 +578,29 @@ function CreatePageContent() {
 
             <div style={{ marginBottom: '15px' }}>
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
+              <label 
+    htmlFor="file-upload"
+    style={{
+      display: 'inline-block',
+      padding: '8px 12px',
+      backgroundColor: '#007bff',
+      color: '#fff',
+      borderRadius: '5px',
+      cursor: 'pointer',
+      textAlign: 'center'
+    }}
+  >
+    เลือกสลิป
+  </label>
               <input
                 type="file"
                 name="attachment"
                 accept="image/*"
                 onChange={handleFileChange}
                 required
-                style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                style={{ display: 'none' }}
               />
+                <span id="file-name" style={{ marginLeft: '10px' }}></span>
             </div>
 
             {previewImage && (
