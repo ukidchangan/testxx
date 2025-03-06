@@ -176,35 +176,35 @@ export default function PreviewDonatePage() {
           </div>
         </div>
 
-        <div style={{ marginBottom: '15px' }}>
+        <div style={{ marginBottom: '5px' }}>
           <label style={{ display: 'block',  fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
           <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
             {product_text}
           </div>
         </div>
 
-        <div style={{ marginBottom: '15px' }}>
+        <div style={{ marginBottom: '5px' }}>
           <label style={{ display: 'block', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
           <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
           <MoneyFormatter amount={formData.amount} />
           </div>
         </div>
 
-        <div style={{ marginBottom: '15px' }}>
+        <div style={{ marginBottom: '5px' }}>
           <label style={{ display: 'block',  fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :</label>
           <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1' }}>
             {formData.donate_for}
           </div>
         </div>
 
-        <div style={{ marginBottom: '15px' }}>
+        <div style={{ marginBottom: '5px' }}>
           <label style={{ display: 'block',  fontWeight: 'bold' }}>รับพระของขวัญ:</label>
           <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
             {amulet_type_text}
           </div>
         </div>
 
-        <div style={{ marginBottom: '15px' }}>
+        <div style={{ marginBottom: '5px' }}>
           <label style={{ display: 'block',  fontWeight: 'bold' }}>รับใบอนุโมทนา :</label>
           <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1' }}>
             {anumotana_type_text}
@@ -212,7 +212,7 @@ export default function PreviewDonatePage() {
         </div>
 
         {imageBase64 && (
-          <div style={{ marginBottom: '15px' }}>
+          <div style={{ marginBottom: '5px' }}>
             <label style={{ display: 'block',  fontWeight: 'bold' }}>หลักฐานการโอนเงิน :</label>
             <img src={imageBase64} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
           </div>
