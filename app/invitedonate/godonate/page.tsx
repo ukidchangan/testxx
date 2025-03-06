@@ -218,7 +218,13 @@ function CreatePageContent() {
     }
   };
 
+
+    const [fileName, setFileName] = useState('ยังไม่มีไฟล์ที่เลือก');
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    const selectedFile = e.target.files?.[0]?.name || 'ยังไม่มีไฟล์ที่เลือก';
+    setFileName(selectedFile);
+
     const file = e.target.files?.[0];
     if (file) {
       setFormData((prev) => ({
@@ -237,6 +243,8 @@ function CreatePageContent() {
       reader.readAsDataURL(file);
     }
   };
+
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -578,29 +586,30 @@ function CreatePageContent() {
 
             <div style={{ marginBottom: '15px' }}>
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
-              <label 
-    htmlFor="file-upload"
-    style={{
-      display: 'inline-block',
-      padding: '8px 12px',
-      backgroundColor: '#007bff',
-      color: '#fff',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      textAlign: 'center'
-    }}
-  >
-    เลือกสลิป
-  </label>
-              <input
-                type="file"
-                name="attachment"
-                accept="image/*"
-                onChange={handleFileChange}
-                required
-                style={{ display: 'none' }}
-              />
-                <span id="file-name" style={{ marginLeft: '10px' }}></span>
+              <label
+        htmlFor="file-upload"
+        style={{
+          display: 'inline-block',
+          padding: '8px 12px',
+          backgroundColor: '#007bff',
+          color: '#fff',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          textAlign: 'center'
+        }}
+      >
+        เลือกสลิป
+      </label>
+      <input
+        id="file-upload"
+        type="file"
+        name="attachment"
+        accept="image/*"
+        onChange={handleFileChange}
+        required
+        style={{ display: 'none' }} // Hide default file input
+      />
+      <span style={{ marginLeft: '10px' }}>{fileName}</span>
             </div>
 
             {previewImage && (
