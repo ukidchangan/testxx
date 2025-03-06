@@ -299,8 +299,8 @@ function CreatePageContent() {
     
         if (storedFormData) {
           const parsedFormData = JSON.parse(storedFormData);
-          setFormData(JSON.parse(storedFormData));
-                  ///////////////////
+          setFormData(parsedFormData);
+               ///////////////////
         if (parsedFormData.product_id) {
           const simulatedEvent = {
             target: {
@@ -310,10 +310,10 @@ function CreatePageContent() {
           } as React.ChangeEvent<HTMLSelectElement>;
           handleSelectChange(simulatedEvent);
         }
-      }
+    
         ///////////
         }
-
+   
         // if (amulet_type_text) {
         //     setAmulet_type_text(amulet_type_text);
         //   }
