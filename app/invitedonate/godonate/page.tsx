@@ -66,7 +66,7 @@ function CreatePageContent() {
 
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
-  const handleDownloadImage = (base64Image="", filename = 'download.jpg') => {
+  const handleDownloadImage = (base64Image="", filename = 'download.png') => {
     // Convert base64 to Blob
     const byteCharacters = atob(base64Image.split(',')[1]);
     const byteNumbers = new Array(byteCharacters.length);
@@ -74,21 +74,18 @@ function CreatePageContent() {
       byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
     const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: 'image/jpeg' }); // Change type to 'image/jpeg'
+    const blob = new Blob([byteArray], { type: 'image/webp' });
   
-    // Create a temporary URL for the Blob
-    const url = URL.createObjectURL(blob);
-    alert("TEST");
-    // Open the URL in an external browser using liff.openWindow
-    liff.openWindow({
-      url: url,
-      external: true, // Open in an external browser
-    });
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
   
-    // Clean up the URL object after a short delay
-    setTimeout(() => {
-      URL.revokeObjectURL(url);
-    }, 1000); // Adjust the delay as needed
+    // Trigger the download
+    link.click();
+  
+    // Clean up
+    URL.revokeObjectURL(link.href);
   };
   useEffect(() => {
     if (userId !== "Unknown" && userId !== "") {
@@ -578,12 +575,12 @@ function CreatePageContent() {
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                   {/* <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <tbody>
                   <tr>
-                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}> */}
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-                  </td><td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+                  {/* </td><td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
                   <button
             onClick={() => handleDownloadImage(selectedCategory.image, 'qr_code.jpg')}
             style={{
@@ -598,7 +595,7 @@ function CreatePageContent() {
           >
            ดาวน์โหลด QR Code
           </button></td>
-          </tr></tbody></table>
+          </tr></tbody></table> */}
 
                 </div>
               )}
