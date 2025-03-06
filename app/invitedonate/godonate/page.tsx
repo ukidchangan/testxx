@@ -509,7 +509,7 @@ function CreatePageContent() {
                 <tbody>
                   <tr>
                     <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับพระของขวัญ:</label>
+                      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับพระของขวัญ :</label>
                       <select
                         name="amulet_type"
                         value={formData.amulet_type}
@@ -553,7 +553,7 @@ function CreatePageContent() {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:(แตะที่เลขที่บัญชีเพื่อการคัดลอก)
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี :(แตะที่เลขที่บัญชีเพื่อการคัดลอก)
                 <input
                   onClick={handleCopyAccount}
                   type="text"
@@ -564,7 +564,7 @@ function CreatePageContent() {
                 />
               </label>
 
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี:
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี :
                 <input
                   type="text"
                   onClick={handleCopyAccount}

@@ -188,7 +188,7 @@ export default function PreviewDonatePage() {
         </div>
 
         <div style={{ marginBottom: '5px' }}>
-          <label style={{ display: 'block',  fontWeight: 'bold' }}>รับพระของขวัญ:    <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
+          <label style={{ display: 'block',  fontWeight: 'bold' }}>รับพระของขวัญ :    <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
             {amulet_type_text}
           </div></label>
       
