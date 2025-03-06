@@ -285,6 +285,7 @@ function CreatePageContent() {
       if (searchParams) {
         const idx = searchParams.get("from"); // Get 'idx' from URL
         console.log("Search Params:", idx);
+        formData.amount=8888888;
       }
     } catch (error) {
       console.log(error);
