@@ -575,23 +575,28 @@ function CreatePageContent() {
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <tbody>
+                  <tr>
+                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-
+                  </td><td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
                   <button
-            onClick={() => handleDownloadImage(selectedCategory.image, 'qr_code.webp')}
+            onClick={() => handleDownloadImage(selectedCategory.image, 'qr_code.jpg')}
             style={{
-              marginTop: '10px',
-              padding: '5px 10px',
-              backgroundColor: '#0070f3',
+              display: 'inline-block',
+              padding: '8px 12px',
+              backgroundColor: '#007bff',
               color: '#fff',
-              border: 'none',
               borderRadius: '5px',
               cursor: 'pointer',
+              textAlign: 'center'
             }}
           >
-            Download Image
-          </button>
-          
+           ดาวน์โหลด QR Code
+          </button></td>
+          </tr></tbody></table>
+
                 </div>
               )}
             </div>
