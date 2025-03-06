@@ -328,8 +328,8 @@ function CreatePageContent() {
         //   if (product_text) {
         //     setProduct_text(product_text);
         //   }
-        if (storedPreviewImage) {
-          setPreviewImage(storedPreviewImage);
+        if (imageBase64) {
+          setPreviewImage(imageBase64);
         }
         if (profilePicture) {
             setProfilePicture(profilePicture);
