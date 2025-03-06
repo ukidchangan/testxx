@@ -291,6 +291,16 @@ function CreatePageContent() {
     if (imageBase64) {
       localStorage.setItem('imageBase64', imageBase64);
     }
+    if (selectedCategory?.bank_holder) {
+      localStorage.setItem('bank_holder', selectedCategory?.bank_holder || '');
+    }
+    if (selectedCategory?.bank_account) {
+      localStorage.setItem('bank_account', selectedCategory?.bank_account || '');
+    }
+    if (selectedCategory?.image) {
+      localStorage.setItem('bank_image', selectedCategory?.image || '');
+    }
+
 
     // Navigate to the preview page
     window.location.href = "/invitedonate/previewdonate";
@@ -306,13 +316,19 @@ function CreatePageContent() {
         const storedFormData = localStorage.getItem('formData');
         const profilePicture = localStorage.getItem('profilePicture');
         const imageBase64 = localStorage.getItem('imageBase64');
+        const bank_holder = localStorage.getItem('bank_holder');
+        const bank_account = localStorage.getItem('bank_account');
+        const bank_image = localStorage.getItem('image');
         
         // alert(storedPreviewImage);
     
         if (storedFormData) {
           const parsedFormData = JSON.parse(storedFormData);
           setFormData(parsedFormData);
-          
+          const selected = categories.find(category => category.id === parseInt(parsedFormData.product_id));
+          if (selected) {
+            setSelectedCategory(selected);
+          }
         }
    
         // if (amulet_type_text) {
@@ -326,6 +342,10 @@ function CreatePageContent() {
         //   }
 
           setPreviewImage("");
+        // selectedCategory.bank_holder=bank_holder;
+        // selectedCategory.bank_account=bank_account;
+        // selectedCategory.image=bank_image;
+
 
         if (profilePicture) {
             setProfilePicture(profilePicture);
