@@ -66,7 +66,27 @@ function CreatePageContent() {
 
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
-
+  const handleDownloadImage = (base64Image="", filename = 'download.png') => {
+    // Convert base64 to Blob
+    const byteCharacters = atob(base64Image.split(',')[1]);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: 'image/webp' });
+  
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+  
+    // Trigger the download
+    link.click();
+  
+    // Clean up
+    URL.revokeObjectURL(link.href);
+  };
   useEffect(() => {
     if (userId !== "Unknown" && userId !== "") {
       fetchDonorInfo(userId);
@@ -556,6 +576,22 @@ function CreatePageContent() {
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+
+                  <button
+            onClick={() => handleDownloadImage(selectedCategory.image, 'qr_code.webp')}
+            style={{
+              marginTop: '10px',
+              padding: '5px 10px',
+              backgroundColor: '#0070f3',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+            }}
+          >
+            Download Image
+          </button>
+          
                 </div>
               )}
             </div>
