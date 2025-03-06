@@ -52,6 +52,7 @@ function CreatePageContent() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageBase64, setImageBase64] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
+  const [isPageInitialized, setIsPageInitialized] = useState(false); // Track if page is fully loaded
 
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
 
@@ -281,64 +282,76 @@ function CreatePageContent() {
   };
 
   useEffect(() => {
-    try {
-      if (searchParams) {
-        const idx = searchParams.get("from"); // Get 'idx' from URL
-        if(idx=="page")
-        {
-        console.log("Search Params:", idx);
-        const storedFormData = localStorage.getItem('formData');
-        const storedPreviewImage = localStorage.getItem('previewImage');
-        const amulet_type_text = localStorage.getItem('amulet_type_text');
-        const anumotana_type_text = localStorage.getItem('anumotana_type_text');
-        const product_text = localStorage.getItem('product_text');
-        const profilePicture = localStorage.getItem('profilePicture');
-        const imageBase64 = localStorage.getItem('imageBase64');
-        
-        // alert(storedPreviewImage);
-    
-        if (storedFormData) {
-          const parsedFormData = JSON.parse(storedFormData);
-          setFormData(parsedFormData);
-               ///////////////////
-        if (parsedFormData.product_id) {
-          const simulatedEvent = {
-            target: {
-              name: "product_id",
-              value: parsedFormData.product_id,
-            },
-          } as React.ChangeEvent<HTMLSelectElement>;
-          handleSelectChange(simulatedEvent);
-        }
-    
-        ///////////
-        }
-   
-        // if (amulet_type_text) {
-        //     setAmulet_type_text(amulet_type_text);
-        //   }
-        //   if (anumotana_type_text) {
-        //     setAnumotana_type_text(anumotana_type_text);
-        //   }
-        //   if (product_text) {
-        //     setProduct_text(product_text);
-        //   }
-        if (storedPreviewImage) {
-          setPreviewImage(storedPreviewImage);
-        }
-        if (profilePicture) {
-            setProfilePicture(profilePicture);
+    const initializePage = async () => {
+      try {
+        if (searchParams) {
+          const idx = searchParams.get("from"); // Get 'idx' from URL
+          if (idx === "page") {
+            console.log("Search Params:", idx);
+
+            // Retrieve data from localStorage
+            const storedFormData = localStorage.getItem('formData');
+            const storedPreviewImage = localStorage.getItem('previewImage');
+            const profilePicture = localStorage.getItem('profilePicture');
+            const imageBase64 = localStorage.getItem('imageBase64');
+
+            // Update state with stored data
+            if (storedFormData) {
+              const parsedFormData = JSON.parse(storedFormData);
+              setFormData(parsedFormData);
+
+              // Programmatically trigger handleSelectChange for product_id
+              if (parsedFormData.product_id) {
+                const simulatedEvent = {
+                  target: {
+                    name: "product_id",
+                    value: parsedFormData.product_id,
+                  },
+                } as React.ChangeEvent<HTMLSelectElement>;
+                handleSelectChange(simulatedEvent);
+              }
+            }
+
+            if (storedPreviewImage) {
+              setPreviewImage(storedPreviewImage);
+            }
+            if (profilePicture) {
+              setProfilePicture(profilePicture);
+            }
+            if (imageBase64) {
+              setImageBase64(imageBase64);
+            }
           }
-          if (imageBase64) {
-            setImageBase64(imageBase64);
-          }
-        // formData.amount="8888888";
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        // Mark that everything has finished loading
+        setIsPageInitialized(true);
       }
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    };
+
+    initializePage();
   }, [searchParams]);
+
+  useEffect(() => {
+    if (isPageInitialized) {
+      // Execute any logic that depends on everything being loaded
+      console.log("Everything has finished loading!");
+      // For example, you can call a function here to process the loaded data
+      processLoadedData();
+    }
+  }, [isPageInitialized]);
+
+  const processLoadedData = () => {
+    // Add any logic that needs to run after everything is loaded
+    console.log("Processing loaded data...");
+    // Example: Log the current state
+    console.log("Form Data:", formData);
+    console.log("Preview Image:", previewImage);
+    console.log("Profile Picture:", profilePicture);
+    console.log("Image Base64:", imageBase64);
+  };
 
   return (
     <div>
