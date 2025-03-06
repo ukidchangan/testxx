@@ -1,11 +1,19 @@
 "use client"; // This is required to use client-side features like useState, useEffect, etc.
-
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState, Suspense } from "react";
 import liff from "@line/liff";
 import Image from 'next/image';
-import { useSearchParams } from "next/navigation";
 
+// Wrap the main component in a Suspense boundary
 export default function CreatePage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CreatePageContent />
+    </Suspense>
+  );
+}
+
+function CreatePageContent() {
   const searchParams = useSearchParams();
   interface Category {
     id: number;
@@ -166,6 +174,7 @@ export default function CreatePage() {
       [name]: value,
     }));
   };
+
   const handleCopyAccount = () => {
     const bankAccountValue = selectedCategory?.bank_account || '';
     navigator.clipboard.writeText(bankAccountValue)
@@ -190,7 +199,6 @@ export default function CreatePage() {
         setSelectedCategory(selected);
       }
     }
-
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -203,38 +211,19 @@ export default function CreatePage() {
       // Generate a preview URL
       setPreviewImage(URL.createObjectURL(file));
 
-      ////////////////////
       // Convert to Base64
       const reader = new FileReader();
       reader.onload = () => {
         const base64String = reader.result as string;
-        // If you only want the Base64 data (without MIME type prefix)
-        // const base64Data = base64String.split(',')[1];
         setImageBase64(base64String);
       };
       reader.readAsDataURL(file);
-      /////////////////////
-
     }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // const data = new FormData();
-    // data.append("lineoa_userid", userId);
-    // data.append("lineoa_profile", profilePicture);
-    // data.append("lineoa_displayname", displayName);
-    // data.append("fullname", formData.fullname);
-    // data.append("amount", formData.amount);
-    // data.append("product_id", formData.product_id);
-    // data.append("donate_date", getFormattedDate());
-    // data.append("amulet_type", formData.amulet_type);
-    // data.append("anumotana_type", formData.anumotana_type);
-    // data.append("donate_for", formData.donate_for);
-
-    // alert(formData.amulet_type);
-    // alert(formData.anumotana_type);
     // Validate if amount is a number
     const amount = formData.amount;
     if (isNaN(Number(amount)) || amount.trim() === "") {
@@ -247,12 +236,6 @@ export default function CreatePage() {
     formData.lineoa_displayname = displayName;
     formData.donate_date = getFormattedDate();
 
-    // // Append the file only if it's selected
-    // if (formData.attachment) {
-    //   data.append("attachment", formData.attachment);
-    // }
-    // alert(formData.attachment);
-    // localStorage.setItem('datax', data);
     // Store form data and preview image in localStorage
     localStorage.setItem('formData', JSON.stringify(formData));
     if (previewImage) {
@@ -276,9 +259,7 @@ export default function CreatePage() {
     const amulet_type_text = amuletTypeOptions.find((option) => option.value === formData.amulet_type);
     const anumotana_type_text = anumotanaTypeOptions.find((option) => option.value === formData.anumotana_type);
     const product_text = categories.find((option) => (option.id) === parseInt(formData.product_id));
-    // alert("OK");
-    // alert(formData.product_id);
-    // alert(product_text);
+
     if (amulet_type_text) {
       localStorage.setItem('amulet_type_text', amulet_type_text.text);
     }
@@ -299,62 +280,17 @@ export default function CreatePage() {
     window.location.href = "/invitedonate/previewdonate";
   };
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true); // Set loading state to true
-
-  //   // Create FormData object to send the file
-  //   const data = new FormData();
-  //   data.append("lineoa_userid", userId);
-  //   data.append("lineoa_profile", profilePicture);
-  //   data.append("lineoa_displayname", displayName);
-  //   data.append("fullname", formData.fullname);
-  //   data.append("amount", formData.amount);
-  //   data.append("product_id", formData.product_id);
-  //   data.append("donate_date", getFormattedDate());
-  //   data.append("amulet_type", formData.amulet_type);
-  //   data.append("anumotana_type", formData.anumotana_type);
-  //   data.append("donate_for", formData.donate_for);
-
-  //   // Append the file only if it's selected
-  //   if (formData.attachment) {
-  //     data.append("attachment", formData.attachment);
-  //   }
-
-  //   try {
-  //     const response = await fetch('/api/create-donate', {
-  //       method: 'POST',
-  //       body: data, // Send FormData instead of JSON
-  //     });
-
-  //     if (response.ok) {
-  //       const result = await response.json();
-  //       if (result.success) {
-  //         alert('บริจาคเสร็จสิ้น');
-  //         window.location.href = "/getdonate";
-  //       } else {
-  //         alert(`Failed to create profile: ${result.message}`);
-  //       }
-  //     } else {
-  //       alert('Failed to create profile.');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //     alert('An error occurred while submitting the form.');
-  //   } finally {
-  //     setIsSubmitting(false); // Set loading state to false
-  //   }
-  // };
   useEffect(() => {
     try {
-      // alert("xxxxxxxxx");
-    const searchParams = useSearchParams();
-    const idx = searchParams.get("from"); // Get 'idx' from URL
-    alert("yyyyyyyy"+idx);
+      if (searchParams) {
+        const idx = searchParams.get("from"); // Get 'idx' from URL
+        console.log("Search Params:", idx);
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }, []);
+  }, [searchParams]);
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -366,18 +302,16 @@ export default function CreatePage() {
             justifyContent: 'center',
             minHeight: '100vh',
             backgroundColor: '#f0f8ff',
-            padding: '10px', // Add padding for mobile
-            filter: isSubmitting ? 'blur(5px)' : 'none', // Apply blur effect
-            pointerEvents: isSubmitting ? 'none' : 'auto', // Disable interactions
-            position: 'relative', // Required for the overlay positioning
+            padding: '10px',
+            filter: isSubmitting ? 'blur(5px)' : 'none',
+            pointerEvents: isSubmitting ? 'none' : 'auto',
+            position: 'relative',
           }}
         >
-
-          {/* Overlay with "Processing..." message */}
           {isSubmitting && (
             <div
               style={{
-                position: 'fixed', // Fixed position to cover the entire screen
+                position: 'fixed',
                 top: 0,
                 left: 0,
                 width: '100%',
@@ -385,8 +319,8 @@ export default function CreatePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white background
-                zIndex: 1000, // Ensure it's above everything else
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                zIndex: 1000,
               }}
             >
               <div
@@ -404,7 +338,7 @@ export default function CreatePage() {
           <div
             style={{
               width: '100%',
-              maxWidth: '500px', // Limit width for better readability
+              maxWidth: '500px',
               backgroundColor: '#fff',
               padding: '10px',
               borderRadius: '10px',
@@ -421,23 +355,20 @@ export default function CreatePage() {
               )}
             </h1>
             <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>บริจาคทำบุญ</h1>
-            {/* Row 2 - Image */}
             <div className="row mt-2">
               <div className="col">
-                <div className="text-center" >
+                <div className="text-center">
                   <Image
-                    src="/flow2.jpg" // Path to the image in the public folder
+                    src="/flow2.jpg"
                     alt="Donation Flow"
-                    width={800} // Set the width
-                    height={400} // Set the height
-                    layout="responsive" // Ensure the image is responsive
+                    width={800}
+                    height={400}
+                    layout="responsive"
                     className="rounded"
                   />
                 </div>
               </div>
             </div>
-
-            {/* Form Fields */}
 
             <div style={{ marginBottom: '15px' }}>
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>บริจาคในนาม :</label>
@@ -452,10 +383,6 @@ export default function CreatePage() {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-
-
-
-
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
               <select
                 name="product_id"
@@ -471,12 +398,9 @@ export default function CreatePage() {
                   </option>
                 ))}
               </select>
-
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-
-
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
               <input
                 type="number"
@@ -486,12 +410,9 @@ export default function CreatePage() {
                 required
                 style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
               />
-
-
-
             </div>
-            <div style={{ marginBottom: '15px' }}>
 
+            <div style={{ marginBottom: '15px' }}>
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :</label>
               <input
                 type="text"
@@ -501,12 +422,12 @@ export default function CreatePage() {
                 style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
               />
             </div>
+
             <div style={{ marginBottom: '15px' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <tbody>
                   <tr>
                     <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-
                       <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับพระของขวัญ:</label>
                       <select
                         name="amulet_type"
@@ -516,18 +437,9 @@ export default function CreatePage() {
                         style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
                       >
                         <option key="na" value="na">*** ไม่รับ ***</option>
-
-                        <option key="watluang" value="watluang">
-                          ที่วัด
-                        </option>
-                        <option key="post" value="post">
-                          ไปรษณีย์
-                        </option>
-                        {/* <option key="na" value="na">
-                *** ไม่รับ ***
-                </option> */}
+                        <option key="watluang" value="watluang">ที่วัด</option>
+                        <option key="post" value="post">ไปรษณีย์</option>
                       </select>
-
                     </td>
                     <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
                       <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รับใบอนุโมทนา :</label>
@@ -539,39 +451,27 @@ export default function CreatePage() {
                         style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
                       >
                         <option key="lineoa" value="lineoa">ไลน์โอเอ</option>
-
-                        <option key="watluang" value="watluang">
-                          ที่วัด
-                        </option>
-                        <option key="post" value="post">
-                          ไปรษณีย์
-                        </option>
-                        <option key="email" value="email">
-                          อีเมล์
-                        </option>
-                        <option key="na" value="na">
-                          *** ไม่รับ ***
-                        </option>
+                        <option key="watluang" value="watluang">ที่วัด</option>
+                        <option key="post" value="post">ไปรษณีย์</option>
+                        <option key="email" value="email">อีเมล์</option>
+                        <option key="na" value="na">*** ไม่รับ ***</option>
                       </select>
                     </td>
                   </tr>
                 </tbody>
               </table>
-
             </div>
 
-            <div style={{ marginBottom: '15px' }}><br /><br />
-
+            <div style={{ marginBottom: '15px' }}>
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
                 </div>
               )}
-
             </div>
-            <div style={{ marginBottom: '15px' }}>
 
+            <div style={{ marginBottom: '15px' }}>
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี:(แตะที่เลขที่บัญชีเพื่อการคัดลอก)
                 <input
                   onClick={handleCopyAccount}
@@ -593,34 +493,29 @@ export default function CreatePage() {
                   style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
                 />
               </label>
-
             </div>
+
             <div style={{ marginBottom: '15px' }}>
-
-
-              <div style={{ marginBottom: '15px' }}>
-                <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
-                <input
-                  type="file"
-                  name="attachment"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  required
-                  style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                />
-              </div>
-              {previewImage && (
-                <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                  <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-                </div>
-              )}
-
-<br/><br/><br/><br/>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>แนบหลักฐานการโอนเงิน</label>
+              <input
+                type="file"
+                name="attachment"
+                accept="image/*"
+                onChange={handleFileChange}
+                required
+                style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+              />
             </div>
 
+            {previewImage && (
+              <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
+              </div>
+            )}
 
-
+            <br /><br /><br /><br />
           </div>
+
           <footer style={{
             position: "fixed",
             bottom: "0",
@@ -648,8 +543,6 @@ export default function CreatePage() {
               </button>
             </div>
           </footer>
-
-
         </div>
       </form>
     </div>
