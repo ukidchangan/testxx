@@ -298,8 +298,22 @@ function CreatePageContent() {
         // alert(storedPreviewImage);
     
         if (storedFormData) {
+          const parsedFormData = JSON.parse(storedFormData);
           setFormData(JSON.parse(storedFormData));
+                  ///////////////////
+        if (parsedFormData.product_id) {
+          const simulatedEvent = {
+            target: {
+              name: "product_id",
+              value: parsedFormData.product_id,
+            },
+          } as React.ChangeEvent<HTMLSelectElement>;
+          handleSelectChange(simulatedEvent);
         }
+      }
+        ///////////
+        }
+
         // if (amulet_type_text) {
         //     setAmulet_type_text(amulet_type_text);
         //   }
