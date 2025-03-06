@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useSearchParams } from "next/navigation";
 
 export default function CreatePage() {
+  const searchParams = useSearchParams();
   interface Category {
     id: number;
     name: string;
@@ -346,11 +347,13 @@ export default function CreatePage() {
   // };
   useEffect(() => {
     try {
-      alert("xxxxxxxxx");
+      // alert("xxxxxxxxx");
     const searchParams = useSearchParams();
     const idx = searchParams.get("from"); // Get 'idx' from URL
     alert("yyyyyyyy"+idx);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   }, []);
   return (
     <div>
