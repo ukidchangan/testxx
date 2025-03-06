@@ -553,7 +553,7 @@ function CreatePageContent() {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี :(แตะที่เลขที่บัญชีเพื่อการคัดลอก)
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี : (แตะที่เลขที่บัญชีเพื่อการคัดลอก)
                 <input
                   onClick={handleCopyAccount}
                   type="text"

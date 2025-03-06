@@ -149,7 +149,7 @@ export default function CreatePage() {
         <form onSubmit={handleSubmit}>
           {/* Form Fields */}
           <div style={{ marginBottom: '15px', display: 'none', visibility: 'hidden' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>LINE OA User ID:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>LINE OA User ID :</label>
             <input
               type="text"
               name="lineoa_userid"
@@ -161,7 +161,7 @@ export default function CreatePage() {
             />
           </div>
           <div style={{ marginBottom: '15px', display: 'none', visibility: 'hidden' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>LINE OA Profile:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>LINE OA Profile :</label>
             <input
               type="text"
               name="lineoa_profile"
@@ -173,7 +173,7 @@ export default function CreatePage() {
             />
           </div>
           <div style={{ marginBottom: '15px', display: 'none', visibility: 'hidden' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>LINE OA Display Name:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>LINE OA Display Name :</label>
             <input
               type="text"
               name="lineoa_displayname"
@@ -185,7 +185,7 @@ export default function CreatePage() {
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ชื่อ-นามสกุล:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ชื่อ-นามสกุล :</label>
             <input
               type="text"
               name="fullname"
@@ -196,7 +196,7 @@ export default function CreatePage() {
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>อีเมล์:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>อีเมล์ :</label>
             <input
               type="email"
               name="email"
@@ -207,7 +207,7 @@ export default function CreatePage() {
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>โทรศัพท์มือถือ:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>โทรศัพท์มือถือ :</label>
             <input
               type="text"
               name="mobile"
@@ -218,7 +218,7 @@ export default function CreatePage() {
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ที่อยู่(ใช้สำหรับกรณีส่งเอกสารทางไปรษณีย์):</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ที่อยู่(ใช้สำหรับกรณีส่งเอกสารทางไปรษณีย์) :</label>
             <input
               type="text"
               name="street"
@@ -229,7 +229,7 @@ export default function CreatePage() {
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ที่อยู่เพิ่มเติม:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ที่อยู่เพิ่มเติม :</label>
             <input
               type="text"
               name="street2"
@@ -239,7 +239,7 @@ export default function CreatePage() {
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จังหวัด:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จังหวัด :</label>
             <input
               type="text"
               name="city"
@@ -250,7 +250,7 @@ export default function CreatePage() {
             />
           </div>          
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รหัสไปรษณีย์:</label>
+            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>รหัสไปรษณีย์ :</label>
             <input
               type="text"
               name="zip"
