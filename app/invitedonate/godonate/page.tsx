@@ -74,21 +74,21 @@ function CreatePageContent() {
       byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
     const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: 'image/jpeg' });
+    const blob = new Blob([byteArray], { type: 'image/jpeg' }); // Change type to 'image/jpeg'
   
-  // Create a temporary URL for the Blob
-  const url = URL.createObjectURL(blob);
-
-  // Open the URL in an external browser using liff.openWindow
-  liff.openWindow({
-    url: url,
-    external: true, // Open in an external browser
-  });
-
-  // Clean up the URL object after a short delay
-  setTimeout(() => {
-    URL.revokeObjectURL(url);
-  }, 1000); // Adjust the delay as needed
+    // Create a temporary URL for the Blob
+    const url = URL.createObjectURL(blob);
+    alert("TEST");
+    // Open the URL in an external browser using liff.openWindow
+    liff.openWindow({
+      url: url,
+      external: true, // Open in an external browser
+    });
+  
+    // Clean up the URL object after a short delay
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+    }, 1000); // Adjust the delay as needed
   };
   useEffect(() => {
     if (userId !== "Unknown" && userId !== "") {
