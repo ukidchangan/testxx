@@ -287,7 +287,38 @@ function CreatePageContent() {
         if(idx=="page")
         {
         console.log("Search Params:", idx);
-        formData.amount="8888888";
+        const storedFormData = localStorage.getItem('formData');
+        const storedPreviewImage = localStorage.getItem('previewImage');
+        const amulet_type_text = localStorage.getItem('amulet_type_text');
+        const anumotana_type_text = localStorage.getItem('anumotana_type_text');
+        const product_text = localStorage.getItem('product_text');
+        const profilePicture = localStorage.getItem('profilePicture');
+        const imageBase64 = localStorage.getItem('imageBase64');
+        
+        // alert(storedPreviewImage);
+    
+        if (storedFormData) {
+          setFormData(JSON.parse(storedFormData));
+        }
+        // if (amulet_type_text) {
+        //     setAmulet_type_text(amulet_type_text);
+        //   }
+        //   if (anumotana_type_text) {
+        //     setAnumotana_type_text(anumotana_type_text);
+        //   }
+        //   if (product_text) {
+        //     setProduct_text(product_text);
+        //   }
+        if (storedPreviewImage) {
+          setPreviewImage(storedPreviewImage);
+        }
+        if (profilePicture) {
+            setProfilePicture(profilePicture);
+          }
+          if (imageBase64) {
+            setImageBase64(imageBase64);
+          }
+        // formData.amount="8888888";
       }
       }
     } catch (error) {
