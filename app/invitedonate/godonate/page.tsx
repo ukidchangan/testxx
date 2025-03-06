@@ -43,6 +43,7 @@ function CreatePageContent() {
     lineoa_display: string;
     lineoa_profile: string;
   }
+  
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [displayName, setDisplayName] = useState("Loading...");
@@ -325,10 +326,7 @@ function CreatePageContent() {
         if (storedFormData) {
           const parsedFormData = JSON.parse(storedFormData);
           setFormData(parsedFormData);
-          const selected = categories.find(category => category.id === parseInt(parsedFormData.product_id));
-          if (selected) {
-            setSelectedCategory(selected);
-          }
+
         }
    
         // if (amulet_type_text) {
@@ -345,7 +343,20 @@ function CreatePageContent() {
         // selectedCategory.bank_holder=bank_holder;
         // selectedCategory.bank_account=bank_account;
         // selectedCategory.image=bank_image;
-
+        setSelectedCategory({
+          id: 0, // Provide a default or meaningful value
+          name: "",
+          type: "",
+          favorite: false,
+          category: "",
+          bank_holder: bank_holder || "",
+          bank_account: bank_account || "",
+          bank_name: "",
+          list_price: 0,
+          url: "",
+          image: bank_image || "",
+        });
+ 
 
         if (profilePicture) {
             setProfilePicture(profilePicture);
