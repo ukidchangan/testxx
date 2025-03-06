@@ -304,10 +304,6 @@ function CreatePageContent() {
         {
         console.log("Search Params:", idx);
         const storedFormData = localStorage.getItem('formData');
-        const storedPreviewImage = localStorage.getItem('previewImage');
-        const amulet_type_text = localStorage.getItem('amulet_type_text');
-        const anumotana_type_text = localStorage.getItem('anumotana_type_text');
-        const product_text = localStorage.getItem('product_text');
         const profilePicture = localStorage.getItem('profilePicture');
         const imageBase64 = localStorage.getItem('imageBase64');
         
@@ -328,9 +324,9 @@ function CreatePageContent() {
         //   if (product_text) {
         //     setProduct_text(product_text);
         //   }
-        if (imageBase64) {
-          setPreviewImage(imageBase64);
-        }
+
+          setPreviewImage("");
+
         if (profilePicture) {
             setProfilePicture(profilePicture);
           }
