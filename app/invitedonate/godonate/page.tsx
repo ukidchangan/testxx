@@ -66,7 +66,7 @@ function CreatePageContent() {
 
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
-  const handleDownloadImage = (base64Image="", filename = 'download.png') => {
+  const handleDownloadImage = (base64Image="", filename = 'download.jpg') => {
     // Convert base64 to Blob
     const byteCharacters = atob(base64Image.split(',')[1]);
     const byteNumbers = new Array(byteCharacters.length);
@@ -74,18 +74,21 @@ function CreatePageContent() {
       byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
     const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: 'image/webp' });
+    const blob = new Blob([byteArray], { type: 'image/jpeg' });
   
-    // Create a link element
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
-  
-    // Trigger the download
-    link.click();
-  
-    // Clean up
-    URL.revokeObjectURL(link.href);
+  // Create a temporary URL for the Blob
+  const url = URL.createObjectURL(blob);
+
+  // Open the URL in an external browser using liff.openWindow
+  liff.openWindow({
+    url: url,
+    external: true, // Open in an external browser
+  });
+
+  // Clean up the URL object after a short delay
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+  }, 1000); // Adjust the delay as needed
   };
   useEffect(() => {
     if (userId !== "Unknown" && userId !== "") {
