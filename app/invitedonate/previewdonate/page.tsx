@@ -14,17 +14,7 @@ export default function PreviewDonatePage() {
   const [product_text, setProduct_text] = useState<string | null>(null);
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
   const [imageBase64, setImageBase64] = useState<string | null>(null);
-  
-  const MoneyFormatter = ({ amount }: { amount: number }) => {
-    const formattedAmount = new Intl.NumberFormat().format(amount);
-  
-    return (
-      <div>
-        <p>{formattedAmount} บาท</p>
-      </div>
-    );
-  };
-  
+
   useEffect(() => {
     // Retrieve form data and preview image from localStorage
     const storedFormData = localStorage.getItem('formData');
@@ -169,46 +159,46 @@ export default function PreviewDonatePage() {
             )}
           </h1>
           </div>
-        <div style={{ marginBottom: '15px' }}>
-          <label style={{ display: 'block',fontWeight: 'bold' }}>บริจาคในนาม :</label>
-          <div style={{ padding: '3px', borderRadius: '5px',color:'	#4169E1' }}>
+        <div style={{ marginBottom: '5px' }}>
+          <label style={{ display: 'block',fontWeight: 'bold' }}>บริจาคในนาม :           <div style={{ padding: '3px', borderRadius: '5px',color:'	#4169E1' }}>
             {formData.fullname}
-          </div>
+          </div></label>
+
         </div>
 
         <div style={{ marginBottom: '5px' }}>
-          <label style={{ display: 'block',  fontWeight: 'bold' }}>ประเภทการบริจาค :</label>
-          <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
+          <label style={{ display: 'block',  fontWeight: 'bold' }}>ประเภทการบริจาค :       <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
             {product_text}
-          </div>
+          </div></label>
+   
         </div>
 
         <div style={{ marginBottom: '5px' }}>
-          <label style={{ display: 'block', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
-          <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
-          <MoneyFormatter amount={formData.amount} />
-          </div>
+          <label style={{ display: 'block', fontWeight: 'bold' }}>จำนวนเงินบริจาค : <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
+          {new Intl.NumberFormat().format(formData.amount)}
+          </div></label>
+         
         </div>
 
         <div style={{ marginBottom: '5px' }}>
-          <label style={{ display: 'block',  fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :</label>
-          <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1' }}>
+          <label style={{ display: 'block',  fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :        <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1' }}>
             {formData.donate_for}
-          </div>
+          </div></label>
+  
         </div>
 
         <div style={{ marginBottom: '5px' }}>
-          <label style={{ display: 'block',  fontWeight: 'bold' }}>รับพระของขวัญ:</label>
-          <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
+          <label style={{ display: 'block',  fontWeight: 'bold' }}>รับพระของขวัญ:    <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1'}}>
             {amulet_type_text}
-          </div>
+          </div></label>
+      
         </div>
 
         <div style={{ marginBottom: '5px' }}>
-          <label style={{ display: 'block',  fontWeight: 'bold' }}>รับใบอนุโมทนา :</label>
-          <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1' }}>
+          <label style={{ display: 'block',  fontWeight: 'bold' }}>รับใบอนุโมทนา :      <div style={{ padding: '3px', borderRadius: '5px', color:'#4169E1' }}>
             {anumotana_type_text}
-          </div>
+          </div></label>
+    
         </div>
 
         {imageBase64 && (
