@@ -358,20 +358,10 @@ function CreatePageContent() {
 
         }
    
-        // if (amulet_type_text) {
-        //     setAmulet_type_text(amulet_type_text);
-        //   }
-        //   if (anumotana_type_text) {
-        //     setAnumotana_type_text(anumotana_type_text);
-        //   }
-        //   if (product_text) {
-        //     setProduct_text(product_text);
-        //   }
+
 
           setPreviewImage("");
-        // selectedCategory.bank_holder=bank_holder;
-        // selectedCategory.bank_account=bank_account;
-        // selectedCategory.image=bank_image;
+
         setSelectedCategory({
           id: 0, // Provide a default or meaningful value
           name: "",
@@ -583,9 +573,11 @@ function CreatePageContent() {
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
                  </td><td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
       
-                 <button onClick={handleShareImage}>
-      Download Image
-      </button>
+                 <a
+  href="#"
+  onClick={(e) => {
+    e.preventDefault(); // Prevent the default link behavior
+handleShareImage();}}> แชร์ สลิป</a>
           </td>
           </tr></tbody></table> 
 
