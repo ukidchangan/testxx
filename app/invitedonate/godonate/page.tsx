@@ -1,8 +1,9 @@
 "use client"; // This is required to use client-side features like useState, useEffect, etc.
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, Suspense, useRef } from "react";
 import liff from "@line/liff";
 import Image from 'next/image';
+import html2canvas from "html2canvas";
 
 // Wrap the main component in a Suspense boundary
 export default function CreatePage() {
@@ -12,35 +13,30 @@ export default function CreatePage() {
     </Suspense>
   );
 }
-const downloadImage = async () => {
-  const imageUrl = "https://testdonate.luangphorsodh.com/api/category/qrcode/?id=1";
-  try {
-    const response = await fetch(imageUrl, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/octet-stream",
-      },
-    });
 
-    if (!response.ok) {
-      throw new Error("Failed to download image");
-    }
-
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "qrcode.jpg"; // Change the filename if needed
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  } catch (error) {
-    console.error("Download failed:", error);
-  }
-};
 function CreatePageContent() {
+
+  const imageUrl = "https://testdonate.luangphorsodh.com/api/category/qrcode/?id=1";
+  const [isOpen, setIsOpen] = useState(false);
+  const captureRef = useRef<HTMLDivElement>(null);
+
+  // Function to capture QR code and download
+  const captureAndDownload = async () => {
+    if (captureRef.current) {
+      const canvas = await html2canvas(captureRef.current);
+      const image = canvas.toDataURL("image/png");
+
+      // Create a download link
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = "qrcode-capture.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
+
   const searchParams = useSearchParams();
   interface Category {
     id: number;
@@ -589,9 +585,92 @@ function CreatePageContent() {
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
                  </td><td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
       
-                 <button onClick={downloadImage}>
-      Download Image
-    </button>
+                 <div style={{ textAlign: "center", marginTop: "20px" }}>
+      <a
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          setIsOpen(true);
+        }}
+        style={{
+          display: "inline-block",
+          padding: "10px 20px",
+          backgroundColor: "#007bff",
+          color: "white",
+          borderRadius: "5px",
+          textDecoration: "none",
+        }}
+      >
+        Download Image
+      </a>
+
+      {isOpen && (
+        <div
+          style={{
+            position: "fixed",
+            top: "0",
+            left: "0",
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0,0,0,0.7)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            ref={captureRef}
+            style={{
+              backgroundColor: "white",
+              padding: "20px",
+              borderRadius: "10px",
+              textAlign: "center",
+            }}
+          >
+            <img
+              src={imageUrl}
+              alt="QR Code"
+              style={{
+                maxWidth: "100%",
+                borderRadius: "10px",
+              }}
+            />
+          </div>
+
+          <div style={{ marginTop: "20px" }}>
+            <button
+              onClick={captureAndDownload}
+              style={{
+                padding: "10px 20px",
+                backgroundColor: "#28a745",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                marginRight: "10px",
+                cursor: "pointer",
+              }}
+            >
+              Capture & Save
+            </button>
+            <button
+              onClick={() => setIsOpen(false)}
+              style={{
+                padding: "10px 20px",
+                backgroundColor: "#dc3545",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
           </td>
           </tr></tbody></table> 
 
