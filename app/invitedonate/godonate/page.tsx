@@ -347,7 +347,7 @@ function CreatePageContent() {
         const imageBase64 = localStorage.getItem('imageBase64');
         const bank_holder = localStorage.getItem('bank_holder');
         const bank_account = localStorage.getItem('bank_account');
-        const bank_image = localStorage.getItem('image');
+        const bank_image = localStorage.getItem('bank_image');
         
         // alert(storedPreviewImage);
     
