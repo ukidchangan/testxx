@@ -577,7 +577,7 @@ function CreatePageContent() {
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-                  <p style={{ display: 'block', fontSize: '12pt', color: '#970459' }}>
+                  <p style={{ display: 'block', fontSize: '12pt', color: '#970459' }}>กด QRCode เพื่อ download</p>
                 </div>
               )}
             </div>
