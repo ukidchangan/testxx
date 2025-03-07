@@ -66,27 +66,7 @@ function CreatePageContent() {
 
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
-  const handleDownloadImage = (base64Image="", filename = 'download.png') => {
-    // Convert base64 to Blob
-    const byteCharacters = atob(base64Image.split(',')[1]);
-    const byteNumbers = new Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: 'image/webp' });
-  
-    // Create a link element
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
-  
-    // Trigger the download
-    link.click();
-  
-    // Clean up
-    URL.revokeObjectURL(link.href);
-  };
+
   useEffect(() => {
     if (userId !== "Unknown" && userId !== "") {
       fetchDonorInfo(userId);
@@ -575,27 +555,18 @@ function CreatePageContent() {
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                   {/* <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <tbody>
                   <tr>
-                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}> */}
+                    <td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-                  {/* </td><td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
-                  <button
-            onClick={() => handleDownloadImage(selectedCategory.image, 'qr_code.jpg')}
-            style={{
-              display: 'inline-block',
-              padding: '8px 12px',
-              backgroundColor: '#007bff',
-              color: '#fff',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              textAlign: 'center'
-            }}
-          >
-           ดาวน์โหลด QR Code
-          </button></td>
-          </tr></tbody></table> */}
+                 </td><td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
+      
+          <a href="https://testdonate.luangphorsodh.com/api/category/qrcode/?id=1" download="sample.jpg">
+      Download Image
+    </a>
+          </td>
+          </tr></tbody></table> 
 
                 </div>
               )}
