@@ -12,7 +12,34 @@ export default function CreatePage() {
     </Suspense>
   );
 }
+const downloadImage = async () => {
+  const imageUrl = "https://testdonate.luangphorsodh.com/api/category/qrcode/?id=1";
+  try {
+    const response = await fetch(imageUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/octet-stream",
+      },
+    });
 
+    if (!response.ok) {
+      throw new Error("Failed to download image");
+    }
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "qrcode.jpg"; // Change the filename if needed
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error("Download failed:", error);
+  }
+};
 function CreatePageContent() {
   const searchParams = useSearchParams();
   interface Category {
@@ -562,9 +589,9 @@ function CreatePageContent() {
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
                  </td><td style={{ width: '50%', padding: '5px', verticalAlign: 'top' }}>
       
-          <a href="https://testdonate.luangphorsodh.com/api/category/qrcode/?id=1" download="sample.jpg">
+                 <button onClick={downloadImage}>
       Download Image
-    </a>
+    </button>
           </td>
           </tr></tbody></table> 
 
