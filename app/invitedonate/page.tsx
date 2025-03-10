@@ -160,7 +160,7 @@ const InviteDonatePage = () => {
                       onClick={() => setIsLoading(true)}
                     >
                       <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                        บริจาคทำบุญ
+                        บริจาคทำบุญ<br /><br />
                         <FontAwesomeIcon icon={faHandsPraying}  style={{ fontSize: '30px', marginRight: '8px' }} />
                       </Link>
                     </button>
@@ -174,7 +174,7 @@ const InviteDonatePage = () => {
                       onClick={() => setIsLoading(true)}
                     >
                       <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                        ประวัติการบริจาค <br /><br />
+                        ประวัติการบริจาค 
                         <FontAwesomeIcon icon={faClockRotateLeft}  style={{ fontSize: '30px', marginRight: '8px' }} />
                       </Link>
                     </button>
