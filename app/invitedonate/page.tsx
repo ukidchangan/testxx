@@ -174,7 +174,7 @@ const InviteDonatePage = () => {
                       onClick={() => setIsLoading(true)}
                     >
                       <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                        ประวัติการบริจาค <br />
+                        ประวัติการบริจาค <br /><br />
                         <FontAwesomeIcon icon={faClockRotateLeft}  style={{ fontSize: '30px', marginRight: '8px' }} />
                       </Link>
                     </button>
@@ -192,7 +192,7 @@ const InviteDonatePage = () => {
                       }}
                       onClick={handleBackHome}
                     >
-                      กลับ<br />
+                      กลับ<br /><br />
                       <FontAwesomeIcon icon={faHouse}  style={{ fontSize: '30px', marginRight: '8px' }} />
                     </button>
                   </td>
