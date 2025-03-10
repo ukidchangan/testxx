@@ -368,7 +368,7 @@ function CreatePageContent() {
         //     setProduct_text(product_text);
         //   }
 
-          setPreviewImage("");
+          
         // selectedCategory.bank_holder=bank_holder;
         // selectedCategory.bank_account=bank_account;
         // selectedCategory.image=bank_image;
@@ -393,6 +393,7 @@ function CreatePageContent() {
           }
           if (imageBase64) {
             setImageBase64(imageBase64);
+            setPreviewImage(imageBase64);
           }
         // formData.amount="8888888";
       }
@@ -595,7 +596,7 @@ function CreatePageContent() {
                 />
               </label>
 
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี :
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี :<br />
                {selectedCategory?.bank_holder || ''}
               </label>
             </div>
