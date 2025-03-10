@@ -136,7 +136,7 @@ const InviteDonatePage = () => {
                       onClick={() => setIsLoading(true)}
                     >
                       <Link href="/invitedonate/info" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                      <FontAwesomeIcon icon={faPenToSquare}  style={{ marginRight: '8px' }}  />
+                      <FontAwesomeIcon icon={faPenToSquare}  />
 
                         ลงทะเบียน/แก้ไข
                       </Link>
