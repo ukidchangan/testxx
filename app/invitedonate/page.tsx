@@ -139,7 +139,7 @@ const InviteDonatePage = () => {
                     
 
                         ลงทะเบียน/แก้ไข
-                        <FontAwesomeIcon icon={faPenToSquare}  style={{ fontSize: '20px', marginRight: '8px' }} />
+                        <FontAwesomeIcon icon={faPenToSquare}  style={{ fontSize: '100px'}} />
                       </Link>
                     </button>
                   </td>
