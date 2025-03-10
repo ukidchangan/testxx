@@ -129,76 +129,90 @@ const InviteDonatePage = () => {
         {/* Row 4 - Buttons */}
         <div className="row mt-4">
           <div className="col">
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <tbody>
-                <tr>
-                  <td style={{ width: '50%', padding: '5px' }}>
-                    <button
-                      className="btn btn-primary h-100 w-100 py-2"
-                      style={{ fontSize: "1.1rem" }}
-                      onClick={() => setIsLoading(true)}
-                    >
-                      <Link href="/invitedonate/info" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                    
-
-                        ลงทะเบียน/แก้ไข
-                        <FontAwesomeIcon icon={faPenToSquare}  style={{ fontSize: '30px', marginRight: '8px' }} />
-                      </Link>
-                    </button>
-                  </td>
-                  <td style={{ width: '50%', padding: '5px' }}>
-                    <button
-                      className="btn btn-primary w-100 h-100 py-2"
-                      style={{ 
-                        fontSize: "1.1rem", 
-                        height: "100%", // Ensure the button takes full height
-                        display: "flex", // Use flexbox to align the link inside
-                        alignItems: "center", // Vertically center the link
-                        justifyContent: "center", // Horizontally center the link
-                        padding: 0, // Remove default padding to ensure full height
-                      }}
-                      onClick={() => setIsLoading(true)}
-                    >
-                      <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                        บริจาคทำบุญ<br /><br />
-                        <FontAwesomeIcon icon={faHandsPraying}  style={{ fontSize: '30px', marginRight: '8px' }} />
-                      </Link>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td style={{ width: '50%', padding: '5px' }}>
-                    <button
-                      className="btn btn-success h-100 w-100 py-2"
-                      style={{ fontSize: "1.1rem" }}
-                      onClick={() => setIsLoading(true)}
-                    >
-                      <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                        ประวัติการบริจาค 
-                        <FontAwesomeIcon icon={faClockRotateLeft}  style={{ fontSize: '30px', marginRight: '8px' }} />
-                      </Link>
-                    </button>
-                  </td>
-                  <td style={{ width: '50%', padding: '5px' }}>
-                    <button
-                      className="btn btn-danger w-100 py-2"
-                      style={{ 
-                        fontSize: "1.1rem", 
-                        height: "100%", // Ensure the button takes full height
-                        display: "flex", // Use flexbox to align the link inside
-                        alignItems: "center", // Vertically center the link
-                        justifyContent: "center", // Horizontally center the link
-                        padding: 0, // Remove default padding to ensure full height
-                      }}
-                      onClick={handleBackHome}
-                    >
-                      กลับ<br /><br />
-                      <FontAwesomeIcon icon={faHouse}  style={{ fontSize: '30px', marginRight: '8px' }} />
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <tbody>
+    <tr>
+      <td style={{ width: '50%', padding: '5px' }}>
+        <button
+          className="btn btn-primary h-100 w-100 py-2"
+          style={{ 
+            fontSize: "1.1rem", 
+            height: "100%", // Ensure the button takes full height
+            display: "flex", // Use flexbox to align the link inside
+            alignItems: "center", // Vertically center the link
+            justifyContent: "center", // Horizontally center the link
+            padding: 0, // Remove default padding to ensure full height
+          }}
+          onClick={() => setIsLoading(true)}
+        >
+          <Link href="/invitedonate/info" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+            ลงทะเบียน/แก้ไข
+            <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '30px', marginRight: '8px' }} />
+          </Link>
+        </button>
+      </td>
+      <td style={{ width: '50%', padding: '5px' }}>
+        <button
+          className="btn btn-primary w-100 h-100 py-2"
+          style={{ 
+            fontSize: "1.1rem", 
+            height: "100%", // Ensure the button takes full height
+            display: "flex", // Use flexbox to align the link inside
+            alignItems: "center", // Vertically center the link
+            justifyContent: "center", // Horizontally center the link
+            padding: 0, // Remove default padding to ensure full height
+          }}
+          onClick={() => setIsLoading(true)}
+        >
+          <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+            บริจาคทำบุญ
+            <FontAwesomeIcon icon={faHandsPraying} style={{ fontSize: '30px', marginRight: '8px' }} />
+          </Link>
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td style={{ width: '50%', padding: '5px' }}>
+        <button
+          className="btn btn-success h-100 w-100 py-2"
+          style={{ 
+            fontSize: "1.1rem", 
+            height: "100%", // Ensure the button takes full height
+            display: "flex", // Use flexbox to align the link inside
+            alignItems: "center", // Vertically center the link
+            justifyContent: "center", // Horizontally center the link
+            padding: 0, // Remove default padding to ensure full height
+          }}
+          onClick={() => setIsLoading(true)}
+        >
+          <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+            ประวัติการบริจาค 
+            <FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: '30px', marginRight: '8px' }} />
+          </Link>
+        </button>
+      </td>
+      <td style={{ width: '50%', padding: '5px' }}>
+        <button
+          className="btn btn-danger w-100 h-100 py-2"
+          style={{ 
+            fontSize: "1.1rem", 
+            height: "100%", // Ensure the button takes full height
+            display: "flex", // Use flexbox to align the link inside
+            alignItems: "center", // Vertically center the link
+            justifyContent: "center", // Horizontally center the link
+            padding: 0, // Remove default padding to ensure full height
+          }}
+          onClick={handleBackHome}
+        >
+          <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+            กลับ
+            <FontAwesomeIcon icon={faHouse} style={{ fontSize: '30px', marginRight: '8px' }} />
+          </Link>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
           </div>
         </div>
       </div>
