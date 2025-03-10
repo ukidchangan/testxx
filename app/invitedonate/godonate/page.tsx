@@ -331,7 +331,7 @@ function CreatePageContent() {
       localStorage.setItem('bank_image', selectedCategory?.image || '');
     }
 
-
+    alert(formData.attachment);
     // Navigate to the preview page
     window.location.href = "/invitedonate/previewdonate";
   };
