@@ -574,7 +574,7 @@ function CreatePageContent() {
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-                  <p onClick={openModal} style={{ display: 'block', fontSize: '12pt', color: '#970459' }}>กด QRCode เพื่อ download</p>
+                  <p onClick={openModal} style={{ display: 'block', fontSize: '12pt', color: '#970459' }}>กดเพื่อขยาย</p>
                 </div>
               )}
             </div>
@@ -653,6 +653,7 @@ function CreatePageContent() {
     <img
       src={selectedCategory?.image || ''}
       alt="Expanded QR"
+      onClick={handleCopyAccount}
       style={{ 
         width: '90%', // Set width to 90% of the screen
         height: 'auto', // Maintain aspect ratio
