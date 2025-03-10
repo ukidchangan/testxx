@@ -5,6 +5,9 @@ import Image from 'next/image';
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare  } from '@fortawesome/free-solid-svg-icons'; // Example icon for registration/edit
+import { faHandsPraying} from '@fortawesome/free-solid-svg-icons';
+import {faClockRotateLeft}  from '@fortawesome/free-solid-svg-icons';
+import {faHouse}  from '@fortawesome/free-solid-svg-icons';
 
 const InviteDonatePage = () => {
   const [displayName, setDisplayName] = useState("Loading...");
@@ -158,6 +161,7 @@ const InviteDonatePage = () => {
                     >
                       <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
                         บริจาคทำบุญ
+                        <FontAwesomeIcon icon={faHandsPraying}  style={{ fontSize: '30px', marginRight: '8px' }} />
                       </Link>
                     </button>
                   </td>
@@ -170,7 +174,8 @@ const InviteDonatePage = () => {
                       onClick={() => setIsLoading(true)}
                     >
                       <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-                        ประวัติการบริจาค
+                        ประวัติการบริจาค 
+                        <FontAwesomeIcon icon={faClockRotateLeft}  style={{ fontSize: '30px', marginRight: '8px' }} />
                       </Link>
                     </button>
                   </td>
@@ -188,6 +193,7 @@ const InviteDonatePage = () => {
                       onClick={handleBackHome}
                     >
                       กลับ
+                      <FontAwesomeIcon icon={faHouse}  style={{ fontSize: '30px', marginRight: '8px' }} />
                     </button>
                   </td>
                 </tr>
