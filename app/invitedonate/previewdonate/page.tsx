@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck  } from '@fortawesome/free-solid-svg-icons'; 
+import { faPenToSquare  } from '@fortawesome/free-solid-svg-icons'; 
+
 
 export default function PreviewDonatePage() {
   const router = useRouter();
@@ -216,46 +220,38 @@ export default function PreviewDonatePage() {
                   <td style={{ width: '50%', padding: '5px' }}>
           <button
             type="submit"
-            style={{
-              width: "100%",
-              maxWidth: "400px",
-              padding: "12px 20px",
-              backgroundColor: "#007bff",
-              color: "#fff",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-              fontSize: "22px",
-              fontWeight: "bold",
-              transition: "background-color 0.3s ease",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
+            className="btn btn-primary h-100 w-100 py-2"
+            style={{ 
+              fontSize: "1.1rem", 
+              height: "100%", // Ensure the button takes full height
+              display: "flex", // Use flexbox to align the link inside
+              alignItems: "center", // Vertically center the link
+              justifyContent: "center", // Horizontally center the link
+              padding: 0, // Remove default padding to ensure full height
             }}
             disabled={isSubmitting}
           >
             {isSubmitting ? 'ประมวลผล...' : 'ยืนยัน'}
+                      <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: '30px', marginRight: '8px' }} />
           </button>
 
 </td><td>
           <button
             type="button"
             onClick={handleBack} 
-            className="btn btn-danger w-100 py-2"
-            style={{
-              width: "100%",
-              maxWidth: "400px",
-              padding: "12px 20px",
-              color: "#fff",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-              fontSize: "22px",
-              fontWeight: "bold",
-              transition: "background-color 0.3s ease",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
+            className="btn btn-danger w-100 h-100 py-2"
+            style={{ 
+              fontSize: "1.1rem", 
+              height: "100%", // Ensure the button takes full height
+              display: "flex", // Use flexbox to align the link inside
+              alignItems: "center", // Vertically center the link
+              justifyContent: "center", // Horizontally center the link
+              padding: 0, // Remove default padding to ensure full height
             }}
      
           >
            แก้ไข
+           <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '30px', marginRight: '8px' }} />
           </button>
           </td>
           </tr></tbody></table>
