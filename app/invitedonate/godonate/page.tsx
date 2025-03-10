@@ -16,6 +16,16 @@ export default function CreatePage() {
 
 function CreatePageContent() {
   const searchParams = useSearchParams();
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+    // Function to open the modal
+    const openModal = () => {
+      setIsModalOpen(true);
+    };
+  
+    // Function to close the modal
+    const closeModal = () => {
+      setIsModalOpen(false);
+    };
   interface Category {
     id: number;
     name: string;
@@ -331,7 +341,6 @@ function CreatePageContent() {
       localStorage.setItem('bank_image', selectedCategory?.image || '');
     }
 
-    alert(formData.attachment);
     // Navigate to the preview page
     window.location.href = "/invitedonate/previewdonate";
   };
@@ -358,21 +367,7 @@ function CreatePageContent() {
 
         }
    
-        // if (amulet_type_text) {
-        //     setAmulet_type_text(amulet_type_text);
-        //   }
-        //   if (anumotana_type_text) {
-        //     setAnumotana_type_text(anumotana_type_text);
-        //   }
-        //   if (product_text) {
-        //     setProduct_text(product_text);
-        //   }
 
-          
-        // selectedCategory.bank_holder=bank_holder;
-        // selectedCategory.bank_account=bank_account;
-        // selectedCategory.image=bank_image;
-        // alert(bank_image);
         setSelectedCategory({
           id: 0, // Provide a default or meaningful value
           name: "",
@@ -579,7 +574,7 @@ function CreatePageContent() {
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
                   <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-                  <p style={{ display: 'block', fontSize: '12pt', color: '#970459' }}>กด QRCode เพื่อ download</p>
+                  <p onClick={openModal} style={{ display: 'block', fontSize: '12pt', color: '#970459' }}>กด QRCode เพื่อ download</p>
                 </div>
               )}
             </div>
@@ -637,6 +632,31 @@ function CreatePageContent() {
 
             <br /><br /><br /><br />
           </div>
+
+{/* Modal for expanded image */}
+{isModalOpen && (
+            <div
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 1000,
+              }}
+              onClick={closeModal} // Close modal when clicking outside the image
+            >
+              <img
+                src={selectedCategory?.image || ''}
+                alt="Expanded QR"
+                style={{ maxWidth: '90%', maxHeight: '90%', borderRadius: '10px' }}
+              />
+            </div>
+          )}
 
           <footer style={{
             position: "fixed",
