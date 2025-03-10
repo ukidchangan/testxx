@@ -623,7 +623,7 @@ function CreatePageContent() {
         name="attachment"
         accept="image/*"
         onChange={handleFileChange}
-        required
+        required={!previewImage}
         style={{ display: 'none' }} // Hide default file input
       />
       <span style={{ marginLeft: '10px' }}>{fileName}</span>
