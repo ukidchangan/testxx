@@ -635,28 +635,33 @@ function CreatePageContent() {
 
 {/* Modal for expanded image */}
 {isModalOpen && (
-            <div
-              style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 1000,
-              }}
-              onClick={closeModal} // Close modal when clicking outside the image
-            >
-              <img
-                src={selectedCategory?.image || ''}
-                alt="Expanded QR"
-                style={{ maxWidth: '90%', maxHeight: '90%', borderRadius: '10px' }}
-              />
-            </div>
-          )}
+  <div
+    style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 1000,
+    }}
+    onClick={closeModal} // Close modal when clicking outside the image
+  >
+    <img
+      src={selectedCategory?.image || ''}
+      alt="Expanded QR"
+      style={{ 
+        width: '90%', // Set width to 90% of the screen
+        height: 'auto', // Maintain aspect ratio
+        borderRadius: '10px',
+        maxHeight: '90%', // Ensure it doesn't exceed 90% of the screen height
+      }}
+    />
+  </div>
+)}
 
           <footer style={{
             position: "fixed",
