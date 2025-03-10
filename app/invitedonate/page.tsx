@@ -146,7 +146,7 @@ const InviteDonatePage = () => {
           onClick={() => setIsLoading(true)}
         >
           <Link href="/invitedonate/info" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-            ลงทะเบียน/แก้ไข
+            ลงทะเบียน<br />/แก้ไข
             <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '30px', marginRight: '8px' }} />
           </Link>
         </button>
@@ -165,7 +165,7 @@ const InviteDonatePage = () => {
           onClick={() => setIsLoading(true)}
         >
           <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-            บริจาคทำบุญ
+            บริจาค<br />ทำบุญ
             <FontAwesomeIcon icon={faHandsPraying} style={{ fontSize: '30px', marginRight: '8px' }} />
           </Link>
         </button>
@@ -186,7 +186,7 @@ const InviteDonatePage = () => {
           onClick={() => setIsLoading(true)}
         >
           <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-            ประวัติการบริจาค 
+            ประวัติ<br />การบริจาค 
             <FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: '30px', marginRight: '8px' }} />
           </Link>
         </button>
@@ -205,7 +205,7 @@ const InviteDonatePage = () => {
           onClick={handleBackHome}
         >
           <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-            กลับ
+            กลับ <br />เมนูหลัก
             <FontAwesomeIcon icon={faHouse} style={{ fontSize: '30px', marginRight: '8px' }} />
           </Link>
         </button>
