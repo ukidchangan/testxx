@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import liff from "@line/liff";
 import Image from 'next/image';
 import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons'; // Example icon for registration/edit
 
 const InviteDonatePage = () => {
   const [displayName, setDisplayName] = useState("Loading...");
@@ -134,6 +136,7 @@ const InviteDonatePage = () => {
                       onClick={() => setIsLoading(true)}
                     >
                       <Link href="/invitedonate/info" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+                        <FontAwesomeIcon icon={faUserEdit} style={{ marginRight: '8px' }} />
                         ลงทะเบียน/แก้ไข
                       </Link>
                     </button>
