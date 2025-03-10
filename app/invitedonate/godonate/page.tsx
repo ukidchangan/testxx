@@ -3,7 +3,8 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import liff from "@line/liff";
 import Image from 'next/image';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCircleArrowRight}  from '@fortawesome/free-solid-svg-icons';
 // Wrap the main component in a Suspense boundary
 export default function CreatePage() {
   return (
@@ -595,14 +596,7 @@ function CreatePageContent() {
               </label>
 
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี :
-                <input
-                  type="text"
-                  onClick={handleCopyAccount}
-                  name="bank_holder"
-                  value={selectedCategory?.bank_holder || ''}
-                  readOnly
-                  style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
-                />
+               {selectedCategory?.bank_holder || ''}
               </label>
             </div>
 
@@ -655,18 +649,19 @@ function CreatePageContent() {
             <div style={{ textAlign: 'center', marginTop: '5px' }}>
               <button
                 type="submit"
-                style={{
-                  padding: '10px 20px',
-                  backgroundColor: '#007bff',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '5px',
-                  cursor: 'pointer',
-                  width: '100%',
-                }}
+                className="btn btn-primary h-100 w-100 py-2"
+          style={{ 
+            fontSize: "1.1rem", 
+            height: "100%", // Ensure the button takes full height
+            display: "flex", // Use flexbox to align the link inside
+            alignItems: "center", // Vertically center the link
+            justifyContent: "center", // Horizontally center the link
+            padding: 0, // Remove default padding to ensure full height
+          }}
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'ถัดไป...' : 'ถัดไป'}
+                <FontAwesomeIcon icon={faCircleArrowRight} style={{ fontSize: '30px', marginRight: '8px' }} />
               </button>
             </div>
           </footer>

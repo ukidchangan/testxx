@@ -4,7 +4,8 @@
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
 import Image from 'next/image';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCircleCheck}  from '@fortawesome/free-solid-svg-icons';
 
 export default function CreatePage() {
 
@@ -265,17 +266,18 @@ export default function CreatePage() {
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <button
               type="submit" disabled={isSubmitting}
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#007bff',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                width: '100%', // Full-width button on mobile
+              className="btn btn-primary h-100 w-100 py-2"
+              style={{ 
+                fontSize: "1.1rem", 
+                height: "100%", // Ensure the button takes full height
+                display: "flex", // Use flexbox to align the link inside
+                alignItems: "center", // Vertically center the link
+                justifyContent: "center", // Horizontally center the link
+                padding: 0, // Remove default padding to ensure full height
               }}
             >
               {isSubmitting ? "ประมวลผล..." : "ยืนยัน"}
+              <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: '30px', marginRight: '8px' }} />
             </button>
           </div>
         </form>
