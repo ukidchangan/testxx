@@ -526,6 +526,7 @@ function CreatePageContent() {
           backgroundColor: '#04975b',
           color: 'white',
           border: 'none',
+          padding: '5px 5px',
           borderRadius: '5px',
           cursor: 'pointer',
         }} onClick={handleClick}>คำอธิบาย</button></label>
