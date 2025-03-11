@@ -58,7 +58,14 @@ const LiffPage = () => {
     }
   };
 
-  return (<div></div>);
+  // Redirect to the previous page
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.history.back();
+    }
+  }, []);
+
+  return null; // Return null to avoid rendering anything
 };
 
 export default LiffPage;
