@@ -66,10 +66,10 @@ function EditPageContent() {
     if (searchParams) {
         const mobilex = searchParams.get("mobile"); 
         const emailx = searchParams.get("email"); 
-        alert(mobilex);
-        alert(emailx);
-    }
-    const apiUrl = `/api/hello?userid=${userId}`;
+        // alert(mobilex);
+        // alert(emailx);
+   
+    const apiUrl = `/api/hello2?mobile=${mobilex}&email=${emailx}`;
     try {
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -105,6 +105,7 @@ function EditPageContent() {
     } catch (error) {
       console.error("Error fetching donor info:", error);
     }
+}
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
