@@ -145,7 +145,9 @@ function CreatePageContent() {
       console.error("Error fetching donor info:", error);
     }
   };
-
+  const handleClick = () => {
+    alert('เป็นส่วนขยายที่จะพิมพ์เพิ่มเติมบนใบอนุโมทนาบัตร เช่น เพื่ออุทิศส่วนกุศลแก่บรรพบุรุษ  , เจ้าภาพกองกฐินปี 2568 กองที่ 999 , ฯลฯ');
+  };
   useEffect(() => {
     const initializeLiff = async () => {
       try {
@@ -305,7 +307,7 @@ function CreatePageContent() {
     ];
 
     const anumotanaTypeOptions = [
-      { value: "lineoa", text: "ไลน์โอเอ" },
+      { value: "lineoa", text: "ไลน์ Official account" },
       { value: "watluang", text: "ที่วัด" },
       { value: "post", text: "ไปรษณีย์" },
       { value: "email", text: "อีเมล์" },
@@ -520,7 +522,7 @@ function CreatePageContent() {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ :</label>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ : <button onClick={handleClick}>คำอธิบาย</button></label>
               <input
                 type="text"
                 name="donate_for"
@@ -557,7 +559,7 @@ function CreatePageContent() {
                         required
                         style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
                       >
-                        <option key="lineoa" value="lineoa">ไลน์โอเอ</option>
+                        <option key="lineoa" value="lineoa">ไลน์ Official account</option>
                         <option key="watluang" value="watluang">ที่วัด</option>
                         <option key="post" value="post">ไปรษณีย์</option>
                         <option key="email" value="email">อีเมล์</option>
