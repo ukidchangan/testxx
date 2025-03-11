@@ -1,6 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
+import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHandsPraying  } from '@fortawesome/free-solid-svg-icons'; 
+import { faPenToSquare  } from '@fortawesome/free-solid-svg-icons'; 
+
 
 const LiffPage = () => {
   const [displayName, setDisplayName] = useState("Loading...");
@@ -12,8 +17,8 @@ const LiffPage = () => {
   useEffect(() => {
     const initializeLiff = async () => {
       try {
-        console.log("XXXXXXXX");
-        console.log(process.env.NEXT_PUBLIC_LIFE_ID);
+        // console.log("XXXXXXXX");
+        // console.log(process.env.NEXT_PUBLIC_LIFE_ID);
         await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string  });
 
         if (!liff.isLoggedIn()) {
@@ -22,7 +27,7 @@ const LiffPage = () => {
           const profile = await liff.getProfile();
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
-          setUserId(profile.userId || "");
+          setUserId(profile.userId  +"AAAA" || "");
           console.log("Already logged in.");
         }
       } catch (err) {
@@ -57,7 +62,7 @@ const LiffPage = () => {
 
       const data = await response.json();
       if (data.message !== "Successfully") {
-        window.location.href = "/create";
+        window.location.href = "/invitedonate/create";
       }
       try {
         setDonorInfo(data);
@@ -69,22 +74,22 @@ const LiffPage = () => {
   };
 
   const handleEditClick = () => {
-    window.location.href = "/edit";
+    window.location.href = "/invitedonate/edit";
+  };
+
+  const handleDonateClick = () => {
+    window.location.href = "/invitedonate/godonate";
   };
 
   return (
-    <div style={{ 
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: "center", 
-      justifyContent: "center", 
-      minHeight: "100vh", 
-      backgroundColor: "#f0f8ff",
-      padding: "20px",
-      paddingBottom: "80px" // Add padding to accommodate the footer
-    }}>
-      {/* Profile Picture */}
-      {profilePicture && (
+<div>
+    <div style={{ backgroundColor: "#f0f8ff", minHeight: "100vh", padding: "20px" }}>
+      <div className="container">
+        {/* Row 1 - Header */}
+        <div className="row">
+          <div className="col">
+            <div className="p-3 border bg-light text-center rounded">
+                    {profilePicture && (
         <img 
           src={profilePicture} 
           alt="Profile" 
@@ -97,29 +102,32 @@ const LiffPage = () => {
           }} 
         />
       )}
+              <h2>  ข้อมูลผู้บริจาค {displayName}</h2>
+            </div>
+          </div>
+        </div>
 
-      {/* Welcome Message */}
-      <h1 style={{ 
-        fontSize: "24px", 
-        fontWeight: "bold", 
-        marginBottom: "10px", 
-        color: "#333",
-        textAlign: "center"
-      }}>
-        ยินดีต้อนรับ, {displayName}
-      </h1>
-      <div style={{ display: 'none', visibility: 'hidden'}}>
-        <p style={{ 
-          fontSize: "14px", 
-          color: "#666", 
-          marginBottom: "20px",
-          textAlign: "center"
-        }}>
-          USER ID: {userId}
-        </p>
-      </div>
+        {/* Row 2 - Image */}
+        <div className="row mt-2">
+          <div className="col">
+            <div className="text-center" >
+              <Image 
+                src="/flow1.jpg" // Path to the image in the public folder
+                alt="Donation Flow"
+                width={800} // Set the width
+                height={400} // Set the height
+                layout="responsive" // Ensure the image is responsive
+                className="rounded"
+              />
+            </div>
+          </div>
+        </div>
 
-      {/* Donor Information */}
+        {/* Row 3 - Instructions */}
+        <div className="row mt-2">
+          <div className="col">
+            <div className="p-3 border bg-light text-left rounded">
+          {/* Donor Information */}
       {error ? (
         <p style={{ 
           color: "red", 
@@ -129,16 +137,7 @@ const LiffPage = () => {
           {error}
         </p>
       ) : donorInfo ? (
-        <div style={{ 
-          width: "100%", 
-          maxWidth: "400px", 
-          marginTop: "20px", 
-          textAlign: "left", 
-          backgroundColor: "#fff", 
-          padding: "20px", 
-          borderRadius: "10px", 
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
-        }}>
+        <div >
           <h3 style={{ 
             fontSize: "18px", 
             fontWeight: "bold", 
@@ -148,13 +147,13 @@ const LiffPage = () => {
           }}>
             ข้อมูลผู้บริจาค
           </h3>
-          <p style={{ marginBottom: "10px" }}><strong>ชื่อ-นามสกุล: </strong> {donorInfo.data?.[0]?.name}</p>
-          <p style={{ marginBottom: "10px" }}><strong>เบอร์มือถือ: </strong> {donorInfo.data?.[0]?.mobile}</p>
-          <p style={{ marginBottom: "10px" }}><strong>อีเมล์: </strong> {donorInfo.data?.[0]?.email}</p>
-          <p style={{ marginBottom: "10px" }}><strong>ที่อยู่: </strong> {donorInfo.data?.[0]?.street}</p>
-          <p style={{ marginBottom: "10px" }}><strong>ที่อยู่เพิ่มเติม: </strong> {donorInfo.data?.[0]?.street2}</p>
-          <p style={{ marginBottom: "10px" }}><strong>จังหวัด: </strong> {donorInfo.data?.[0]?.city}</p>
-          <p style={{ marginBottom: "10px" }}><strong>ไปรษณีย์: </strong> {donorInfo.data?.[0]?.zip}</p>
+          <p style={{ marginBottom: "10px" }}><strong>ชื่อ-นามสกุล : </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.name}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>เบอร์มือถือ : </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.mobile}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>อีเมล์ : </strong><strong style={{ color:'#4169E1'}} >  {donorInfo.data?.[0]?.email}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>ที่อยู่(ใช้สำหรับกรณีส่งเอกสารทางไปรษณีย์) : <br /> </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.street}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>ที่อยู่เพิ่มเติม : </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.street2}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>จังหวัด : </strong> <strong style={{ color:'#4169E1'}} > {donorInfo.data?.[0]?.city}</strong></p>
+          <p style={{ marginBottom: "10px" }}><strong>ไปรษณีย์ : </strong><strong style={{ color:'#4169E1'}} >  {donorInfo.data?.[0]?.zip}</strong></p>
         </div>
       ) : (
         <p style={{ 
@@ -165,39 +164,74 @@ const LiffPage = () => {
           กำลังโหลดข้อมูล...
         </p>
       )}
+            </div>
+          </div>
+        </div>
 
-      {/* Footer with Edit Button */}
-      <footer style={{
-        position: "fixed",
-        bottom: "0",
-        width: "100%",
-        backgroundColor: "#fff",
-        padding: "15px",
-        boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
-        textAlign: "center"
-      }}>
-        <button
-          onClick={handleEditClick}
-          style={{
-            width: "100%",
-            maxWidth: "400px",
-            padding: "12px 20px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-            fontSize: "16px",
-            fontWeight: "bold",
-            transition: "background-color 0.3s ease",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#005bb5")}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#007bff")}
-        >
-          แก้ไขข้อมูล
-        </button>
-      </footer>
+
+      </div>
+
+    <br /><br /><br /><br /><br />
+
+    </div>
+    <footer style={{
+      position: "fixed",
+      bottom: "0",
+      width: "100%",
+      backgroundColor: "#fff",
+      padding: "15px",
+      boxShadow: "0px -2px 10px rgba(0, 0, 0, 0.1)",
+      textAlign: "center"
+    }}>
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <tbody>
+                <tr>
+                  <td style={{ width: '50%', padding: '5px' }}>
+                  <button
+        onClick={handleEditClick}
+        className="btn btn-primary w-100 h-100 py-2"
+        style={{ 
+   
+          height: "100%", // Ensure the button takes full height
+          display: "flex", // Use flexbox to align the link inside
+          alignItems: "center", // Vertically center the link
+          justifyContent: "center", // Horizontally center the link
+          padding: 0, // Remove default padding to ensure full height
+        }}
+        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#005bb5")}
+        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#007bff")}
+      >
+        แก้ไขข้อมูล
+        <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '20px', marginLeft: '8px' }} />
+      </button>
+                    </td>
+                    <td style={{ width: '50%', padding: '5px' }}>
+                        
+      <button
+        onClick={handleDonateClick}
+        className="btn btn-primary w-100 h-100 py-2"
+        style={{ 
+   
+          height: "100%", // Ensure the button takes full height
+          display: "flex", // Use flexbox to align the link inside
+          alignItems: "center", // Vertically center the link
+          justifyContent: "center", // Horizontally center the link
+          padding: 0, // Remove default padding to ensure full height
+        }}
+      >
+        บริจาคทำบุญ
+        <FontAwesomeIcon icon={faHandsPraying} style={{ fontSize: '20px', marginLeft: '8px' }} />
+      </button>
+
+
+
+                    </td>
+                </tr>
+                </tbody>
+  </table>                
+   
+    </footer>
     </div>
   );
 };
