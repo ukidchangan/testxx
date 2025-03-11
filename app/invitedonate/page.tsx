@@ -206,7 +206,7 @@ const InviteDonatePage = () => {
         >
           <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
             กลับ <br />เมนูหลัก
-            <FontAwesomeIcon icon={faHouse} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '3px' }} />
+            <FontAwesomeIcon icon={faHouse} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '8px' }} />
           </Link>
         </button>
       </td>
