@@ -522,7 +522,15 @@ function CreatePageContent() {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ : <button onClick={handleClick}>คำอธิบาย</button></label>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ : <button  style={{
+          backgroundColor: '#04975b',
+          color: 'white',
+          border: 'none',
+          padding: '10px 20px',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          marginBottom: '20px',
+        }} onClick={handleClick}>คำอธิบาย</button></label>
               <input
                 type="text"
                 name="donate_for"
