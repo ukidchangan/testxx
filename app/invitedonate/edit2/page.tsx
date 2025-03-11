@@ -31,6 +31,7 @@ function EditPageContent() {
     street2: '',
     street: '',
     fullname: '',
+    id: '',
   });
 
   useEffect(() => {
@@ -100,6 +101,7 @@ function EditPageContent() {
           street2: donor.street2,
           street: donor.street,
           fullname: donor.name,
+          id: donor.id,
         });
       }
     } catch (error) {
