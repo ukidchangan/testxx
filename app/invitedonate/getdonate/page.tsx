@@ -127,8 +127,8 @@ const LiffPage = () => {
               )}
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>เบอร์มือถือ :</strong> {donation.mobile}</p>
               <p style={{ color: "#555", marginBottom: "10px" }}><strong>จำนวน :</strong> {donation.amount} บาท</p>
-              <p style={{ color: "#555", marginBottom: "10px" }}><strong>สถานะ :</strong> {donation.state}</p>
-              <p style={{ color: "#555", marginBottom: "10px" }}><strong>วันที่บริจาค :</strong> {donation.donate_date}</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>สถานะ :</strong> {donation.thai_state}</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>วันที่บริจาค :</strong> {donation.thai_date}</p>
             </div>
           ))}
         </div>
