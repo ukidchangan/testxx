@@ -26,7 +26,7 @@ export default function CreatePage() {
               const profile = await liff.getProfile();
               setDisplayName(profile.displayName || "Unknown User");
               setProfilePicture(profile.pictureUrl || "");
-              setUserId(profile.userId+"AAAA"|| "");
+              setUserId(profile.userId|| "");
               console.log("Already logged in.");
             }
           } catch (err) {
@@ -89,8 +89,11 @@ export default function CreatePage() {
           alert(`Failed to create profilex: ${result.message}`);
         }
       } else {
-        const result = await response.json(); // Parse the JSON response
-        alert(`Failed to create profilexx: ${result.message}`);
+        // const result = await response.json(); // Parse the JSON response
+        // alert(`Failed to create profilexx: ${result.message}`);
+        const mobilex = formData.mobile; 
+        const emailx = formData.email;  
+        window.location.href = `/invitedonate/edit2?mobile=${mobilex}&email=${emailx}`;
       }
     } catch (error) {
       console.error('Error:', error);
