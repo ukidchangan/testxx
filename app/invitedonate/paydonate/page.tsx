@@ -49,7 +49,8 @@ const LiffPage = () => {
       if(data.message=="Successfully"){
         window.location.href = "/invitedonate/godonate";
       }else{
-        window.location.href = "/invitedonate/create";
+        window.location.href = "/invitedonate";
+        //window.location.href = "/invitedonate/create";
       }
 
     } catch (error) {
@@ -61,7 +62,7 @@ const LiffPage = () => {
   // Redirect to the previous page
   useEffect(() => {
     if (typeof window !== "undefined") {
-      window.history.back();
+      window.location.href = "/invitedonate";
     }
   }, []);
 
