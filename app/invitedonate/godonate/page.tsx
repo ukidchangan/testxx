@@ -662,7 +662,7 @@ function CreatePageContent() {
     <img
       src={selectedCategory?.image || ''}
       alt="Expanded QR"
-      onClick={handleCopyAccount}
+      onClick={closeModal}
       style={{ 
         width: '90%', // Set width to 90% of the screen
         height: 'auto', // Maintain aspect ratio
