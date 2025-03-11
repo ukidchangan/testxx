@@ -1,13 +1,19 @@
 "use client"; // This is required to use client-side features like useState, useEffect, etc.
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import liff from "@line/liff";
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleCheck}  from '@fortawesome/free-solid-svg-icons';
 import { useSearchParams } from "next/navigation";
-
 export default function EditPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <EditPageContent />
+    </Suspense>
+  );
+}
+function EditPageContent() {
   const searchParams = useSearchParams();
   const [displayName, setDisplayName] = useState("Loading...");
   const [userId, setUserId] = useState("Unknown");
