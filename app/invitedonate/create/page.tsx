@@ -86,7 +86,7 @@ export default function CreatePage() {
           alert('สร้างผู้ใช้งานเรียบร้อย!');
           window.location.href = "/invitedonate/info";
         } else {
-          alert(`Failed to create profile: ${result.message}`);
+          alert(`Failed to create profilex: ${result.message}`);
         }
       } else {
         const result = await response.json(); // Parse the JSON response
