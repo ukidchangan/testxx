@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import liff from "@line/liff";
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleArrowRight}  from '@fortawesome/free-solid-svg-icons';
 // Wrap the main component in a Suspense boundary
@@ -17,6 +18,21 @@ export default function CreatePage() {
 function CreatePageContent() {
   const searchParams = useSearchParams();
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const router = useRouter();
+  useEffect(() => {
+    const handleBackNavigation = () => {
+      // Redirect to google.com when the user navigates back
+      window.location.href = 'https://www.google.com';
+    };
+
+    // Add event listener for popstate (back navigation)
+    window.addEventListener('popstate', handleBackNavigation);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('popstate', handleBackNavigation);
+    };
+  }, [router]);
     // Function to open the modal
     const openModal = () => {
       setIsModalOpen(true);
