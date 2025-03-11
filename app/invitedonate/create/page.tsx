@@ -89,7 +89,8 @@ export default function CreatePage() {
           alert(`Failed to create profile: ${result.message}`);
         }
       } else {
-        alert('Failed to create profile.');
+        const result = await response.json(); // Parse the JSON response
+        alert(`Failed to create profilexx: ${result.message}`);
       }
     } catch (error) {
       console.error('Error:', error);
