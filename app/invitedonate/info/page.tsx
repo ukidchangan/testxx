@@ -202,8 +202,8 @@ const LiffPage = () => {
         onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#005bb5")}
         onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#007bff")}
       >
-        แก้ไข<br />ข้อมูล
-        <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '30px', marginLeft: '8px' }} />
+        แก้ไขข้อมูล
+        <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '20px', marginLeft: '8px' }} />
       </button>
                     </td>
                     <td style={{ width: '50%', padding: '5px' }}>
@@ -221,7 +221,7 @@ const LiffPage = () => {
         }}
       >
         บริจาคทำบุญ
-        <FontAwesomeIcon icon={faHandsPraying} style={{ fontSize: '30px', marginLeft: '8px' }} />
+        <FontAwesomeIcon icon={faHandsPraying} style={{ fontSize: '20px', marginLeft: '8px' }} />
       </button>
 
 
