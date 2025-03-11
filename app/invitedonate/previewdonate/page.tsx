@@ -232,7 +232,7 @@ export default function PreviewDonatePage() {
             disabled={isSubmitting}
           >
             {isSubmitting ? 'ประมวลผล...' : 'ยืนยัน'}
-                      <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: '30px', marginRight: '8px' }} />
+                      <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '8px' }} />
           </button>
 
 </td><td>
@@ -251,7 +251,7 @@ export default function PreviewDonatePage() {
      
           >
            แก้ไข
-           <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '30px', marginRight: '8px' }} />
+           <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '30px', marginRight: '8px' ,marginLeft: '8px'}} />
           </button>
           </td>
           </tr></tbody></table>

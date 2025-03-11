@@ -688,7 +688,7 @@ function CreatePageContent() {
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'ถัดไป...' : 'ถัดไป'}
-                <FontAwesomeIcon icon={faCircleArrowRight} style={{ fontSize: '30px', marginRight: '8px' }} />
+                <FontAwesomeIcon icon={faCircleArrowRight} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '8px' }} />
               </button>
             </div>
           </footer>

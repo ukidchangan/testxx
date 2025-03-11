@@ -120,7 +120,7 @@ const InviteDonatePage = () => {
                 **หากท่านเคยลงทะเบียนแล้ว ระบบฯ จะแสดงข้อมูลของท่านเพื่อตรวจสอบ/แก้ไข
               </p>
               <p style={{ color: "#dc3545", fontWeight: "bold" }}>
-                **การบริจาคทำบุญต้องทำการโอนเงิน และแนบสลิปการโอนเงินในระหว่างการทำรายการ
+              **การบริจาคทำบุญต้องทำการโอนเงินในแอพธนาคารของท่านก่อน และนำสลิปการโอนเงินมาแนบระหว่างการทำรายการในไลน์นี้**
               </p>
             </div>
           </div>
@@ -147,7 +147,7 @@ const InviteDonatePage = () => {
         >
           <Link href="/invitedonate/info" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
             ลงทะเบียน<br />/แก้ไข
-            <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '30px', marginRight: '8px' }} />
+            <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '8px' }} />
           </Link>
         </button>
       </td>
@@ -166,7 +166,7 @@ const InviteDonatePage = () => {
         >
           <Link href="/invitedonate/paydonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
             บริจาค<br />ทำบุญ
-            <FontAwesomeIcon icon={faHandsPraying} style={{ fontSize: '30px', marginRight: '8px' }} />
+            <FontAwesomeIcon icon={faHandsPraying} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '8px' }} />
           </Link>
         </button>
       </td>
@@ -187,7 +187,7 @@ const InviteDonatePage = () => {
         >
           <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
             ประวัติ<br />การบริจาค 
-            <FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: '30px', marginRight: '8px' }} />
+            <FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: '30px', marginRight: '8px' ,marginLeft: '8px'}} />
           </Link>
         </button>
       </td>

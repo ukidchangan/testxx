@@ -277,7 +277,7 @@ export default function CreatePage() {
               }}
             >
               {isSubmitting ? "ประมวลผล..." : "ยืนยัน"}
-              <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: '30px', marginRight: '8px' }} />
+              <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: '30px', marginRight: '8px' ,marginLeft: '8px'}} />
             </button>
           </div>
         </form>
