@@ -594,18 +594,18 @@ function CreatePageContent() {
 
             <div style={{ marginBottom: '15px' }}>
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
-              {/* {selectedCategory?.image && (
+              {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                  <img onClick={handleCopyAccount} src={selectedCategory?.image} alt="QR" style={{ maxWidth: '100%', borderRadius: '5px', border: '1px solid #ccc' }} />
-                  <p onClick={openModal} style={{ display: 'block', fontSize: '12pt', color: '#970459' }}>กดเพื่อขยาย</p>
-                </div>
-              )} */}
-           <img 
+                           <img 
   onClick={handleCopyAccount} 
   src={selectedCategory?.image} 
   alt="QR" 
   style={{ width: '100%', height: 'auto', borderRadius: '5px', border: '1px solid #ccc' }} 
 />
+                  {/* <p onClick={openModal} style={{ display: 'block', fontSize: '12pt', color: '#970459' }}>กดเพื่อขยาย</p> */}
+                </div>
+              )}
+              
             </div>
 
             <div style={{ marginBottom: '15px' }}>
