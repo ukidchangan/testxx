@@ -4,7 +4,7 @@ import liff from "@line/liff";
 import Image from 'next/image';
 const LiffPage = () => {
   const [userId, setUserId] = useState("Unknown");
-  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     const initializeLiff = async () => {
@@ -21,7 +21,7 @@ const LiffPage = () => {
       } catch (err) {
         console.error("LIFF Initialization failed", err);
       } finally {
-        setIsLoading(false);
+       
       }
     };
 
@@ -59,27 +59,20 @@ const LiffPage = () => {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div style={styles.loadingContainer}>
-        <div style={styles.loadingSpinner}></div>
-        <p style={styles.loadingText}>Loading...</p>
-      </div>
-    );
-  }
+
 
   return (
     <div style={styles.loadingContainer}>
               <Image 
                       src="/logo.png" // Path to the image in the public folder
                       alt="logo"
-                      width={800} // Set the width
-                      height={400} // Set the height
+                      width={300} // Set the width
+                      height={300} // Set the height
                       layout="responsive" // Ensure the image is responsive
                       className="rounded"
-                    />
+                    /><br />
       <div style={styles.loadingSpinner}></div>
-      <p style={styles.loadingText}>XLoading...</p>
+      <p style={styles.loadingText}>กำลังประมวลผล...</p>
     </div>
   );
 };
