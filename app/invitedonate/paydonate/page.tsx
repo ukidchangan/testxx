@@ -71,7 +71,7 @@ const LiffPage = () => {
   return (
     <div style={styles.loadingContainer}>
       <div style={styles.loadingSpinner}></div>
-      <p style={styles.loadingText}>Loading...</p>
+      <p style={styles.loadingText}>XLoading...</p>
     </div>
   );
 };
