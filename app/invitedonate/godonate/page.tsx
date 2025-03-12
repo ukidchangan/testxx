@@ -33,7 +33,7 @@ function CreatePageContent() {
       setTimeout(() => {
         setIsModalOpen(false);
         clearInterval(interval); // Clear the interval
-      }, 5000);
+      }, 10000);
     };
   
     // Function to close the modal
