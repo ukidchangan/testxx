@@ -22,7 +22,7 @@ function CreatePageContent() {
     // Function to open the modal
     const openModal = () => {
       setIsModalOpen(true);
-      setCountdown(5); // Reset countdown to 5 seconds
+      setCountdown(10); // Reset countdown to 5 seconds
 
       // Start the countdown
       const interval = setInterval(() => {
