@@ -94,6 +94,7 @@ function CreatePageContent() {
       setDonorInfo(data.data || []);
     } catch (error) {
       console.error("Error fetching donor info:", error);
+      window.location.assign("/invitedonate/create");
 
     }
   };
