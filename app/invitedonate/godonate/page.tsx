@@ -413,7 +413,19 @@ function CreatePageContent() {
       console.log(error);
     }
   }, [searchParams]);
+  // Add event listener for the popstate event
+  useEffect(() => {
+    const handlePopState = () => {
+      alert("XXXXXXXXXX");
+    };
 
+    window.addEventListener('popstate', handlePopState);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
   return (
     <div>
       <form onSubmit={handleSubmit}>
