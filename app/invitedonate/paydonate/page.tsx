@@ -64,7 +64,7 @@ const LiffPage = () => {
     if (typeof window !== "undefined") {
       window.location.href = "/invitedonate";
     }
-  }, []);
+  }, []);  
 
   return null; // Return null to avoid rendering anything
 };

@@ -593,7 +593,7 @@ function CreatePageContent() {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขบัญชีสำหรับการโอนทำบุญ</label>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขที่บัญชีสำหรับการโอนทำบุญ :<span style={{ color: '#970404' }}></span> (บันทึกหน้าจอเพื่อนำไปโอนเงิน)</span></label>
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
                            <img 
@@ -609,7 +609,7 @@ function CreatePageContent() {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี : (แตะที่เลขที่บัญชีเพื่อการคัดลอก)
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>เลขบัญชี : <span style={{ color: '#970404' }}>(แตะที่เลขที่บัญชีเพื่อการคัดลอก)</span>
                 <input
                   onClick={handleCopyAccount}
                   type="text"
