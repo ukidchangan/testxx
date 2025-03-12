@@ -62,19 +62,20 @@ const LiffPage = () => {
 
 
   return (
+    <div>
+    <Image 
+            src="/logo.png" // Path to the image in the public folder
+            alt="logo"
+            width={200} // Set the width
+            height={200} // Set the height
+            layout="responsive" // Ensure the image is responsive
+            className="rounded"
+          /><br />
+         
     <div style={styles.loadingContainer}>
-      <div>
-              <Image 
-                      src="/logo.png" // Path to the image in the public folder
-                      alt="logo"
-                      width={100} // Set the width
-                      height={100} // Set the height
-                      layout="responsive" // Ensure the image is responsive
-                      className="rounded"
-                    /><br />
-                    </div>
       <div style={styles.loadingSpinner}></div>
       <p style={styles.loadingText}>กำลังประมวลผล...</p>
+    </div>
     </div>
   );
 };
