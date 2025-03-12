@@ -68,7 +68,12 @@ const LiffPage = () => {
     );
   }
 
-  return null;
+  return (
+    <div style={styles.loadingContainer}>
+      <div style={styles.loadingSpinner}></div>
+      <p style={styles.loadingText}>Loading...</p>
+    </div>
+  );
 };
 
 export default LiffPage;
