@@ -8,7 +8,7 @@ const LiffPage = () => {
   useEffect(() => {
     const initializeLiff = async () => {
       try {
-        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string  });
+        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
 
         if (!liff.isLoggedIn()) {
           liff.login();
@@ -32,7 +32,6 @@ const LiffPage = () => {
   }, [userId]);
 
   const fetchDonorInfo = async (userId: string) => {
-    
     const apiUrl = `/api/hello?userid=${userId}`;
     try {
       const response = await fetch(apiUrl, {
@@ -45,28 +44,19 @@ const LiffPage = () => {
       }
 
       const data = await response.json();
-
-      if(data.message=="Successfully"){
-        window.location.href = "/invitedonate/godonate";
-      }else{
-        window.location.href = "/invitedonate";
-        //window.location.href = "/invitedonate/create";
+      
+      if (data.message === "Successfully") {
+        window.location.assign("/invitedonate/godonate");
+      } else {
+        window.location.assign("/invitedonate");
       }
-
     } catch (error) {
       console.error("Error fetching donor info:", error);
-
+      window.location.assign("/invitedonate");
     }
   };
 
-  // Redirect to the previous page
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.location.href = "/invitedonate";
-    }
-  }, []);  
-
-  return null; // Return null to avoid rendering anything
+  return null;
 };
 
 export default LiffPage;
