@@ -556,7 +556,7 @@ function CreatePageContent() {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขที่บัญชีสำหรับการโอนทำบุญ : <br /><span style={{ color: '#970404' }}> (บันทึกหน้าจอเพื่อนำไปโอนเงิน)</span></label>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขที่บัญชีสำหรับการโอนทำบุญ : <br /><span style={{ color: '#970404' }}> (บันทึกภาพ QR Code นี้เพื่อโอนเงิน)</span></label>
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
                            <img 
@@ -584,7 +584,7 @@ function CreatePageContent() {
               </label>
 
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี :<br />
-               {selectedCategory?.bank_holder || ''}
+              <span style={{ color: '#970404' }}>{selectedCategory?.bank_holder || ''}</span> 
               </label>
             </div>
 
