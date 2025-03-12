@@ -17,10 +17,23 @@ export default function CreatePage() {
 function CreatePageContent() {
   const searchParams = useSearchParams();
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [countdown, setCountdown] = useState(5); // State to manage countdown
   
     // Function to open the modal
     const openModal = () => {
       setIsModalOpen(true);
+      setCountdown(5); // Reset countdown to 5 seconds
+
+      // Start the countdown
+      const interval = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+  
+      // Close the modal after 5 seconds
+      setTimeout(() => {
+        setIsModalOpen(false);
+        clearInterval(interval); // Clear the interval
+      }, 5000);
     };
   
     // Function to close the modal
@@ -645,34 +658,38 @@ function CreatePageContent() {
 
 {/* Modal for expanded image */}
 {isModalOpen && (
-  <div
-    style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 1000,
-    }}
-    onClick={closeModal} // Close modal when clicking outside the image
-  >
-    <img
-      src={selectedCategory?.image || ''}
-      alt="Expanded QR"
-      onClick={closeModal}
-      style={{ 
-        width: '90%', // Set width to 90% of the screen
-        height: 'auto', // Maintain aspect ratio
-        borderRadius: '10px',
-        maxHeight: '90%', // Ensure it doesn't exceed 90% of the screen height
-      }}
-    />
-  </div>
-)}
+            <div
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 1000,
+              }}
+              onClick={closeModal} // Close modal when clicking outside the image
+            >
+              <div style={{ textAlign: 'center', color: 'white' }}>
+                <img
+                  src={selectedCategory?.image || ''}
+                  alt="Expanded QR"
+                  style={{ 
+                    width: '90%', // Set width to 90% of the screen
+                    height: 'auto', // Maintain aspect ratio
+                    borderRadius: '10px',
+                    maxHeight: '90%', // Ensure it doesn't exceed 90% of the screen height
+                  }}
+                />
+                <div style={{ marginTop: '10px', fontSize: '24px' }}>
+                  Closing in {countdown} seconds...
+                </div>
+              </div>
+            </div>
+          )}
 
           <footer style={{
             position: "fixed",
