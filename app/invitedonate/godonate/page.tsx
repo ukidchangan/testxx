@@ -84,13 +84,17 @@ function CreatePageContent() {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        console.error("Error fetching donor info x:", response.status);
+        window.location.assign("/invitedonate/create");
+        
+        // throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const data = await response.json();
       setDonorInfo(data.data || []);
     } catch (error) {
       console.error("Error fetching donor info:", error);
+      window.location.assign("/invitedonate/create");
     }
   };
 
