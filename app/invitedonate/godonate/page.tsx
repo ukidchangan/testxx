@@ -16,30 +16,7 @@ export default function CreatePage() {
 
 function CreatePageContent() {
   const searchParams = useSearchParams();
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
-  const [countdown, setCountdown] = useState(5); // State to manage countdown
   
-    // Function to open the modal
-    const openModal = () => {
-      setIsModalOpen(true);
-      setCountdown(7); // Reset countdown to 5 seconds
-
-      // Start the countdown
-      const interval = setInterval(() => {
-        setCountdown((prev) => prev - 1);
-      }, 1000);
-  
-      // Close the modal after 5 seconds
-      setTimeout(() => {
-        setIsModalOpen(false);
-        clearInterval(interval); // Clear the interval
-      }, 7000);
-    };
-  
-    // Function to close the modal
-    const closeModal = () => {
-      setIsModalOpen(false);
-    };
   interface Category {
     id: number;
     name: string;
@@ -91,27 +68,7 @@ function CreatePageContent() {
 
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
-  const handleDownloadImage = (base64Image="", filename = 'download.png') => {
-    // Convert base64 to Blob
-    const byteCharacters = atob(base64Image.split(',')[1]);
-    const byteNumbers = new Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: 'image/webp' });
-  
-    // Create a link element
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
-  
-    // Trigger the download
-    link.click();
-  
-    // Clean up
-    URL.revokeObjectURL(link.href);
-  };
+
   useEffect(() => {
     if (userId !== "Unknown" && userId !== "") {
       fetchDonorInfo(userId);
@@ -414,18 +371,7 @@ function CreatePageContent() {
     }
   }, [searchParams]);
   // Add event listener for the popstate event
-  useEffect(() => {
-    const handlePopState = () => {
-      alert("XXXXXXXXXX");
-    };
 
-    window.addEventListener('popstate', handlePopState);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-    };
-  }, []);
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -674,40 +620,7 @@ function CreatePageContent() {
             <br /><br /><br /><br />
           </div>
 
-{/* Modal for expanded image */}
-{isModalOpen && (
-            <div
-              style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 1000,
-              }}
-              onClick={closeModal} // Close modal when clicking outside the image
-            >
-              <div style={{ textAlign: 'center', color: 'white' }}>
-                <img
-                  src={selectedCategory?.image || ''}
-                  alt="Expanded QR"
-                  style={{ 
-                    width: '90%', // Set width to 90% of the screen
-                    height: 'auto', // Maintain aspect ratio
-                    borderRadius: '10px',
-                    maxHeight: '90%', // Ensure it doesn't exceed 90% of the screen height
-                  }}
-                />
-                <div style={{ marginTop: '10px', fontSize: '24px' }}>
-                  Closing in {countdown} seconds...
-                </div>
-              </div>
-            </div>
-          )}
+
 
           <footer style={{
             position: "fixed",
