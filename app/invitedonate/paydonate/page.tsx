@@ -63,7 +63,7 @@ const LiffPage = () => {
 
   return (
     <div>
-         <div style={styles.loadingContainer}>
+    
     <Image 
             src="/logo.png" // Path to the image in the public folder
             alt="logo"
@@ -72,7 +72,7 @@ const LiffPage = () => {
           />
       <div style={styles.loadingSpinner}></div>
       <p style={styles.loadingText}>กำลังประมวลผล...</p>
-    </div>
+
     </div>
   );
 };
