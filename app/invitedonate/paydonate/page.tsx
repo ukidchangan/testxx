@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
-
+import Image from 'next/image';
 const LiffPage = () => {
   const [userId, setUserId] = useState("Unknown");
   const [isLoading, setIsLoading] = useState(true);
@@ -70,6 +70,14 @@ const LiffPage = () => {
 
   return (
     <div style={styles.loadingContainer}>
+              <Image 
+                      src="/logo.png" // Path to the image in the public folder
+                      alt="logo"
+                      width={800} // Set the width
+                      height={400} // Set the height
+                      layout="responsive" // Ensure the image is responsive
+                      className="rounded"
+                    />
       <div style={styles.loadingSpinner}></div>
       <p style={styles.loadingText}>XLoading...</p>
     </div>
@@ -92,7 +100,7 @@ const styles = {
     borderRadius: "50%",
     width: "40px",
     height: "40px",
-    animation: "spin 1s linear infinite",
+    animation: "spin 0.1s linear infinite",
   },
   loadingText: {
     marginLeft: "10px",
