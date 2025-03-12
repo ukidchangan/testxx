@@ -85,7 +85,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    background: "linear-gradient(135deg, #3498db, #8e44ad)", // Gradient background
+    background: "linear-gradient(135deg,rgb(174, 174, 174),rgb(255, 255, 255))", // Gradient background
   },
   content: {
     textAlign: "center" as const, // Explicitly set as a valid CSS value
