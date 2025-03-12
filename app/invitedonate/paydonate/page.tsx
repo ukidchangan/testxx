@@ -4,6 +4,7 @@ import liff from "@line/liff";
 
 const LiffPage = () => {
   const [userId, setUserId] = useState("Unknown");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const initializeLiff = async () => {
@@ -19,6 +20,8 @@ const LiffPage = () => {
         }
       } catch (err) {
         console.error("LIFF Initialization failed", err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -48,7 +51,7 @@ const LiffPage = () => {
       if (data.message === "Successfully") {
         window.location.assign("/invitedonate/godonate");
       } else {
-        window.location.assign("/invitedonate");
+        window.location.assign("/invitedonate/create");
       }
     } catch (error) {
       console.error("Error fetching donor info:", error);
@@ -56,7 +59,43 @@ const LiffPage = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div style={styles.loadingContainer}>
+        <div style={styles.loadingSpinner}></div>
+        <p style={styles.loadingText}>Loading...</p>
+      </div>
+    );
+  }
+
   return null;
 };
 
 export default LiffPage;
+
+const styles = {
+  loadingContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    backgroundColor: "#f0f0f0",
+  },
+  loadingSpinner: {
+    border: "4px solid #f3f3f3",
+    borderTop: "4px solid #3498db",
+    borderRadius: "50%",
+    width: "40px",
+    height: "40px",
+    animation: "spin 1s linear infinite",
+  },
+  loadingText: {
+    marginLeft: "10px",
+    fontSize: "18px",
+    color: "#3498db",
+  },
+  "@keyframes spin": {
+    "0%": { transform: "rotate(0deg)" },
+    "100%": { transform: "rotate(360deg)" },
+  },
+};
