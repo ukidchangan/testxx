@@ -23,7 +23,7 @@ function CreatePageContent() {
     type: string;
     favorite: boolean;
     category: string;
-    bank_holder: string;
+    bank_account_name: string;
     bank_account: string;
     bank_name: string;
     list_price: number;
@@ -309,8 +309,8 @@ function CreatePageContent() {
     if (imageBase64) {
       localStorage.setItem('imageBase64', imageBase64);
     }
-    if (selectedCategory?.bank_holder) {
-      localStorage.setItem('bank_holder', selectedCategory?.bank_holder || '');
+    if (selectedCategory?.bank_account_name) {
+      localStorage.setItem('bank_account_name', selectedCategory?.bank_account_name || '');
     }
     if (selectedCategory?.bank_account) {
       localStorage.setItem('bank_account', selectedCategory?.bank_account || '');
@@ -333,7 +333,7 @@ function CreatePageContent() {
         const storedFormData = localStorage.getItem('formData');
         const profilePicture = localStorage.getItem('profilePicture');
         const imageBase64 = localStorage.getItem('imageBase64');
-        const bank_holder = localStorage.getItem('bank_holder');
+        const bank_account_name = localStorage.getItem('bank_account_name');
         const bank_account = localStorage.getItem('bank_account');
         const bank_image = localStorage.getItem('bank_image');
         
@@ -352,7 +352,7 @@ function CreatePageContent() {
           type: "",
           favorite: false,
           category: "",
-          bank_holder: bank_holder || "",
+          bank_account_name: bank_account_name || "",
           bank_account: bank_account || "",
           bank_name: "",
           list_price: 0,
@@ -556,7 +556,7 @@ function CreatePageContent() {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขที่บัญชีสำหรับการโอนทำบุญ : <br /><span style={{ color: '#970404' }}> (บันทึกภาพ QR Code นี้เพื่อโอนเงิน)</span></label>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>QR Code/เลขที่บัญชีสำหรับการโอนทำบุญ : <span style={{ color: '#970404' }}> (บันทึกภาพ QR Code นี้เพื่อโอนเงิน)</span></label>
               {selectedCategory?.image && (
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
                            <img 
@@ -584,7 +584,7 @@ function CreatePageContent() {
               </label>
 
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี :<br />
-              <span style={{ color: '#970404' }}>{selectedCategory?.bank_holder || ''}</span> 
+              <span style={{ color: '#970404' }}>{selectedCategory?.bank_account_name || ''}</span> 
               </label>
             </div>
 
