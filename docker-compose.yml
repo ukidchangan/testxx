@@ -8,7 +8,7 @@ services:
         - NEXT_PUBLIC_LIFE_ID=${NEXT_PUBLIC_LIFE_ID}
         - NEXT_PUBLIC_API_AUTHORIZATION=${NEXT_PUBLIC_API_AUTHORIZATION}
         - NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
-    image: lineoa_liff:${APP_ENV}        
+    image: donate_lineoa:${APP_ENV}        
     restart: always
     container_name: "${LINEOA_PREFIX_NAME}-nextjs-${LINEOA_VERSION}${LINEOA_ENV}"
     ports:
