@@ -52,7 +52,7 @@ const LiffPage = () => {
 
       const data = await response.json();
       if (data.message !== "Successfully") {
-        // window.location.href = "/create";
+        window.location.href = "/invitedonate/create";
       }
       setDonorInfo(data);
     } catch (error) {
