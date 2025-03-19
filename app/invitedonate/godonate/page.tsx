@@ -193,7 +193,7 @@ function CreatePageContent() {
     const { name, value } = e.target;
 
     // Allow only numeric input
-    if (name === "amount" && !/^\d*$/.test(value)) {
+    if (name === "amount" && !/^\d*\.?\d*$/.test(value)) {
       return; // Do nothing if the input is not a number
     }
 
