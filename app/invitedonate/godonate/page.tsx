@@ -261,9 +261,9 @@ function CreatePageContent() {
     e.preventDefault();
 
     // Validate if amount is a number
-    const amount = formData.amount;
-    if (isNaN(Number(amount)) || amount.trim() === "") {
-      alert("กรุณากรอกจำนวนเงินบริจาคเป็นตัวเลขเท่านั้น");
+    const amount = parseFloat(formData.amount);
+    if (isNaN(amount) || amount <= 0) {
+      alert("กรุณากรอกจำนวนเงินบริจาคเป็นตัวเลขบวกเท่านั้น");
       return; // Stop the function if validation fails
     }
 
@@ -496,6 +496,7 @@ function CreatePageContent() {
                 value={formData.amount}
                 onChange={handleChange}
                 required
+                pattern="\d*\.?\d*"
                 style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
               />
             </div>
