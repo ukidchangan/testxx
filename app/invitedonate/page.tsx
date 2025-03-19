@@ -110,7 +110,17 @@ const InviteDonatePage = () => {
           alignItems: "center",
           zIndex: 1000,
         }}>
-          <div>Loading...</div> {/* You can replace this with a spinner or any other loading indicator */}
+          <div>
+          <Image
+                src="/logo.png" // Path to the image in the public folder
+                alt="Donation Flow"
+                width={200} // Set the width
+                height={200} // Set the height
+                layout="responsive" // Ensure the image is responsive
+                className="rounded"
+              />
+            <br />
+            Loading...</div> {/* You can replace this with a spinner or any other loading indicator */}
         </div>
       )}
 
