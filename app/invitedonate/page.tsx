@@ -14,6 +14,7 @@ const InviteDonatePage = () => {
   const [userId, setUserId] = useState("Unknown");
   const [profilePicture, setProfilePicture] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false); // New state for loading
+  const [donorInfo, setDonorInfo] = useState<any>(null);
 
   useEffect(() => { 
     const initializeLiff = async () => {
@@ -38,6 +39,39 @@ const InviteDonatePage = () => {
     initializeLiff();
   }, []);
 
+  useEffect(() => {
+    if (userId !== "Unknown" && userId !== "") {
+      fetchDonorInfo(userId);
+    }
+  }, [userId]);
+
+  const fetchDonorInfo = async (userId: string) => {
+    const apiUrl = `/api/hello?userid=${userId}`;
+    try {
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data.message !== "Successfully") {
+        window.location.href = "/invitedonate/create";
+      }
+      try {
+        setDonorInfo(data);
+        alert(data?.[0]?.name);
+      } catch (error) {}
+    } catch (error) {
+      console.error("Error fetching donor info:", error);
+    }
+  };
   const handleBackHome = () => {
     setIsLoading(true); // Start loading
     liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string })
