@@ -85,7 +85,8 @@ function CreatePageContent() {
 
       if (!response.ok) {
         console.error("Error fetching donor info x:", response.status);
-        window.location.assign("/invitedonate/create");
+       // window.location.assign("/invitedonate/create");
+        window.location.href = "/invitedonate/create";
         
         // throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -94,7 +95,8 @@ function CreatePageContent() {
       setDonorInfo(data.data || []);
     } catch (error) {
       console.error("Error fetching donor info:", error);
-      window.location.assign("/invitedonate/create");
+     // window.location.assign("/invitedonate/create");
+      window.location.href = "/invitedonate/create";
 
     }
   };
