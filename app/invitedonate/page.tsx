@@ -65,9 +65,9 @@ const InviteDonatePage = () => {
         window.location.href = "/invitedonate/create";
       }
       try {
-        console.log(data);
+
         setDonorInfo(data);
-        alert(data?.[0]?.name);
+        alert(data.data?.[0]?.name);
       } catch (error) {}
     } catch (error) {
       console.error("Error fetching donor info:", error);
