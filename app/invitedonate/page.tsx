@@ -67,7 +67,7 @@ const InviteDonatePage = () => {
       try {
 
         setDonorInfo(data);
-        alert(data.data?.[0]?.name);
+        // alert(data.data?.[0]?.name);
       } catch (error) {}
     } catch (error) {
       console.error("Error fetching donor info:", error);
@@ -199,10 +199,17 @@ const InviteDonatePage = () => {
           }}
           onClick={() => setIsLoading(true)}
         >
-          <Link href="/invitedonate/godonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-            บริจาค<br />ทำบุญ
-            <FontAwesomeIcon icon={faHandsPraying} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '8px' }} />
-          </Link>
+          {donorInfo ? (
+            <Link href="/invitedonate/godonate" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+              บริจาค<br />ทำบุญ
+              <FontAwesomeIcon icon={faHandsPraying} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '8px' }} />
+            </Link>
+          ) : (
+            <Link href="/invitedonate/create" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+              บริจาค<br />ทำบุญ
+              <FontAwesomeIcon icon={faHandsPraying} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '8px' }} />
+            </Link>
+          )}
         </button>
       </td>
     </tr>
@@ -220,10 +227,17 @@ const InviteDonatePage = () => {
           }}
           onClick={() => setIsLoading(true)}
         >
-          <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
-            ประวัติ<br />การบริจาค 
-            <FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: '30px', marginRight: '8px' ,marginLeft: '8px'}} />
-          </Link>
+          {donorInfo ? (
+            <Link href="/invitedonate/history" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+              ประวัติ<br />การบริจาค 
+              <FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: '30px', marginRight: '8px' ,marginLeft: '8px'}} />
+            </Link>
+          ) : (
+            <Link href="/invitedonate/create" className="w-100 h-100 d-flex align-items-center justify-content-center text-white text-decoration-none">
+              ประวัติ<br />การบริจาค 
+              <FontAwesomeIcon icon={faClockRotateLeft} style={{ fontSize: '30px', marginRight: '8px' ,marginLeft: '8px'}} />
+            </Link>
+          )}
         </button>
       </td>
       <td style={{ width: '50%', padding: '5px' }}>
