@@ -491,7 +491,7 @@ function CreatePageContent() {
             <div style={{ marginBottom: '15px' }}>
               <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>จำนวนเงินบริจาค :</label>
               <input
-                type="number"
+                type="text"
                 name="amount"
                 value={formData.amount}
                 onChange={handleChange}
