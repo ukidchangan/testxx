@@ -114,8 +114,8 @@ const InviteDonatePage = () => {
           <Image
                 src="/logo.png" // Path to the image in the public folder
                 alt="Donation Flow"
-                width={200} // Set the width
-                height={200} // Set the height
+                width={800} // Set the width
+                height={800} // Set the height
                 layout="responsive" // Ensure the image is responsive
                 className="rounded"
               />
