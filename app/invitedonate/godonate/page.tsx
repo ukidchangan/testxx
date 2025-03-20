@@ -57,6 +57,7 @@ function CreatePageContent() {
   const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
 
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [fileName, setFileName] = useState('ยังไม่มีไฟล์ที่เลือก');
 
   const getFormattedDate = () => {
     const now = new Date();
@@ -230,7 +231,7 @@ function CreatePageContent() {
   };
 
 
-    const [fileName, setFileName] = useState('ยังไม่มีไฟล์ที่เลือก');
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
     const selectedFile = e.target.files?.[0]?.name || 'ยังไม่มีไฟล์ที่เลือก';
@@ -321,6 +322,10 @@ function CreatePageContent() {
       localStorage.setItem('bank_image', selectedCategory?.image || '');
     }
 
+    if(fileName){
+      localStorage.setItem('fileName',fileName || '');
+    }
+
     // Navigate to the preview page
     window.location.href = "/invitedonate/previewdonate";
   };
@@ -338,6 +343,7 @@ function CreatePageContent() {
         const bank_account_name = localStorage.getItem('bank_account_name');
         const bank_account = localStorage.getItem('bank_account');
         const bank_image = localStorage.getItem('bank_image');
+        const fileNamex = localStorage.getItem('fileName');
         
         // alert(storedPreviewImage);
     
@@ -362,7 +368,9 @@ function CreatePageContent() {
           image: bank_image || "",
         });
  
-
+        if(fileNamex){
+          setFileName(fileNamex);
+        }
         if (profilePicture) {
             setProfilePicture(profilePicture);
           }
