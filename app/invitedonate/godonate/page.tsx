@@ -497,7 +497,7 @@ function CreatePageContent() {
                 onChange={handleChange}
                 required
                 pattern="\d*\.?\d*"
-                inputMode="numeric"
+                inputMode="decimal"
                 style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
               />
             </div>
