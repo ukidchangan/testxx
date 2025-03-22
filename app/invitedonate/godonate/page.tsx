@@ -391,7 +391,19 @@ function CreatePageContent() {
 
   return (
     <div>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false}         toastOptions={{
+          style: {
+            margin: '0 auto',
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: '#333',
+            color: '#fff',
+            padding: '16px',
+            borderRadius: '8px',
+          },
+        }} />
       <form onSubmit={handleSubmit}>
         <div
           style={{
