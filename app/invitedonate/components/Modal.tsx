@@ -32,22 +32,21 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         width: '100%',
       }}>
         {children}
-        <button
-          onClick={onClose}
-          style={{
-            marginTop: '10px',
-            padding: '8px 16px',
-            backgroundColor: '#007bff',
-            color: '#fff',
-            justifyContent: 'center',
-      alignItems: 'center',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}
-        >
-          OK
-        </button>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+          <button
+            onClick={onClose}
+            style={{
+              padding: '8px 16px',
+              backgroundColor: '#007bff',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+            }}
+          >
+            OK
+          </button>
+        </div>
       </div>
     </div>
   );
