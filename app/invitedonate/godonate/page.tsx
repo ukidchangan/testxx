@@ -5,6 +5,7 @@ import liff from "@line/liff";
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleArrowRight}  from '@fortawesome/free-solid-svg-icons';
+import Modal from '../components/Modal'; // Adjust the import path as necessary
 // Wrap the main component in a Suspense boundary
 export default function CreatePage() {
   return (
@@ -45,7 +46,8 @@ function CreatePageContent() {
     lineoa_display: string;
     lineoa_profile: string;
   }
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [displayName, setDisplayName] = useState("Loading...");
@@ -128,8 +130,9 @@ function CreatePageContent() {
     }
   };
   const handleClick = () => {
-    
-    alert('เป็นข้อความที่จะพิมพ์เพิ่มเติมบนใบอนุโมทนาบัตร เช่น เพื่ออุทิศส่วนกุศลแก่บรรพบุรุษ  , เจ้าภาพกองกฐินปี 2568 กองที่ 999 , ฯลฯ');
+    setModalMessage('เป็นข้อความที่จะพิมพ์เพิ่มเติมบนใบอนุโมทนาบัตร เช่น เพื่ออุทิศส่วนกุศลแก่บรรพบุรุษ  , เจ้าภาพกองกฐินปี 2568 กองที่ 999 , ฯลฯ');
+    setIsModalOpen(true);
+    //alert('เป็นข้อความที่จะพิมพ์เพิ่มเติมบนใบอนุโมทนาบัตร เช่น เพื่ออุทิศส่วนกุศลแก่บรรพบุรุษ  , เจ้าภาพกองกฐินปี 2568 กองที่ 999 , ฯลฯ');
   };
   useEffect(() => {
     const initializeLiff = async () => {
@@ -393,6 +396,9 @@ function CreatePageContent() {
 
   return (
     <div>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <p>{modalMessage}</p>
+      </Modal>
       {isLoadingDisplayName && (
         <div style={{
           position: "absolute",
