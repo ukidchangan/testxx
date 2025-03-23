@@ -55,6 +55,7 @@ function CreatePageContent() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageBase64, setImageBase64] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
+  const [isLoadingDisplayName, setIsLoadingDisplayName] = useState(true);
 
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [fileName, setFileName] = useState('ยังไม่มีไฟล์ที่เลือก');
@@ -93,7 +94,9 @@ function CreatePageContent() {
       }
 
       const data = await response.json();
+      setIsLoadingDisplayName(false); // Stop loading after 10 seconds
       setDonorInfo(data.data || []);
+    
     } catch (error) {
       console.error("Error fetching donor info:", error);
      // window.location.assign("/invitedonate/create");
@@ -390,7 +393,33 @@ function CreatePageContent() {
 
   return (
     <div>
-
+      {isLoadingDisplayName && (
+        <div style={{
+          position: "absolute",
+          top: "-40%",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          backdropFilter: "blur(5px)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 1000,
+        }}>
+          <div>
+          <Image
+                src="/logo.png" // Path to the image in the public folder
+                alt="Donation Flow"
+                width={800} // Set the width
+                height={800} // Set the height
+                layout="responsive" // Ensure the image is responsive
+                className="rounded"
+              />
+            <br />
+            Loading...</div> {/* You can replace this with a spinner or any other loading indicator */}
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <div
           style={{
