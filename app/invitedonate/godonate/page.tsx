@@ -556,6 +556,20 @@ function CreatePageContent() {
           borderRadius: '5px',
           cursor: 'pointer',
         }} onClick={handleClick}>คำอธิบาย</button></label>
+               <button
+              type="button" // Add this to prevent form submission
+              style={{
+                backgroundColor: '#04975b',
+                color: 'white',
+                border: 'none',
+                padding: '5px 5px',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+              onClick={handleClick}
+            >
+              คำอธิบาย
+            </button>
               <input
                 type="text"
                 name="donate_for"
