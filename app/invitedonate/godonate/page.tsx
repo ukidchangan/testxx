@@ -548,20 +548,17 @@ function CreatePageContent() {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-               <button
-              type="button" // Add this to prevent form submission
-              style={{
-                backgroundColor: '#04975b',
-                color: 'white',
-                border: 'none',
-                padding: '5px 5px',
-                borderRadius: '5px',
-                cursor: 'pointer',
-              }}
-              onClick={handleClick}
-            >
-              คำอธิบาย
-            </button>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ส่วนขยายการบริจาคเพื่อ : 
+                <button  type="button" 
+                  style={{
+          backgroundColor: '#04975b',
+          color: 'white',
+          border: 'none',
+          padding: '5px 5px',
+          borderRadius: '5px',
+          cursor: 'pointer',
+        }} onClick={handleClick}>คำอธิบาย</button></label>
+     
               <input
                 type="text"
                 name="donate_for"
