@@ -29,13 +29,19 @@ const InviteDonatePage = () => {
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
           setUserId(profile.userId || "");
-          setIsLoadingDisplayName(false); // Stop loading once displayName is set
+        // Set a timeout to delay the loading state change
+        setTimeout(() => {
+          setIsLoadingDisplayName(false); // Stop loading after 10 seconds
+        }, 10000); // 10 seconds delay
           console.log("Already logged in.");
         }
       } catch (err) {
         console.error("LIFF Initialization failed", err);
         setDisplayName("Error loading profile");
-        setIsLoadingDisplayName(false); // Stop loading even if there's an error
+        // Set a timeout to delay the loading state change
+        setTimeout(() => {
+          setIsLoadingDisplayName(false); // Stop loading after 10 seconds
+        }, 10000); // 10 seconds delay
       }
     };
 

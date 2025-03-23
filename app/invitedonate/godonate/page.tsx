@@ -5,7 +5,6 @@ import liff from "@line/liff";
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleArrowRight}  from '@fortawesome/free-solid-svg-icons';
-import { Toaster,toast } from 'react-hot-toast';
 // Wrap the main component in a Suspense boundary
 export default function CreatePage() {
   return (
@@ -126,16 +125,8 @@ function CreatePageContent() {
     }
   };
   const handleClick = () => {
-    toast('เป็นข้อความที่จะพิมพ์เพิ่มเติมบนใบอนุโมทนาบัตร เช่น เพื่ออุทิศส่วนกุศลแก่บรรพบุรุษ  , เจ้าภาพกองกฐินปี 2568 กองที่ 999 , ฯลฯ', {
-      duration: 4000, // Display for 4 seconds
-      style: {
-        background: '#333',
-        color: '#fff',
-        padding: '16px',
-        borderRadius: '8px',
-      },
-    });
-    //alert('เป็นข้อความที่จะพิมพ์เพิ่มเติมบนใบอนุโมทนาบัตร เช่น เพื่ออุทิศส่วนกุศลแก่บรรพบุรุษ  , เจ้าภาพกองกฐินปี 2568 กองที่ 999 , ฯลฯ');
+    
+    alert('เป็นข้อความที่จะพิมพ์เพิ่มเติมบนใบอนุโมทนาบัตร เช่น เพื่ออุทิศส่วนกุศลแก่บรรพบุรุษ  , เจ้าภาพกองกฐินปี 2568 กองที่ 999 , ฯลฯ');
   };
   useEffect(() => {
     const initializeLiff = async () => {
@@ -399,18 +390,7 @@ function CreatePageContent() {
 
   return (
     <div>
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          style: {
-            margin: '0 auto', // Center horizontally
-            position: 'fixed',
-            top: '50%', // Center vertically
-            left: '50%', // Center horizontally
-            transform: 'translate(-50%, -50%)', // Adjust for exact centering
-          },
-        }}
-      />
+
       <form onSubmit={handleSubmit}>
         <div
           style={{
