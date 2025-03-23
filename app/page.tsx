@@ -16,8 +16,15 @@ const InviteDonatePage = () => {
   const [isLoading, setIsLoading] = useState(false); // New state for loading
   const [donorInfo, setDonorInfo] = useState<any>(null);
   const [isLoadingDisplayName, setIsLoadingDisplayName] = useState(true); // New state for tracking displayName loading
+  const [isClient, setIsClient] = useState(false); // New state to track if the code is running on the client
 
   useEffect(() => {
+    setIsClient(true); // Set isClient to true when the component mounts on the client side
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return; // Exit if not on the client side
+
     const initializeLiff = async () => {
       try {
         await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFE_ID as string });
@@ -29,19 +36,16 @@ const InviteDonatePage = () => {
           setDisplayName(profile.displayName || "Unknown User");
           setProfilePicture(profile.pictureUrl || "");
           setUserId(profile.userId || "");
-        // Set a timeout to delay the loading state change
-
           console.log("Already logged in.");
         }
       } catch (err) {
         console.error("LIFF Initialization failed", err);
         setDisplayName("Error loading profile");
-        // Set a timeout to delay the loading state change
       }
     };
 
     initializeLiff();
-  }, []);
+  }, [isClient]);
 
   useEffect(() => {
     if (userId !== "Unknown" && userId !== "") {
@@ -68,12 +72,8 @@ const InviteDonatePage = () => {
       if (data.message !== "Successfully") {
         window.location.href = "/invitedonate/create";
       }
-      try {
-
-          setIsLoadingDisplayName(false); // Stop loading after 10 seconds
-
-        setDonorInfo(data);
-      } catch (error) { }
+      setDonorInfo(data);
+      setIsLoadingDisplayName(false); // Stop loading after data is fetched
     } catch (error) {
       console.error("Error fetching donor info:", error);
     }
@@ -97,6 +97,10 @@ const InviteDonatePage = () => {
       });
   };
 
+  if (!isClient) {
+    return null; // Return null or a loading spinner during server-side rendering
+  }
+
   return (
     <div style={{ backgroundColor: "#f0f8ff", minHeight: "100vh", padding: "20px", position: "relative" }}>
       {/* Loading overlay for displayName */}
@@ -115,16 +119,17 @@ const InviteDonatePage = () => {
           zIndex: 1000,
         }}>
           <div>
-          <Image
-                src="/logo.png" // Path to the image in the public folder
-                alt="Donation Flow"
-                width={800} // Set the width
-                height={800} // Set the height
-                layout="responsive" // Ensure the image is responsive
-                className="rounded"
-              />
+            <Image
+              src="/logo.png" // Path to the image in the public folder
+              alt="Donation Flow"
+              width={800} // Set the width
+              height={800} // Set the height
+              layout="responsive" // Ensure the image is responsive
+              className="rounded"
+            />
             <br />
-            Loading...</div> {/* You can replace this with a spinner or any other loading indicator */}
+            Loading...
+          </div>
         </div>
       )}
 
