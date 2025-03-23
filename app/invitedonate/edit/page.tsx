@@ -5,12 +5,15 @@ import liff from "@line/liff";
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleCheck}  from '@fortawesome/free-solid-svg-icons';
+import Modal from '../components/Modal';
 
 export default function EditPage() {
   const [displayName, setDisplayName] = useState("Loading...");
   const [userId, setUserId] = useState("Unknown");
   const [profilePicture, setProfilePicture] = useState<string>("");
   const [donorInfo, setDonorInfo] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const [formData, setFormData] = useState({
     lineoa_userid: '',
@@ -118,17 +121,29 @@ export default function EditPage() {
       if (response.ok) {
         const result = await response.json(); // Parse the JSON response
         if (result.success) {
-          alert('แก้ไขข้อมูลเสร็จเรียบร้อย');
-          window.location.href = "/invitedonate/info";
+          // alert('แก้ไขข้อมูลเสร็จเรียบร้อย');
+          // window.location.href = "/invitedonate/info";
+          setModalMessage('แก้ไขข้อมูลเสร็จเรียบร้อย!');
+          setIsModalOpen(true);
+          setTimeout(() => {
+            setIsModalOpen(false); // Close the modal
+            window.location.href = "/invitedonate/info";// Redirect to the home page
+          }, 3000); // 5 minutes = 300,000 milliseconds
         } else {
-          alert(`Failed to create profile: ${result.message}`);
+          // alert(`Failed to create profile: ${result.message}`);
+          setModalMessage(`Failed to create profile: ${result.message}`);
+          setIsModalOpen(true);
         }
       } else {
-        alert('Failed to create profile.');
+        // alert('Failed to create profile.');
+        setModalMessage('Failed to create profile.');
+        setIsModalOpen(true);
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred while submitting the form.');
+      // alert('An error occurred while submitting the form.');
+      setModalMessage('An error occurred while submitting the form.');
+      setIsModalOpen(true);
     }
   };
 
@@ -154,6 +169,9 @@ export default function EditPage() {
           boxShadow: '0px 0px 10px #ddd',
         }}
       >
+                             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <p>{modalMessage}</p>
+      </Modal>
         <h1 style={{ marginBottom: '0px', textAlign: 'center' }}>
           {profilePicture && (
             <img
