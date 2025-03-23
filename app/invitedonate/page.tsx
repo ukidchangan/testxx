@@ -30,18 +30,13 @@ const InviteDonatePage = () => {
           setProfilePicture(profile.pictureUrl || "");
           setUserId(profile.userId || "");
         // Set a timeout to delay the loading state change
-        setTimeout(() => {
-          setIsLoadingDisplayName(false); // Stop loading after 10 seconds
-        }, 10000); // 10 seconds delay
+
           console.log("Already logged in.");
         }
       } catch (err) {
         console.error("LIFF Initialization failed", err);
         setDisplayName("Error loading profile");
         // Set a timeout to delay the loading state change
-        setTimeout(() => {
-          setIsLoadingDisplayName(false); // Stop loading after 10 seconds
-        }, 10000); // 10 seconds delay
       }
     };
 
@@ -74,6 +69,9 @@ const InviteDonatePage = () => {
         window.location.href = "/invitedonate/create";
       }
       try {
+
+          setIsLoadingDisplayName(false); // Stop loading after 10 seconds
+
         setDonorInfo(data);
       } catch (error) { }
     } catch (error) {
@@ -105,7 +103,7 @@ const InviteDonatePage = () => {
       {isLoadingDisplayName && (
         <div style={{
           position: "absolute",
-          top: "30%",
+          top: "-30%",
           left: 0,
           right: 0,
           bottom: 0,
