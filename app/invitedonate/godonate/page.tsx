@@ -215,7 +215,9 @@ function CreatePageContent() {
     const bankAccountValue = selectedCategory?.bank_account || '';
     navigator.clipboard.writeText(bankAccountValue)
       .then(() => {
-        alert('คัดลอดบัญชี ' + bankAccountValue + ' เรียบร้อย');
+        // alert('คัดลอดบัญชี ' + bankAccountValue + ' เรียบร้อย');
+        setModalMessage('คัดลอดบัญชี ' + bankAccountValue + ' เรียบร้อย');
+        setIsModalOpen(true);
       })
       .catch((err) => {
         console.error('Failed to copy: ', err);
@@ -271,7 +273,9 @@ function CreatePageContent() {
     // Validate if amount is a number
     const amount = parseFloat(formData.amount);
     if (isNaN(amount) || amount <= 0) {
-      alert("กรุณากรอกจำนวนเงินบริจาคเป็นตัวเลขบวกเท่านั้น");
+      // alert("กรุณากรอกจำนวนเงินบริจาคเป็นตัวเลขบวกเท่านั้น");
+      setModalMessage("กรุณากรอกจำนวนเงินบริจาคเป็นตัวเลขบวกเท่านั้น");
+      setIsModalOpen(true);
       return; // Stop the function if validation fails
     }
 
