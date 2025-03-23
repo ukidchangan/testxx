@@ -103,7 +103,7 @@ const InviteDonatePage = () => {
       {isLoadingDisplayName && (
         <div style={{
           position: "absolute",
-          top: "-30%",
+          top: "-40%",
           left: 0,
           right: 0,
           bottom: 0,
