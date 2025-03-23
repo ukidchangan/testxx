@@ -2,8 +2,9 @@ FROM node:22-alpine as base
 RUN apk add --no-cache g++ make py3-pip libc6-compat
 RUN apk add --no-cache tzdata
 ENV TZ=Asia/Bangkok
-RUN cp /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
-RUN echo $TZ > /etc/timezone && dpkg-reconfigure tzdata
+#RUN cp /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
+#RUN echo $TZ > /etc/timezone && dpkg-reconfigure tzdata
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /app
 COPY package*.json ./

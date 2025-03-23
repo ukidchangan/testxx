@@ -15,7 +15,7 @@ services:
     ports:
       - "${PORT}:3000"
     environment:
-        - TZ="Asia/Bangkok"    
+        - TZ=Asia/Bangkok  
         - NODE_ENV=${NODE_ENV}
         - NEXT_PUBLIC_LIFE_ID=${NEXT_PUBLIC_LIFE_ID}
         - NEXT_PUBLIC_API_AUTHORIZATION=${NEXT_PUBLIC_API_AUTHORIZATION}
