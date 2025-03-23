@@ -96,7 +96,11 @@ export default function PreviewDonatePage() {
           setModalMessage('บริจาคเสร็จสิ้น');
           setIsModalOpen(true);
           // window.location.href = "/invitedonate/getdonate";
-          window.location.href = "/invitedonate";
+          // window.location.href = "/invitedonate";
+          setTimeout(() => {
+            setIsModalOpen(false); // Close the modal
+            window.location.href = "/invitedonate"; // Redirect to the home page
+          }, 5000); // 5 minutes = 300,000 milliseconds
         } else {
           // alert(`Failed to create profile: ${result.message}`);
           setModalMessage(`Failed to create profile: ${result.message}`);
