@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck  } from '@fortawesome/free-solid-svg-icons'; 
 import { faPenToSquare  } from '@fortawesome/free-solid-svg-icons'; 
+import Modal from '../components/Modal'; // Adjust the import path as necessary
 
 
 export default function PreviewDonatePage() {
@@ -18,6 +19,8 @@ export default function PreviewDonatePage() {
   const [product_text, setProduct_text] = useState<string | null>(null);
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
   const [imageBase64, setImageBase64] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   useEffect(() => {
     // Retrieve form data and preview image from localStorage
@@ -89,18 +92,26 @@ export default function PreviewDonatePage() {
       if (response.ok) {
         const result = await response.json();
         if (result.success) {
-          alert('บริจาคเสร็จสิ้น');
+          // alert('บริจาคเสร็จสิ้น');
+          setModalMessage('บริจาคเสร็จสิ้น');
+          setIsModalOpen(true);
           // window.location.href = "/invitedonate/getdonate";
           window.location.href = "/invitedonate";
         } else {
-          alert(`Failed to create profile: ${result.message}`);
+          // alert(`Failed to create profile: ${result.message}`);
+          setModalMessage(`Failed to create profile: ${result.message}`);
+          setIsModalOpen(true);
         }
       } else {
-        alert('Failed to create profile.');
+        // alert('Failed to create profile.');
+        setModalMessage('Failed to create profile.');
+        setIsModalOpen(true);
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred while submitting the form.');
+      // alert('An error occurred while submitting the form.');
+      setModalMessage('An error occurred while submitting the form.');
+      setIsModalOpen(true);
     } finally {
       setIsSubmitting(false); // Set loading state to false
     }
@@ -125,6 +136,9 @@ export default function PreviewDonatePage() {
         padding: '20px',
       }}
     >
+                <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <p>{modalMessage}</p>
+      </Modal>
         <form onSubmit={handleSubmit}>
       <div
         style={{
