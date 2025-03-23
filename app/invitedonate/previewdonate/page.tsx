@@ -100,7 +100,7 @@ export default function PreviewDonatePage() {
           setTimeout(() => {
             setIsModalOpen(false); // Close the modal
             window.location.href = "/invitedonate"; // Redirect to the home page
-          }, 5000); // 5 minutes = 300,000 milliseconds
+          }, 3000); // 5 minutes = 300,000 milliseconds
         } else {
           // alert(`Failed to create profile: ${result.message}`);
           setModalMessage(`Failed to create profile: ${result.message}`);
