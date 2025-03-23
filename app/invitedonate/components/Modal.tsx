@@ -39,12 +39,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             padding: '8px 16px',
             backgroundColor: '#007bff',
             color: '#fff',
+            justifyContent: 'center',
+      alignItems: 'center',
             border: 'none',
             borderRadius: '5px',
             cursor: 'pointer',
           }}
         >
-          Close
+          OK
         </button>
       </div>
     </div>
