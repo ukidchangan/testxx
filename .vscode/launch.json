@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "NEXTJS-DEV: debug server-side",
+        "type": "node-terminal",
+        "request": "launch",
+        "command": "npm run dev",
+        "env": { 
+            "NODE_ENV": "development" 
+        }
+
+      },
+      {
+        "name": "NEXTJS-PRODUCTION: debug server-side",
+        "type": "node-terminal",
+        "request": "launch",
+        "command": "npm run dev",
+        "env": { 
+            "NODE_ENV": "production" 
+        }
+      },
+
+    ]
+  }
