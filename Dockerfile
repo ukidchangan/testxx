@@ -1,25 +1,38 @@
-FROM node:lts-alpine AS base
+FROM node:22.11.0-alpine AS base
 
-# Stage 1: Install dependencies
-FROM base AS deps
+# setup docker image to install all node packages
+FROM base AS dependencies
+
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
-RUN corepack enable pnpm && pnpm install --frozen-lockfile
 
-# Stage 2: Build the application
-FROM base AS builder
+COPY ./app/package.json ./app/yarn.lock* ./
+
+RUN yarn install
+
+
+# setup docker image for next.js build
+FROM base AS build
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN corepack enable pnpm && pnpm run build
+COPY --from=dependencies /app/node_modules ./node_modules
+COPY ./app .
 
-# Stage 3: Production server
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN yarn run build
+
+# setup docker image to hold build, static and run the app
 FROM base AS runner
 WORKDIR /app
-ENV NODE_ENV=production
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-RUN if [ -d "/app/public" ]; then cp -r /app/public ./public; fi # Copy public folder if it exists
 
-EXPOSE 3000
+ENV NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1 \
+    HOSTNAME="0.0.0.0"
+
+COPY --from=build /app/public ./public
+
+RUN mkdir .next
+
+COPY --from=build /app/.next/standalone ./
+COPY --from=build /app/.next/static ./.next/static
+
 CMD ["node", "server.js"]
