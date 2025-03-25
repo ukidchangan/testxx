@@ -14,6 +14,7 @@ FROM base as builder
 WORKDIR /app
 COPY . .
 
+ENV NEXT_TELEMETRY_DISABLED=1
 # Public build-time environment variables
 #ARG NODE_ENV
 #ARG NEXT_PUBLIC_LIFE_ID
@@ -31,7 +32,8 @@ RUN npm run build
 FROM base as production
 WORKDIR /app
 
-ENV NODE_ENV=production
+ENV NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1
 RUN npm ci
 
 RUN addgroup -g 1001 -S nodejs
