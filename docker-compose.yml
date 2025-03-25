@@ -3,7 +3,7 @@ services:
   lineoa-app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.${NODE_ENV}
       args:
         - NODE_ENV=${NODE_ENV}
         - NEXT_PUBLIC_LIFE_ID=${NEXT_PUBLIC_LIFE_ID}
