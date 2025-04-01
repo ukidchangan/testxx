@@ -236,24 +236,8 @@ export default function PreviewDonatePage() {
               <tbody>
                 <tr>
                   <td style={{ width: '50%', padding: '5px' }}>
-          <button
-            type="submit"
-            className="btn btn-primary h-100 w-100 py-2"
-            style={{ 
-              fontSize: "1.1rem", 
-              height: "100%", // Ensure the button takes full height
-              display: "flex", // Use flexbox to align the link inside
-              alignItems: "center", // Vertically center the link
-              justifyContent: "center", // Horizontally center the link
-              padding: 0, // Remove default padding to ensure full height
-            }}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'ประมวลผล...' : 'ยืนยัน'}
-                      <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '8px' }} />
-          </button>
+ 
 
-</td><td>
           <button
             type="button"
             onClick={handleBack} 
@@ -270,6 +254,24 @@ export default function PreviewDonatePage() {
           >
            แก้ไข
            <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '30px', marginRight: '8px' ,marginLeft: '8px'}} />
+          </button>
+
+</td><td>
+<button
+            type="submit"
+            className="btn btn-primary h-100 w-100 py-2"
+            style={{ 
+              fontSize: "1.1rem", 
+              height: "100%", // Ensure the button takes full height
+              display: "flex", // Use flexbox to align the link inside
+              alignItems: "center", // Vertically center the link
+              justifyContent: "center", // Horizontally center the link
+              padding: 0, // Remove default padding to ensure full height
+            }}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'ประมวลผล...' : 'ยืนยัน'}
+                      <FontAwesomeIcon icon={faCircleCheck} style={{ fontSize: '30px', marginRight: '8px',marginLeft: '8px' }} />
           </button>
           </td>
           </tr></tbody></table>
