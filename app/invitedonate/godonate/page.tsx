@@ -639,7 +639,8 @@ function CreatePageContent() {
                 />
               </label>
 
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ธนาคารกรุงเทพ ชื่อบัญชี :<br />
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ชื่อบัญชี :<br />
+              <span style={{ color: '#970404' }}>{selectedCategory?.bank_name || ''}</span> 
               <span style={{ color: '#970404' }}>{selectedCategory?.bank_account_name || ''}</span> 
               </label>
             </div>
