@@ -244,7 +244,7 @@ export default function CreatePage() {
               name="street"
               value={formData.street}
               onChange={handleChange}
-              required
+              
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>
@@ -265,7 +265,7 @@ export default function CreatePage() {
               name="city"
               value={formData.city}
               onChange={handleChange}
-              required
+              
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>          
@@ -276,7 +276,7 @@ export default function CreatePage() {
               name="zip"
               value={formData.zip}
               onChange={handleChange}
-              required
+              
               style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
             />
           </div>          
