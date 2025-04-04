@@ -326,6 +326,9 @@ function CreatePageContent() {
     if (selectedCategory?.bank_account_name) {
       localStorage.setItem('bank_account_name', selectedCategory?.bank_account_name || '');
     }
+    if (selectedCategory?.bank_name) {
+      localStorage.setItem('bank_name', selectedCategory?.bank_name || '');
+    }
     if (selectedCategory?.bank_account) {
       localStorage.setItem('bank_account', selectedCategory?.bank_account || '');
     }
@@ -353,6 +356,7 @@ function CreatePageContent() {
         const imageBase64 = localStorage.getItem('imageBase64');
         const bank_account_name = localStorage.getItem('bank_account_name');
         const bank_account = localStorage.getItem('bank_account');
+        const bank_name = localStorage.getItem('bank_name');
         const bank_image = localStorage.getItem('bank_image');
         const fileNamex = localStorage.getItem('fileName');
         
@@ -373,7 +377,7 @@ function CreatePageContent() {
           category: "",
           bank_account_name: bank_account_name || "",
           bank_account: bank_account || "",
-          bank_name: "",
+          bank_name: bank_name || "",
           list_price: 0,
           url: "",
           image: bank_image || "",
