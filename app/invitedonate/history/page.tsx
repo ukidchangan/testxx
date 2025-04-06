@@ -121,11 +121,11 @@ const LiffPage = () => {
               }}>
                 {donation.name}
               </h3>
-              <p style={{ color: "#555", marginBottom: "10px" }}><strong>บริจาคในนาม:</strong><br /> {donation.donor}</p>
-              <p style={{ color: "#555", marginBottom: "10px" }}><strong>บริจาคเพื่อ :</strong> <br />{donation.donate_for}</p>
-              <p style={{ color: "#555", marginBottom: "10px" }}><strong>จำนวน: </strong><br />{new Intl.NumberFormat().format(donation.amount)} บาท </p>
-              <p style={{ color: "#555", marginBottom: "10px" }}><strong>สถานะ:</strong> <br />{donation.thai_state}</p>
-              <p style={{ color: "#555", marginBottom: "10px" }}><strong>วันที่บริจาค:</strong> <br />{donation.thai_date}</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>บริจาคในนาม:</strong>{donation.donor}</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>บริจาคเพื่อ :</strong> {donation.donate_for}</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>จำนวน: </strong>{new Intl.NumberFormat().format(donation.amount)} บาท </p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>สถานะ:</strong>{donation.thai_state}</p>
+              <p style={{ color: "#555", marginBottom: "10px" }}><strong>วันที่บริจาค:</strong> {donation.thai_date}</p>
             </div>
           ))}
         </div>
