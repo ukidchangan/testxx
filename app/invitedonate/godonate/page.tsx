@@ -248,6 +248,19 @@ function CreatePageContent() {
 
     const file = e.target.files?.[0];
     if (file) {
+
+      const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+      const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+      
+      if (!validExtensions.includes(fileExtension)) {
+        setModalMessage('กรุณาเลือกไฟล์รูปภาพเท่านั้น (JPG, JPEG, PNG, GIF, WEBP)');
+        setIsModalOpen(true);
+        // Reset file input
+        e.target.value = '';
+        setFileName('ยังไม่มีไฟล์ที่เลือก');
+        return;
+      }
+
       setFormData((prev) => ({
         ...prev,
         attachment: file,
