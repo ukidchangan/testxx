@@ -669,7 +669,7 @@ function CreatePageContent() {
         id="file-upload"
         type="file"
         name="attachment"
-        accept="image/*"
+        accept=".jpg,.jpeg,.png,.gif,.webp"  // Explicitly list image extensions
         onChange={handleFileChange}
         required={!previewImage}
         style={{ display: 'none' }} // Hide default file input
