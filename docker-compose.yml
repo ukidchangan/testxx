@@ -21,3 +21,6 @@ services:
         - NEXT_PUBLIC_API_AUTHORIZATION=${NEXT_PUBLIC_API_AUTHORIZATION}
         - NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
         - NEXT_TELEMETRY_DISABLED=1
+    dns:
+      - 8.8.8.8  # Google Public DNS
+      - 1.1.1.1  # Cloudflare DNS        
